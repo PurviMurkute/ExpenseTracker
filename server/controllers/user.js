@@ -6,11 +6,21 @@ import validator from "validator";
 const postSignUp = async (req, res) => {
   const { name, email, password, DOB, city } = req.body;
 
-  if (!name || !email || !password || !DOB || !city) {
+  if (!name || !email || !password || !DOB) {
     return res.status(400).json({
       success: false,
       data: null,
       message: "All fiels are required",
+    });
+  }
+
+   const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: "User with this email already exists"
     });
   }
 
