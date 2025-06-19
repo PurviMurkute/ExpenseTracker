@@ -48,7 +48,7 @@ const SignUp = () => {
   return (
     <div className="bg-slate-700 min-h-screen top-0 left-0 fixed w-full flex justify-center items-center">
       <div className="h-[25px] bg-slate-900 w-full fixed top-0"></div>
-      <div className="w-[1000px] px-10 py-2 flex justify-center items-center shadow-xl bg-white">
+      <div className="w-[1000px] px-10 py-2 flex justify-center items-center shadow-xl rounded-md bg-white">
         <div className="p-5">
           <img src={signupimg} alt="signup-icon" className="w-[500px]" />
         </div>
@@ -61,7 +61,7 @@ const SignUp = () => {
             🚀Get Started on a Smarter Spending Journey.
           </h2>
           <form
-            className="w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2"
+            className="w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2 rounded-md"
             onSubmit={(e) => {
               e.preventDefault();
             }}

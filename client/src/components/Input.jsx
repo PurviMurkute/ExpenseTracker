@@ -7,7 +7,7 @@ const Input = ({ type, placeholder, value, onChange }) => {
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className="bg-white p-2 my-4 border-2 border-slate-400 shadow-lg w-[85%] block mx-auto focus:outline-none"
+      className="bg-white p-2 my-4 border-2 border-slate-400 shadow-lg w-[85%] block mx-auto rounded-md focus:outline-none"
     />
   );
 };
