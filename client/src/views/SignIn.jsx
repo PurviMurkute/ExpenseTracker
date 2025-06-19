@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
 import axios from "axios";
+import logo from './../assets/logo.png';
+import { Link } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import signinimg from './../assets/signinimg.png';
+import Button from "../components/Button";
 
 const SignIn = () => {
   const [signInUser, setSignInUser] = useState({
@@ -31,17 +34,26 @@ const SignIn = () => {
       toast.loading("redirecting to dashboard");
 
       setTimeout(() => {
-        window.location.href = "/dasboard";
+        window.location.href = "/dashboard";
       }, 3000);
     } else {
       toast.error(response.data.message);
     }
   };
   return (
-    <div className="min-h-screen bg-slate-100 top-0 left-0 fixed w-full flex justify-center items-center">
+    <div className="min-h-screen bg-slate-700 top-0 left-0 fixed w-full flex justify-center items-center">
       <div className="h-[25px] bg-slate-900 w-full fixed top-0"></div>
-      <div className="flex justify-center items-center w-[1000px] bg-white">
-      <div className="">
+      <div className="flex justify-center items-center w-[950px] bg-white py-10">
+      <div className="me-5">
+        <div className="w-[420px] my-2">
+        <h3 className="font-bold text-xl font-serif text-slate-600 py-2">
+                    <img src={logo} alt="logo" className="w-[40px] inline" />
+                    ExpenseDiary
+                  </h3>
+                  <h2 className="text-md text-slate-600 font-bold font-sans px-2 pe-1">
+            Welcome Back! Sign In to Keep Tracking, Saving, and Thriving.
+          </h2>
+          </div>
       <form
         className="w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2"
         onSubmit={(e) => {
@@ -67,13 +79,9 @@ const SignIn = () => {
             setSignInUser({ ...signInUser, password: e.target.value });
           }}
         />
-        <button
-          className="text-lg font-bold bg-red-700 text-slate-100 block mx-auto my-5 px-4 py-1 cursor-pointer"
-          onClick={signIn}
-        >
-          SignIn
-        </button>
+        <Button btnText="SignIn" btnSize="sm" onClick={signIn}/>
       </form>
+      <p className="text-slate-800 text-center font-medium py-2">Dont have an account? <Link to='/signup' className="text-blue-700">SignUp now.</Link></p>
       </div>
       <div className="">
         <img src={signinimg} alt="login-img" className="w-[400px]"/>

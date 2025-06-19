@@ -25,6 +25,9 @@ const userTransactions = new Schema({
         ref: "User",
         required: true
     }
+},
+{
+    timestamps: true
 });
 
 const Transaction = model("Transaction", userTransactions);

@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import { Link } from "react-router";
+import Button from "../components/Button";
 
 const Home = () => {
   return (
@@ -35,9 +36,7 @@ const Home = () => {
           <span className="text-2xl font-bold"> ExpenseDiary!</span>
         </p>
         <Link to="/signup">
-          <button className="bg-red-700 text-xl px-4 py-2 my-5 font-bold rounded-md cursor-pointer">
-            Start Now
-          </button>
+          <Button btnText="Start Now" btnSize="lg"/>
         </Link>
       </div>
     </div>

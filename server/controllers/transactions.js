@@ -51,9 +51,9 @@ const getTransactions = async (req, res) => {
   }
 
   try {
-    const allTransaction = await Transaction.find({ user: userId });
+    const allTransaction = await Transaction.find({ user: userId }).sort({ createdAt: -1});
 
-    if (allTransaction === 0) {
+    if (allTransaction == 0) {
       return res.status(404).json({
         success: false,
         data: null,

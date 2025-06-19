@@ -4,6 +4,8 @@ import Input from "../components/Input";
 import logo from "./../assets/logo.png";
 import toast, { Toaster } from "react-hot-toast";
 import signupimg from "./../assets/signupimg.png";
+import { Link } from 'react-router';
+import Button from "../components/Button";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -44,18 +46,18 @@ const SignUp = () => {
   };
 
   return (
-    <div className="bg-slate-100 min-h-screen top-0 left-0 fixed w-full flex justify-center items-center">
+    <div className="bg-slate-700 min-h-screen top-0 left-0 fixed w-full flex justify-center items-center">
       <div className="h-[25px] bg-slate-900 w-full fixed top-0"></div>
-      <div className="w-[1000px] py-5 px-10 flex justify-center items-center shadow-xl bg-white">
+      <div className="w-[1000px] px-10 py-2 flex justify-center items-center shadow-xl bg-white">
         <div className="p-5">
           <img src={signupimg} alt="signup-icon" className="w-[500px]" />
         </div>
         <div>
           <h3 className="font-bold text-xl font-serif text-slate-600 py-2">
-            <img src={logo} alt="logo" className="w-[40px] inline" />{" "}
+            <img src={logo} alt="logo" className="w-[40px] inline" />
             ExpenseDiary
           </h3>
-          <h2 className="text-lg text-slate-600 font-bold font-sans px-2 pe-1">
+          <h2 className="text-md text-slate-600 font-bold font-sans px-2 pe-1">
             🚀Get Started on a Smarter Spending Journey.
           </h2>
           <form
@@ -107,13 +109,9 @@ const SignUp = () => {
                 setUser({ ...user, city: e.target.value });
               }}
             />
-            <button
-              className="text-lg font-bold bg-red-700 text-slate-100 block mx-auto my-5 px-4 py-1 cursor-pointer"
-              onClick={signUp}
-            >
-              SignUp
-            </button>
+            <Button btnText="SignUp" btnSize="sm" onClick={signUp}/>
           </form>
+          <p className="text-slate-800 text-center font-medium py-2">Already have a ExpenseDiary account? <Link to='/signin' className="text-blue-700">SignIn</Link></p>
         </div>
       </div>
       <Toaster/>
