@@ -2,9 +2,13 @@ import React from "react";
 import Header from "../components/Header";
 import { Link } from "react-router";
 import Button from "../components/Button";
+import { FEATURESDATA, HEADING } from "../configFeatures.jsx";
+import FeatureCard from "../components/FeatureCard";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
+    <>
     <div className="min-h-screen w-full bg-slate-800 relative">
       <div
         className="absolute inset-0 z-0"
@@ -40,6 +44,20 @@ const Home = () => {
         </Link>
       </div>
     </div>
+    <div className='shadow-xl rounded-xl p-20 bg-slate-200'>
+      <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">{HEADING}</h1>
+    <div className='flex justify-evenly flex-wrap'>
+    {
+      FEATURESDATA.map((feature, i)=>{
+        const {icon, title, description, className} = feature;
+
+        return( <FeatureCard icon={icon} title={title} description={description} key={i} className={className} />)
+      })
+    }
+    </div>
+    </div>
+    <Footer/>
+    </>
   );
 };
 
