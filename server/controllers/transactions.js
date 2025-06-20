@@ -4,12 +4,12 @@ import User from "./../models/User.js";
 const postTransaction = async (req, res) => {
   const { title, amount, type, category, user } = req.body;
 
-  if(!title || !amount || !type || !category || !user){
+  if (!title || !amount || !type || !category || !user) {
     return res.status(400).json({
       success: false,
       data: null,
-      message: "All fields are required"
-    })
+      message: "All fields are required",
+    });
   }
 
   const newTransaction = new Transaction({
@@ -17,7 +17,7 @@ const postTransaction = async (req, res) => {
     amount,
     type,
     category,
-    user
+    user,
   });
 
   try {
@@ -51,7 +51,9 @@ const getTransactions = async (req, res) => {
   }
 
   try {
-    const allTransaction = await Transaction.find({ user: userId }).sort({ createdAt: -1});
+    const allTransaction = await Transaction.find({ user: userId }).sort({
+      createdAt: -1,
+    });
 
     if (allTransaction == 0) {
       return res.status(404).json({
@@ -75,4 +77,24 @@ const getTransactions = async (req, res) => {
   }
 };
 
-export { postTransaction, getTransactions };
+const deleteTransactions = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Transaction.deleteOne({ _id: id });
+
+    return res.status(200).json({
+      success: true,
+      data: null,
+      message: "Transaction deleted successfully",
+    });
+  } catch (e) {
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: e.message,
+    });
+  }
+};
+
+export { postTransaction, getTransactions, deleteTransactions };

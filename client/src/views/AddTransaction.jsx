@@ -128,6 +128,7 @@ const AddTransaction = () => {
             btnSize="sm"
             onClick={addTransactions}
           />
+          <Button btnText="Check Transactions" btnSize="sm" onClick={()=>{window.location.href = '/dashboard'}}/>
         </form>
       </div>
       <Toaster/>

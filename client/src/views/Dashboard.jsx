@@ -77,7 +77,7 @@ const Dashboard = () => {
       </h3>
 
       <div className="flex justify-center">
-        <div className="w-[600px] h-[500px] my-5 mx-5 p-2 shadow-xl flex flex-col justify-center bg-white rounded-2xl">
+        <div className="w-[600px] h-[500px] my-5 mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-300 rounded-2xl">
           <h1 className="text-2xl font-bold text-slate-900 p-4 ms-7 mb-2">
             Your Financial Summary
           </h1>
@@ -88,7 +88,7 @@ const Dashboard = () => {
             amount={netIncome - netExpense}
           />
         </div>
-        <div className="w-[600px] h-[500px] my-5 mx-5 p-2 shadow-xl flex flex-col justify-center bg-white rounded-2xl">
+        <div className="w-[600px] h-[500px] my-5 mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-300 rounded-2xl">
           <h1 className="text-2xl font-bold text-slate-900 p-4">
             Recent Transactions
           </h1>
@@ -105,6 +105,7 @@ const Dashboard = () => {
                   type={type}
                   category={category}
                   createdAt={createdAt}
+                  loadTransactions={loadTransactions}
                 />
               );
             })}
