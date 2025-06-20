@@ -61,7 +61,7 @@ const SignUp = () => {
             🚀Get Started on a Smarter Spending Journey.
           </h2>
           <form
-            className="w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2 rounded-md"
+            className="w-[300px] md:w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2 rounded-md"
             onSubmit={(e) => {
               e.preventDefault();
             }}

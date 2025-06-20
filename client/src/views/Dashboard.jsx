@@ -68,10 +68,10 @@ const Dashboard = () => {
 
   return (
     <div className="bg-slate-600 min-h-screen inset-0 fixed">
-      <Header/>
+      <Header />
       <h1 className="mt-20 text-3xl font-extrabold text-center text-slate-100 pb-2">
         Hello {user.name}👋🏻
-      </h1> 
+      </h1>
       <h3 className="text-2xl font-bold text-center text-slate-100 pb-2">
         Welcome to ExpenseDiary!😊
       </h3>
@@ -88,25 +88,27 @@ const Dashboard = () => {
             amount={netIncome - netExpense}
           />
         </div>
-        <div className="w-[600px] h-[500px] my-5 mx-5 p-2 shadow-xl flex flex-col justify-center overflow-y-scroll bg-white rounded-2xl">
+        <div className="w-[600px] h-[500px] my-5 mx-5 p-2 shadow-xl flex flex-col justify-center bg-white rounded-2xl">
           <h1 className="text-2xl font-bold text-slate-900 p-4">
             Recent Transactions
           </h1>
-          {transactions.map((transaction, i) => {
-            const { _id, title, amount, type, category, createdAt } =
-              transaction;
-            return (
-              <TransactionCard
-              key={i}
-                _id={_id}
-                title={title}
-                amount={amount}
-                type={type}
-                category={category}
-                createdAt={createdAt}
-              />
-            );
-          })}
+          <div className="overflow-y-scroll">
+            {transactions.map((transaction, i) => {
+              const { _id, title, amount, type, category, createdAt } =
+                transaction;
+              return (
+                <TransactionCard
+                  key={i}
+                  _id={_id}
+                  title={title}
+                  amount={amount}
+                  type={type}
+                  category={category}
+                  createdAt={createdAt}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
       <Toaster />

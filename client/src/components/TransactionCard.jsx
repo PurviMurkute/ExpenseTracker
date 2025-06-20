@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React from 'react';
 
 const TransactionCard = ({ _id, title, amount, type, category, createdAt }) => {
+
+  
   
   const formattedDate = new Date(createdAt).toLocaleDateString('en-GB', {
     day: 'numeric',

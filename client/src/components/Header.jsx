@@ -28,11 +28,11 @@ const Header = () => {
   return (
     <div className="fixed bg-slate-900 pt-3 pb-2 w-full px-2 flex justify-between z-10 text-white">
       <div>
-        <h1 className="font-bold text-4xl font-serif">
-          <img src={logo} alt="logo" className="w-[50px] inline" /> ExpenseDiary
+        <h1 className="font-bold text-2xl md:text-4xl font-serif">
+          <img src={logo} alt="logo" className="w-[40px] md:w-[50px] inline" /> ExpenseDiary
         </h1>
       </div>
-      <div className="mt-3 me-5">
+      <div className="mt-3 md:me-5">
         {!currentUser ? (
           <>
             <Link
@@ -43,7 +43,7 @@ const Header = () => {
               SignIn
             </Link>
             <Link to="/signup">
-              <Button btnText="SignUp Now" btnSize="md" />
+              <Button btnText="SignUp Now" btnSize="md"  />
             </Link>
           </>
         ) : (

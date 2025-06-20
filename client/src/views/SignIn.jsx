@@ -26,6 +26,8 @@ const SignIn = () => {
 
       localStorage.setItem("currentuser", JSON.stringify(response.data.data));
 
+      localStorage.setItem("JwtToken", JSON.stringify(response.data.jwtToken))
+
       setSignInUser({
         email: "",
         password: "",
@@ -43,9 +45,9 @@ const SignIn = () => {
   return (
     <div className="min-h-screen bg-slate-700 top-0 left-0 fixed w-full flex justify-center items-center">
       <div className="h-[25px] bg-slate-900 w-full fixed top-0"></div>
-      <div className="flex justify-center items-center w-[950px] bg-white rounded-md py-10">
-      <div className="me-5">
-        <div className="w-[420px] my-2">
+      <div className="flex justify-center items-center w-[950px] bg-white rounded-md py-4 md:py-10">
+      <div className="ms-1 md:me-5">
+        <div className="w-[300px] md:w-[420px] my-2">
         <h3 className="font-bold text-xl font-serif text-slate-600 py-2">
                     <img src={logo} alt="logo" className="w-[40px] inline" />
                     ExpenseDiary
@@ -55,7 +57,7 @@ const SignIn = () => {
           </h2>
           </div>
       <form
-        className="w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2 rounded-md"
+        className="w-[300px] md:w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2 rounded-md"
         onSubmit={(e) => {
           e.preventDefault();
         }}

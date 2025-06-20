@@ -23,17 +23,17 @@ const Home = () => {
 
       <Header />
 
-      <div className="flex flex-col items-center justify-center inset-0 absolute text-white">
-        <h3 className="text-5xl font-extrabold py-2">
+      <div className="flex flex-col items-center justify-center mx-4 inset-0 absolute text-white">
+        <h3 className="text-4xl md:text-5xl font-extrabold py-4 md:py-2">
           Goodbye Guesswork. Hello Financial Clarity!
         </h3>
-        <h4 className="text-2xl font-bold py-2">
-          See Where Your Money Goes — And Keep More of It.
+        <h4 className="text-xl md:text-2xl font-bold pb-4 md:py-2">
+          See Where Your Money Goes And Keep More of It.
         </h4>
-        <p className="text-lg py-2">
+        <p className="text-lg pb-4 md:py-2">
           Turn everyday spending into meaningful savings. Get insights, set
           goals, and take control of your financial life with
-          <span className="text-2xl font-bold"> ExpenseDiary!</span>
+          <span className="text-xl md:text-2xl font-bold"> ExpenseDiary!</span>
         </p>
         <Link to="/signup">
           <Button btnText="Start Now" btnSize="lg"/>
