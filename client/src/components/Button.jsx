@@ -12,7 +12,7 @@ const Button = ({btnText, onClick, btnSize, hidebtn}) => {
       sm: "hidden md:block"
     }
   return (
-    <button className={`font-bold bg-red-700 text-slate-100 cursor-pointer rounded-md ${hideBtnOnSMScreen[hidebtn]} ${btnSizes[btnSize]}`} onClick={onClick}>{btnText}</button>
+    <button className={`font-bold bg-red-600 text-slate-100 cursor-pointer rounded-md ${hideBtnOnSMScreen[hidebtn]} md:block ${btnSizes[btnSize]}`} onClick={onClick}>{btnText}</button>
   )
 }
 

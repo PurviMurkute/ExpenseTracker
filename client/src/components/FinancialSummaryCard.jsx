@@ -21,7 +21,7 @@ const FinancialSummaryCard = ({type, amount}) => {
     }
 
   return (
-    <div className='bg-slate-100 flex flex-col justify-center items-center shadow-md rounded-lg p-3 mx-8 mb-5 hover:shadow-lg transition'>
+    <div className='bg-slate-100 flex flex-col justify-center items-center shadow-md rounded-lg p-3 mx-3 md:mx-8 mb-5 hover:shadow-lg transition'>
           <p className={`text-2xl font-bold ${color}`}>{sign} ₹{amount}</p>
           <h4 className='text-xl font-bold text-slate-900'>{lable}</h4>
         </div>

@@ -69,16 +69,16 @@ const Dashboard = () => {
   return (
     <div className="bg-slate-600 min-h-screen inset-0 fixed">
       <Header />
-      <h1 className="mt-20 text-3xl font-extrabold text-center text-slate-100 pb-2">
+      <h1 className="mt-20 text-2xl md:text-3xl font-extrabold text-center text-slate-100 px-2 pb-2">
         Hello {user.name}👋🏻
       </h1>
-      <h3 className="text-2xl font-bold text-center text-slate-100 pb-2">
+      <h3 className="text-xl font-bold text-center text-slate-100 px-2 pb-2">
         Welcome to ExpenseDiary!😊
       </h3>
 
-      <div className="flex justify-center">
-        <div className="w-[600px] h-[500px] my-5 mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-300 rounded-2xl">
-          <h1 className="text-2xl font-bold text-slate-900 p-4 ms-7 mb-2">
+      <div className="flex flex-col md:flex-row justify-center">
+        <div className="md:w-[600px] h-[450px] md:h-[500px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-300 rounded-2xl">
+          <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4 md:ms-7 mb-2">
             Your Financial Summary
           </h1>
           <FinancialSummaryCard type="income" amount={netIncome} />
@@ -88,8 +88,8 @@ const Dashboard = () => {
             amount={netIncome - netExpense}
           />
         </div>
-        <div className="w-[600px] h-[500px] my-5 mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-300 rounded-2xl">
-          <h1 className="text-2xl font-bold text-slate-900 p-4">
+        <div className="md:w-[600px] md:h-[500px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-300 rounded-2xl">
+          <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4">
             Recent Transactions
           </h1>
           <div className="overflow-y-scroll">

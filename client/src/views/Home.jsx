@@ -44,7 +44,7 @@ const Home = () => {
         </Link>
       </div>
     </div>
-    <div className='shadow-xl rounded-xl p-20 bg-slate-200'>
+    <div className='shadow-xl rounded-xl p-2 md:p-20 bg-slate-200'>
       <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">{HEADING}</h1>
     <div className='flex justify-evenly flex-wrap'>
     {
