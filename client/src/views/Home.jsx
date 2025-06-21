@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Link } from "react-router";
 import Button from "../components/Button";
@@ -7,6 +7,16 @@ import FeatureCard from "../components/FeatureCard";
 import Footer from "../components/Footer";
 
 const Home = () => {
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(()=>{
+    const currentUser = JSON.parse(localStorage.getItem("currentuser"))
+
+    if(currentUser){
+      setCurrentUser(currentUser);
+    }
+  }, [])
+
   return (
     <>
     <div className="min-h-screen w-full bg-slate-800 relative">
@@ -39,9 +49,12 @@ const Home = () => {
           goals, and take control of your financial life with
           <span className="text-xl md:text-2xl font-bold"> ExpenseDiary!</span>
         </p>
-        <Link to="/signup">
+        {!currentUser ? <Link to="/signup">
           <Button btnText="Start Now" btnSize="lg"/>
-        </Link>
+        </Link> : <Link to="/dashboard">
+          <Button btnText="Start Now" btnSize="lg"/>
+        </Link>}
+        
       </div>
     </div>
     <div className='shadow-xl rounded-xl p-2 md:p-20 bg-slate-200'>
