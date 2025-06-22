@@ -42,7 +42,7 @@ const SignIn = () => {
   return (
     <div className="min-h-screen bg-slate-700 top-0 left-0 fixed w-full flex justify-center items-center">
       <div className="h-[25px] bg-slate-900 w-full fixed top-0"></div>
-      <div className="flex justify-center items-center w-[950px] bg-white rounded-md py-4 md:py-10">
+      <div className="flex justify-center items-center md:w-[950px] bg-white rounded-md py-4 px-3 md:py-10">
         <div className="ms-1 md:me-5">
           <div className="w-[300px] md:w-[420px] my-2">
             <h3 className="font-bold text-xl font-serif text-slate-600 py-2">
@@ -88,7 +88,7 @@ const SignIn = () => {
           </p>
         </div>
         <div className="">
-          <img src={signinimg} alt="login-img" className="w-[400px]" />
+          <img src={signinimg} alt="login-img" className="hidden md:flex w-[400px]" />
         </div>
       </div>
       <Toaster />
