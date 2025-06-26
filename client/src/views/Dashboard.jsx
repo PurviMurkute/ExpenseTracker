@@ -150,7 +150,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="bg-slate-600 min-h-screen overflow-y-auto">
+      <div className="bg-slate-700 min-h-screen overflow-y-auto">
         <Header />
         <h1 className="mt-20 text-2xl md:text-3xl font-extrabold text-center text-slate-100 px-2 pb-2">
           Hello {user.name}👋🏻
@@ -160,7 +160,7 @@ const Dashboard = () => {
         </h3>
 
         <div className="flex flex-col md:flex-row justify-center">
-          <div className="md:w-[600px] h-[450px] md:h-[500px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-200 rounded-2xl">
+          <div className="md:w-[600px] h-[450px] md:h-[500px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-100 rounded-2xl">
             <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4 md:ms-7 mb-2">
               Your Financial Summary
             </h1>
@@ -171,7 +171,7 @@ const Dashboard = () => {
               amount={netIncome - netExpense}
             />
           </div>
-          <div className="md:w-[600px] h-[450px] md:h-[500px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-200 rounded-2xl">
+          <div className="md:w-[600px] h-[450px] md:h-[500px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-100 rounded-2xl">
             <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4">
               Recent Transactions
             </h1>
@@ -196,13 +196,13 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="flex flex-col md:flex-row justify-center my-5 md:mx-10">
-          <div className="md:w-[600px] h-[350px] md:h-[450px] bg-slate-200 p-10 md:p-15 mx-2 rounded-md md:me-10 my-5">
-            <h2 className="text-xl md:text-2xl font-bold text-slate-900 p-2 md:ms-7">
+          <div className="md:w-[600px] h-[350px] md:h-[450px] bg-slate-100 p-10 md:p-15 mx-2 rounded-2xl md:me-10 my-5">
+            <h2 className="text-xl md:text-2xl font-bold text-slate-900 pb-2 md:ms-7">
               Summary Visualizations
             </h2>
             <Doughnut data={doughnutData} />
           </div>
-          <div className="md:w-[600px] h-[350px]  md:h-[450px] bg-slate-200 p-10 md:p-15 mx-2 rounded-md my-5">
+          <div className="md:w-[600px] h-[350px]  md:h-[450px] bg-slate-100 p-10 md:p-15 mx-2 rounded-2xl my-5 overflow-y-auto">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 p-2 md:ms-7">
               Daily Transactions
             </h2>

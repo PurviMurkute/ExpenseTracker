@@ -14,54 +14,64 @@ const AddTransaction = () => {
     user: "",
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("currentuser"));
-   
 
-    if(currentUser){
+    if (currentUser) {
       setUserData(currentUser);
     }
-    if(!currentUser){
-      window.location.href = '/signin'
+    if (!currentUser) {
+      window.location.href = "/signin";
     }
-  }, [])
+  }, []);
+
+  const JWT = JSON.parse(localStorage.getItem("JwtToken"));
+
+  console.log(JWT);
 
   const addTransactions = async () => {
-    try{
-    const JWT = JSON.parse(localStorage.getItem("JwtToken"));
-    
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_KEY}/transactions`,
-      {
-        title: userData.title,
-        amount: userData.amount,
-        type: userData.type,
-        category: userData.category,
-        user: userData._id,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${JWT}`
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_KEY}/transactions`,
+        {
+          title: userData.title,
+          amount: userData.amount,
+          type: userData.type,
+          category: userData.category,
+          user: userData._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${JWT}`,
+          },
         }
+      );
+
+      if (response.data.success) {
+        setUserData(response.data.data);
+        toast.success(response.data.message);
+
+        setUserData({
+          title: "",
+          amount: "",
+          type: "",
+          category: "",
+        });
+      } else {
+        toast.error(response.data.message);
+        
       }
-    );
-
-    if(response.data.success){
-      setUserData(response.data.data)
-      toast.success(response.data.message);
-
-      setUserData({
-        title: "",
-        amount: "",
-        type: "",
-        category: ""
-      })
-    }else{
-      toast.error(response.data.message);
+    } catch (e) {
+      if (e?.response?.data?.message == "jwt expired") {
+          localStorage.clear();
+          toast.error("JWT expired, please signin again");
+          setTimeout(() => {
+            window.location.href = "/signin";
+          }, 2000);
+          return;
+        }
+      toast.error(e?.response?.data?.message || e?.message);
     }
-  }catch(e){
-    toast.error(e?.response?.data?.message || e?.message);
-  }
   };
 
   return (
@@ -74,7 +84,9 @@ const AddTransaction = () => {
           }}
           className="w-[300px] md:w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2 rounded-md"
         >
-          <h3 className="font-bold text-slate-900 py-3 text-2xl text-center">Add Transactions</h3>
+          <h3 className="font-bold text-slate-900 py-3 text-2xl text-center">
+            Add Transactions
+          </h3>
           <Input
             type="text"
             placeholder="Title"
@@ -121,17 +133,23 @@ const AddTransaction = () => {
             <option value="other">Other</option>
           </select>
 
-          <Input type="text" value={userData._id} disable/>
+          <Input type="text" value={userData._id} disable />
 
           <Button
             btnText="Add Transaction"
             btnSize="sm"
             onClick={addTransactions}
           />
-          <Button btnText="Check Transactions" btnSize="sm" onClick={()=>{window.location.href = '/dashboard'}}/>
+          <Button
+            btnText="Check Transactions"
+            btnSize="sm"
+            onClick={() => {
+              window.location.href = "/dashboard";
+            }}
+          />
         </form>
       </div>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };
