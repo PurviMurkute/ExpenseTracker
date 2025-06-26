@@ -108,7 +108,7 @@ const postLogin = async (req, res) => {
       email: user.email,
     },
     process.env.JWT_SECRET,
-    { expiresIn: 60 }
+    { expiresIn: 60 * 60 * 24 }
   );
 
   res.status(200).json({

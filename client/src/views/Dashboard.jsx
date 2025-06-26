@@ -45,15 +45,20 @@ const Dashboard = () => {
     }
   }, []);
 
+  const JWT = JSON.parse(localStorage.getItem("JwtToken"));
+
   const loadTransactions = async () => {
     if (!user._id) return;
 
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_KEY}/transactions?userId=${user._id}`
+        `${import.meta.env.VITE_API_KEY}/transactions?userId=${user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${JWT}`,
+          },
+        }
       );
-
-      console.log(response.data.data);
 
       if (response.data.success) {
         toast.loading("Loading transactions...");
@@ -64,7 +69,15 @@ const Dashboard = () => {
         toast.dismiss();
       } else toast.error(response.data.message);
     } catch (e) {
-      toast.error(e.response.data.message);
+      if (e?.response?.data?.message == "jwt expired") {
+        localStorage.clear();
+        toast.error("JWT expired, please signin again");
+        setTimeout(() => {
+          window.location.href = "/signin";
+        }, 2000);
+        return;
+      }
+      toast.error(e?.response?.data?.message || e?.message);
     }
   };
 

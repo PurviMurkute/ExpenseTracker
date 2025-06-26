@@ -27,8 +27,6 @@ const AddTransaction = () => {
 
   const JWT = JSON.parse(localStorage.getItem("JwtToken"));
 
-  console.log(JWT);
-
   const addTransactions = async () => {
     try {
       const response = await axios.post(
