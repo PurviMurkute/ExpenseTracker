@@ -196,27 +196,27 @@ const Dashboard = () => {
   return (
     <>
     <Header />
-    {isLoaderOpen ? <Loader isLoading={isLoaderOpen} /> : (<div className="bg-slate-700 min-h-screen ms-[20%] px-5 py-2 overflow-y-auto">
-        <h1 className="mt-20 text-2xl font-bold ms-5 text-slate-100 px-2 pb-2">
+    {isLoaderOpen ? <Loader isLoading={isLoaderOpen} /> : (<div className="bg-slate-500 min-h-screen md:ms-[20%] px-5 py-2 overflow-y-auto">
+        <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-5 text-slate-100 px-2 md:pb-2">
           Hello {user.name}👋🏻
         </h1>
-        <h3 className={`${isDashboard? "text-xl font-medium ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
+        <h3 className={`${isDashboard? "text-lg md:text-xl font-medium md:ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
           Welcome to ExpenseDiary!😊
         </h3>
-        <h3 className={`${isTransactions? "text-xl font-medium ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
+        <h3 className={`${isTransactions? "text-lg md:text-xl font-medium md:ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
           Here are your Transactions!😊
         </h3>
-        <h3 className={`${isReports? "text-xl font-medium ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
+        <h3 className={`${isReports? "text-lg md:text-xl font-medium md:ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
           Here are your transactions reports!😊
         </h3>
 
         <div className="">
-          <div className={`${isDashboard? "my-2 mx-2 md:mx-5 ": "hidden"}`}>
-            <div className="p-2 shadow-xl bg-slate-100 rounded-2xl mb-1">
+          <div className={`${isDashboard? "my-2 md:mx-10 ": "hidden"}`}>
+            <div className=" shadow-xl bg-slate-200 rounded-2xl mb-1">
             <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4 md:ms-6 mb-2">
               Your Financial Summary
             </h1>
-            <div className="flex flex-row justify-center">
+            <div className="flex flex-col md:flex-row justify-center">
               <FinancialSummaryCard type="income" amount={netIncome} />
               <FinancialSummaryCard type="expense" amount={netExpense} />
               <FinancialSummaryCard

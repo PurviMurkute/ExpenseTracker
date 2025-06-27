@@ -5,20 +5,40 @@ import Button from "./Button";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { User } from "lucide-react";
-import user from './../assets/user.png'
+import {
+  LayoutDashboard,
+  BadgeIndianRupee,
+  ChartArea,
+  BadgePlus,
+  LogOut,
+  AlignJustify,
+} from "lucide-react";
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState("Overview");
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const location = useLocation();
 
-  const fullWidthRoutes = ["/dashboard", "/transactions", "/addtransactions", "/reports", "/quickactions"];
-  const isDashboard = fullWidthRoutes.some(path => location.pathname.startsWith(path));
+  const fullWidthRoutes = [
+    "/dashboard",
+    "/transactions",
+    "/addtransactions",
+    "/reports",
+    "/quickactions",
+  ];
+  const isDashboard = fullWidthRoutes.some((path) =>
+    location.pathname.startsWith(path)
+  );
 
   const toggleDrpdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
   };
 
   useEffect(() => {
@@ -45,7 +65,11 @@ const Header = () => {
           : "md:w-2/3  md:mx-60 my-1 px-4 md:px-7 rounded-full"
       }`}
     >
-      <div>
+      <div className="flex flex-row">
+        <AlignJustify
+          className="inline w-[30px] mt-3.5 pe-2 cursor-pointer md:hidden"
+          onClick={toggleNav}
+        />
         <Link to="/">
           <h1 className="font-bold text-xl md:text-3xl font-serif pt-2">
             <img
@@ -74,14 +98,18 @@ const Header = () => {
             </div>
             <div>
               <Link to="/signin">
-              <User className="w-[35px] fixed top-4 right-5 md:right-[20%] rounded-full block md:hidden" />
+                <User className="w-[35px] fixed top-4 right-5 md:right-[20%] rounded-full block md:hidden" />
               </Link>
             </div>
           </>
-        ) : 
+        ) : (
           <div className="flex relative">
             <button onClick={toggleDrpdown}>
-              <User className={`${isDashboard? "right-2": "right-[20%"} w-[50px] fixed top-6 cursor-pointer block`}/>
+              <User
+                className={`${
+                  isDashboard ? "right-2" : "right-[20%"
+                } w-[50px] fixed top-6 cursor-pointer block`}
+              />
             </button>
             {isDropdownOpen && (
               <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-2 rounded-xl">
@@ -98,89 +126,93 @@ const Header = () => {
                 </button>
               </div>
             )}
-          </div> }
+          </div>
+        )}
       </div>
-      <div
-        className={`${
-          isDashboard
-            ? "w-1/5 h-screen -z-10 bg-slate-900 fixed left-0 "
-            : "hidden"
-        }`}
-      >
-        <div className="flex flex-col mt-20 px-10">
-          <Link
-            to="/dashboard"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-              selectedTab == "Overview"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900"
-            }`}
-            onClick={() => {
-              setSelectedTab("Overview");
-            }}
-          >
-            Overview
-          </Link>
-          <Link
-            to="/transactions"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-              selectedTab == "Transactions"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900"
-            }`}
-            onClick={() => {
-              setSelectedTab("Transactions");
-            }}
-          >
-            Transactions
-          </Link>
-          <Link
-            to="/addtransactions"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-              selectedTab == "AddTransactions"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900"
-            }`}
-            onClick={() => {
-              setSelectedTab("AddTransactions");
-            }}
-          >
-            Add Transactions
-          </Link>
-          <Link
-            to="/reports"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 border-b-1 border-slate-200 hover:bg-slate-500 ${
-              selectedTab == "Visualizations"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900 pb-5"
-            }`}
-            onClick={() => {
-              setSelectedTab("Visualizations");
-            }}
-          >
-            Visualizations
-          </Link>
-          <Link
-            className={`p-2 my-3 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-              selectedTab == "QuickActions"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900"
-            }`}
-            onClick={() => {
-              setSelectedTab("QuickActions");
-            }}
-          >
-            Quick Actions
-          </Link>
-          <Link
-            to="signin"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 fixed bottom-1`}
-            onClick={handleSignOut}
-          >
-            Sign Out
-          </Link>
+      
+        <div
+          className={`${
+            isDashboard
+              ? `w-full md:w-1/5 ${isNavOpen ? "block" : "hidden"} md:block h-screen -z-10 bg-slate-900 fixed left-0 `
+              : "hidden"
+          }`}
+        >
+          <div className="flex flex-col mt-20 px-10">
+            <Link
+              to="/dashboard"
+              className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+                selectedTab == "Overview"
+                  ? "bg-slate-300 text-slate-900"
+                  : "bg-slate-900"
+              }`}
+              onClick={() => {
+                setSelectedTab("Overview"); toggleNav();
+              }}
+            >
+              <LayoutDashboard className="inline w-[23px]" /> Overview
+            </Link>
+            <Link
+              to="/transactions"
+              className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+                selectedTab == "Transactions"
+                  ? "bg-slate-300 text-slate-900"
+                  : "bg-slate-900"
+              }`}
+              onClick={() => {
+                setSelectedTab("Transactions"); toggleNav();
+              }}
+            >
+              <BadgeIndianRupee className="inline w-[23px]" /> Transactions
+            </Link>
+            <Link
+              to="/addtransactions"
+              className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+                selectedTab == "AddTransactions"
+                  ? "bg-slate-300 text-slate-900"
+                  : "bg-slate-900"
+              }`}
+              onClick={() => {
+                setSelectedTab("AddTransactions"); toggleNav();
+              }}
+            >
+              <BadgePlus className="inline w-[23px]" /> Add Transactions
+            </Link>
+            <Link
+              to="/reports"
+              className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 border-b-1 border-slate-200 hover:bg-slate-500 ${
+                selectedTab == "Visualizations"
+                  ? "bg-slate-300 text-slate-900"
+                  : "bg-slate-900 pb-5"
+              }`}
+              onClick={() => {
+                setSelectedTab("Visualizations"); toggleNav();
+              }}
+            >
+              <ChartArea className="inline w-[23px]" /> Visualizations
+            </Link>
+            <Link
+              className={`p-2 my-3 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+                selectedTab == "QuickActions"
+                  ? "bg-slate-300 text-slate-900"
+                  : "bg-slate-900"
+              }`}
+              onClick={() => {
+                setSelectedTab("QuickActions"); toggleNav();
+              }}
+            >
+              Quick Actions
+            </Link>
+            <Link
+              to="signin"
+              className={`w-[220px] p-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
+              onClick={handleSignOut}
+            >
+              <LogOut className="inline w-[23px]" /> Sign Out
+            </Link>
+          </div>
         </div>
-      </div>
+    
+
       <Toaster />
     </div>
   );

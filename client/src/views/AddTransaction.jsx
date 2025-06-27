@@ -73,7 +73,7 @@ const AddTransaction = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-700">
+    <div className="min-h-screen bg-slate-500">
       <Header />
       <div className="ms-[20%] fixed inset-0">
         <div className="ms-[8%]">
