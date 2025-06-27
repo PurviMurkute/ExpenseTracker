@@ -197,16 +197,16 @@ const Dashboard = () => {
     <>
     <Header />
     {isLoaderOpen ? <Loader isLoading={isLoaderOpen} /> : (<div className="bg-slate-500 min-h-screen md:ms-[20%] px-5 py-2 overflow-y-auto">
-        <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-5 text-slate-100 px-2 md:pb-2">
+        <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-8 text-slate-100 px-2 md:pb-2">
           Hello {user.name}👋🏻
         </h1>
-        <h3 className={`${isDashboard? "text-lg md:text-xl font-medium md:ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
+        <h3 className={`${isDashboard? "text-lg md:text-xl font-medium md:ms-8 text-slate-100 px-2 pb-2" : "hidden"}`}>
           Welcome to ExpenseDiary!😊
         </h3>
-        <h3 className={`${isTransactions? "text-lg md:text-xl font-medium md:ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
+        <h3 className={`${isTransactions? "text-lg md:text-xl font-medium md:ms-8 text-slate-100 px-2 pb-2" : "hidden"}`}>
           Here are your Transactions!😊
         </h3>
-        <h3 className={`${isReports? "text-lg md:text-xl font-medium md:ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
+        <h3 className={`${isReports? "text-lg md:text-xl font-medium md:ms-8 text-slate-100 px-2 pb-2" : "hidden"}`}>
           Here are your transactions reports!😊
         </h3>
 
@@ -249,9 +249,9 @@ const Dashboard = () => {
             </div>
             </div>
           </div>
-          <div className={`${isTransactions? "h-[520px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-100 rounded-2xl": "hidden"}`}>
-            <div className="flex flex-row justify-between">
-            <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-5">
+          <div className={`${isTransactions? "h-[520px] m-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-100 rounded-2xl": "hidden"}`}>
+            <div className="flex flex-col md:flex-row justify-between">
+            <h1 className="text-xl md:text-2xl font-bold text-slate-900 px-5 py-2 md:p-5">
               Recent Transactions
             </h1>
             <Input type="text" placeholder="Search Transactions..." value={searchText} onChange={(e)=>{setSearchText(e.target.value.toLowerCase())}} />
@@ -278,13 +278,13 @@ const Dashboard = () => {
           </div>
         </div>
         <div className={`${isReports? "flex flex-col md:flex-row justify-center my-2 bg-slate-100 rounded-2xl md:mx-5 p-5": "hidden"}`}>
-          <div className="md:w-[560px] h-[350px] md:h-[450px] bg-slate-300 p-10 md:p-15 mx-2 md:me-10 my-5">
+          <div className="md:w-[560px] h-[400px] md:h-[450px] bg-slate-300 p-3 md:p-15 md:me-10 my-5">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 pb-2 md:ms-7">
               Summary Visualizations
             </h2>
             <Doughnut data={doughnutData} />
           </div>
-          <div className="md:w-[560px] h-[350px]  md:h-[450px] bg-slate-300 p-10 md:p-15 mx-2 my-5 overflow-y-auto">
+          <div className="hidden md:block w-[560px] h-[330px]  md:h-[450px] bg-slate-300 p-4 md:p-15 mx-2 my-5 overflow-y-auto">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 p-2 md:ms-7">
               Daily Transactions
             </h2>

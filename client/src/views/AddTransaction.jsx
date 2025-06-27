@@ -75,23 +75,23 @@ const AddTransaction = () => {
   return (
     <div className="min-h-screen bg-slate-500">
       <Header />
-      <div className="ms-[20%] fixed inset-0">
-        <div className="ms-[8%]">
-          <h1 className="mt-20 text-2xl font-bold text-slate-100 px-2 pb-2">
+      <div className="md:ms-[20%] fixed inset-0">
+        <div className="mx-3 md:ms-[8%]">
+          <h1 className="mt-15 md:mt-20 text-2xl font-bold text-slate-100 px-2 pb-2">
             Hello {userData.name}👋🏻
           </h1>
           <h3 className="text-lg font-medium text-slate-100 px-2 pb-4">
             Add. Save. Repeat. Build Better Financial Habits!😊
           </h3>
         </div>
-        <div className="md:w-[1050px] ms-[8%] p-5 flex justify-center items-center shadow-xl rounded-md bg-slate-100">
+        <div className="md:w-[1050px] md:ms-[8%] mx-2 p-5 flex justify-center items-center shadow-xl rounded-md bg-slate-100">
           <form
             onSubmit={(e) => {
               e.preventDefault();
             }}
-            className="w-[300px] md:w-[420px] bg-slate-400 py-5 px-2 shadow-xl my-2 me-4 rounded-md"
+            className="w-[300px] md:w-[420px] bg-slate-400 py-5 px-2 shadow-xl my-2 md:me-4 rounded-md"
           >
-            <h3 className="font-bold text-slate-900 py-3 text-2xl text-center">
+            <h3 className="font-bold text-slate-900 md:py-3 text-2xl text-center">
               Add Transactions
             </h3>
             <Input
@@ -155,7 +155,7 @@ const AddTransaction = () => {
               }}
             />
           </form>
-          <div className="w-[300px] md:w-[420px] px-5">
+          <div className="hidden md:block w-[420px] ps-15">
             <h3 className="text-xl font-bold text-center text-slate-800">
               Track Every Rupee with Ease
             </h3>

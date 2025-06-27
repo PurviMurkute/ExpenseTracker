@@ -66,10 +66,11 @@ const Header = () => {
       }`}
     >
       <div className="flex flex-row">
-        <AlignJustify
+        {isDashboard? <AlignJustify
           className="inline w-[30px] mt-3.5 pe-2 cursor-pointer md:hidden"
           onClick={toggleNav}
-        />
+        /> : null}
+        
         <Link to="/">
           <h1 className="font-bold text-xl md:text-3xl font-serif pt-2">
             <img
@@ -107,19 +108,19 @@ const Header = () => {
             <button onClick={toggleDrpdown}>
               <User
                 className={`${
-                  isDashboard ? "right-2" : "right-[20%"
-                } w-[50px] fixed top-6 cursor-pointer block`}
+                  isDashboard ? "right-2" : "right-2 md:right-[20%]"
+                } w-[40px] md:w-[55px] h-[30px] md:h-[35px] fixed md:top-5 cursor-pointer block`}
               />
             </button>
             {isDropdownOpen && (
-              <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-2 rounded-xl">
-                <Link to="/addtransactions">
-                  <button className="p-1 text-slate-800 text-md w-[170px] font-medium cursor-pointer rounded-xl block mx-auto hover:bg-slate-300">
-                    Add Transactions
+              <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-1 rounded-xl w-[120px]">
+                <Link >
+                  <button className="pb-1 text-slate-800 text-md  font-medium cursor-pointer px-5 rounded-xl block mx-auto hover:bg-slate-300">
+                    Profile
                   </button>
                 </Link>
                 <button
-                  className="p-1 text-slate-800 text-md w-[170px] font-medium cursor-pointer rounded-xl hover:bg-slate-300"
+                  className=" text-red-500 text-md font-medium cursor-pointer rounded-xl hover:bg-slate-300"
                   onClick={handleSignOut}
                 >
                   SignOut
