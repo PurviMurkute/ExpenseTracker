@@ -5,6 +5,7 @@ import SignUp from './views/SignUp';
 import Home from './views/Home';
 import AddTransaction from './views/AddTransaction';
 
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -13,7 +14,9 @@ const App = () => {
       <Route path='/signin' element={<SignIn/>}></Route>
       <Route path='/signup' element={<SignUp/>}></Route>
       <Route path='/dashboard' element={<Dashboard/>}></Route>
+      <Route path='/transactions' element={<Dashboard/>}></Route>
       <Route path='/addtransactions' element={<AddTransaction/>}></Route>
+      <Route path='/reports' element={<Dashboard/>}></Route>
     </Routes>
     </BrowserRouter>
   )

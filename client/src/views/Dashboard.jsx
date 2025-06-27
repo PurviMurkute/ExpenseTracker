@@ -9,13 +9,16 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
-  ArcElement, // for Doughnut
+  ArcElement, 
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
-import Footer from "../components/Footer";
+import Loader from "../components/Loader";
+import { useLocation } from "react-router";
+import Input from "../components/Input";
+import { Search } from 'lucide-react';
 
 ChartJS.register(
   CategoryScale,
@@ -32,6 +35,9 @@ const Dashboard = () => {
   const [transactions, setTransactions] = useState([]);
   const [netIncome, setNetIncome] = useState(0);
   const [netExpense, setNetExpense] = useState(0);
+  const [isLoaderOpen, setIsLoaderOpen] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
 
   useEffect(() => {
     const currentuser = JSON.parse(localStorage.getItem("currentuser"));
@@ -45,12 +51,34 @@ const Dashboard = () => {
     }
   }, []);
 
+  useEffect(()=>{
+    if(!searchText){
+      setFilteredTransactions(transactions);
+      return;
+    }
+
+    const tempFilteredTransactions = transactions.filter((transaction)=>{
+      if(transaction.title.includes(searchText)){
+        return true;
+      }else if(transaction.category.includes(searchText)){
+        return true;
+      }else if(transaction.amount.toString().includes(searchText)){
+        return true;
+      }else{
+        return false;
+      }
+    })
+    setFilteredTransactions(tempFilteredTransactions);
+  }, [searchText, transactions])
+
   const JWT = JSON.parse(localStorage.getItem("JwtToken"));
 
   const loadTransactions = async () => {
     if (!user._id) return;
 
     try {
+      setIsLoaderOpen(true);
+
       const response = await axios.get(
         `${import.meta.env.VITE_API_KEY}/transactions?userId=${user._id}`,
         {
@@ -60,13 +88,11 @@ const Dashboard = () => {
         }
       );
 
-      if (response.data.success) {
-        toast.loading("Loading transactions...");
+      setIsLoaderOpen(false);
 
-        setTimeout(() => {
-          setTransactions(response.data.data);
-        }, 3000);
-        toast.dismiss();
+      if (response.data.success) {
+        setTransactions(response.data.data);
+        
       } else toast.error(response.data.message);
     } catch (e) {
       if (e?.response?.data?.message == "jwt expired") {
@@ -84,6 +110,12 @@ const Dashboard = () => {
   useEffect(() => {
     loadTransactions();
   }, [user]);
+
+  const location = useLocation();
+
+  const isDashboard = location.pathname.startsWith("/dashboard");
+  const isTransactions = location.pathname.startsWith("/transactions");
+  const isReports = location.pathname.startsWith("/reports");
 
   useEffect(() => {
     let income = 0;
@@ -163,33 +195,70 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="bg-slate-700 min-h-screen overflow-y-auto">
-        <Header />
-        <h1 className="mt-20 text-2xl md:text-3xl font-extrabold text-center text-slate-100 px-2 pb-2">
+    <Header />
+    {isLoaderOpen ? <Loader isLoading={isLoaderOpen} /> : (<div className="bg-slate-700 min-h-screen ms-[20%] px-5 py-2 overflow-y-auto">
+        <h1 className="mt-20 text-2xl font-bold ms-5 text-slate-100 px-2 pb-2">
           Hello {user.name}👋🏻
         </h1>
-        <h3 className="text-xl font-bold text-center text-slate-100 px-2 pb-2">
+        <h3 className={`${isDashboard? "text-xl font-medium ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
           Welcome to ExpenseDiary!😊
         </h3>
+        <h3 className={`${isTransactions? "text-xl font-medium ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
+          Here are your Transactions!😊
+        </h3>
+        <h3 className={`${isReports? "text-xl font-medium ms-5 text-slate-100 px-2 pb-2" : "hidden"}`}>
+          Here are your transactions reports!😊
+        </h3>
 
-        <div className="flex flex-col md:flex-row justify-center">
-          <div className="md:w-[600px] h-[450px] md:h-[500px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-100 rounded-2xl">
-            <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4 md:ms-7 mb-2">
+        <div className="">
+          <div className={`${isDashboard? "my-2 mx-2 md:mx-5 ": "hidden"}`}>
+            <div className="p-2 shadow-xl bg-slate-100 rounded-2xl mb-1">
+            <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4 md:ms-6 mb-2">
               Your Financial Summary
             </h1>
-            <FinancialSummaryCard type="income" amount={netIncome} />
-            <FinancialSummaryCard type="expense" amount={netExpense} />
-            <FinancialSummaryCard
+            <div className="flex flex-row justify-center">
+              <FinancialSummaryCard type="income" amount={netIncome} />
+              <FinancialSummaryCard type="expense" amount={netExpense} />
+              <FinancialSummaryCard
               type="balance"
               amount={netIncome - netExpense}
             />
+            </div>
+            </div>
+            <div className="p-2 shadow-xl bg-slate-100 rounded-2xl">
+            <h1 className="text-lg md:text-xl font-bold text-slate-900 ms-7 p-2">
+              Transactions History
+            </h1>
+            <div>
+              {transactions.map((transaction, i) => {
+                const { _id, title, amount, type, category, createdAt } =
+                  transaction;
+                return (
+                  <TransactionCard
+                    key={i}
+                    _id={_id}
+                    title={title}
+                    amount={amount}
+                    type={type}
+                    category={category}
+                    createdAt={createdAt}
+                    loadTransactions={loadTransactions}
+                  />
+                );
+              })}
+            </div>
+            </div>
           </div>
-          <div className="md:w-[600px] h-[450px] md:h-[500px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-100 rounded-2xl">
-            <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4">
+          <div className={`${isTransactions? "h-[520px] my-5 mx-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-100 rounded-2xl": "hidden"}`}>
+            <div className="flex flex-row justify-between">
+            <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-5">
               Recent Transactions
             </h1>
+            <Input type="text" placeholder="Search Transactions..." value={searchText} onChange={(e)=>{setSearchText(e.target.value.toLowerCase())}} />
+            
+            </div>
             <div className="overflow-y-scroll">
-              {transactions.map((transaction, i) => {
+              {filteredTransactions.map((transaction, i) => {
                 const { _id, title, amount, type, category, createdAt } =
                   transaction;
                 return (
@@ -208,14 +277,14 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row justify-center my-5 md:mx-10">
-          <div className="md:w-[600px] h-[350px] md:h-[450px] bg-slate-100 p-10 md:p-15 mx-2 rounded-2xl md:me-10 my-5">
+        <div className={`${isReports? "flex flex-col md:flex-row justify-center my-2 bg-slate-100 rounded-2xl md:mx-5 p-5": "hidden"}`}>
+          <div className="md:w-[560px] h-[350px] md:h-[450px] bg-slate-300 p-10 md:p-15 mx-2 md:me-10 my-5">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 pb-2 md:ms-7">
               Summary Visualizations
             </h2>
             <Doughnut data={doughnutData} />
           </div>
-          <div className="md:w-[600px] h-[350px]  md:h-[450px] bg-slate-100 p-10 md:p-15 mx-2 rounded-2xl my-5 overflow-y-auto">
+          <div className="md:w-[560px] h-[350px]  md:h-[450px] bg-slate-300 p-10 md:p-15 mx-2 my-5 overflow-y-auto">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 p-2 md:ms-7">
               Daily Transactions
             </h2>
@@ -223,8 +292,8 @@ const Dashboard = () => {
           </div>
         </div>
         <Toaster />
-        <Footer />
-      </div>
+      </div>)}
+      
     </>
   );
 };

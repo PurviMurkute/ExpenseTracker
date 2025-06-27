@@ -82,7 +82,7 @@ const deleteTransactions = async (req, res) => {
 
   try {
     await Transaction.deleteOne({ _id: id });
-
+  
     return res.status(200).json({
       success: true,
       data: null,

@@ -6,6 +6,7 @@ import { Link } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import signinimg from "./../assets/signinimg.png";
 import Button from "../components/Button";
+import Header from "../components/Header";
 
 const SignIn = () => {
   const [signInUser, setSignInUser] = useState({
@@ -14,10 +15,12 @@ const SignIn = () => {
   });
 
   const signIn = async () => {
+
     const response = await axios.post(`${import.meta.env.VITE_API_KEY}/login`, {
       email: signInUser.email,
       password: signInUser.password,
     });
+
     if (response.data.success) {
       toast.success(response.data.message);
 
@@ -35,13 +38,14 @@ const SignIn = () => {
       setTimeout(() => {
         window.location.href = "/dashboard";
       }, 3000);
+
     } else {
       toast.error(response.data.message);
     }
   };
   return (
     <div className="min-h-screen bg-slate-700 top-0 left-0 fixed w-full flex justify-center items-center">
-      <div className="h-[25px] bg-slate-900 w-full fixed top-0"></div>
+      <Header />
       <div className="flex justify-center items-center md:w-[950px] bg-white rounded-md py-4 px-3 md:py-10">
         <div className="ms-1 md:me-5">
           <div className="w-[300px] md:w-[420px] my-2">
@@ -88,7 +92,11 @@ const SignIn = () => {
           </p>
         </div>
         <div className="">
-          <img src={signinimg} alt="login-img" className="hidden md:flex w-[400px]" />
+          <img
+            src={signinimg}
+            alt="login-img"
+            className="hidden md:flex w-[400px]"
+          />
         </div>
       </div>
       <Toaster />

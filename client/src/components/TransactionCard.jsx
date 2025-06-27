@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { Trash2 } from 'lucide-react';
+import { useLocation } from 'react-router';
 
 const TransactionCard = ({ _id, title, amount, type, category, createdAt, loadTransactions }) => {
 
@@ -17,11 +18,18 @@ const TransactionCard = ({ _id, title, amount, type, category, createdAt, loadTr
       toast.error(response.data.message);
     }
   }
+
+  const location = useLocation();
+
+  const isDashboard = location.pathname.startsWith("/dashboard");
   
   const formattedDate = new Date(createdAt).toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true, 
   });
 
   const amountColor = type === 'income' ? 'text-green-600' : 'text-red-600';
@@ -34,7 +42,7 @@ const TransactionCard = ({ _id, title, amount, type, category, createdAt, loadTr
       </div>
       <div className='flex flex-row'>
         <h4 className={`text-lg font-bold me-2 ${amountColor}`}>₹{amount}</h4>
-        <Trash2 className=' cursor-pointer w-[20px]' onClick={deleteTransaction}/>
+        <Trash2 className={`${isDashboard? "hidden" : "cursor-pointer w-[20px]" }`} onClick={deleteTransaction}/>
       </div>
       <Toaster/>
     </div>

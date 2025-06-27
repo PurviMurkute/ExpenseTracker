@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import signupimg from "./../assets/signupimg.png";
 import { Link } from 'react-router';
 import Button from "../components/Button";
+import Header from "../components/Header";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -47,8 +48,8 @@ const SignUp = () => {
 
   return (
     <div className="bg-slate-700 min-h-screen top-0 left-0 fixed w-full block md:flex justify-center items-center">
-      <div className="h-[25px] bg-slate-900 w-full fixed top-0"></div>
-      <div className="md:w-[1000px] mt-6 md:mt-0 px-5 md:px-10 py-2 flex justify-center items-center shadow-xl rounded-md bg-white">
+      <Header/>
+      <div className="md:w-[1000px] mt-18 md:mt-15 px-5 md:px-10 md:py-2 flex justify-center items-center shadow-xl rounded-md bg-white">
         <div className="md:p-5 ">
           <img src={signupimg} alt="signup-icon" className="hidden md:flex w-[500px]" />
         </div>
@@ -61,7 +62,7 @@ const SignUp = () => {
             🚀Get Started on a Smarter Spending Journey.
           </h2>
           <form
-            className="w-[300px] md:w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2 rounded-md"
+            className="w-[300px] md:w-[420px] block mx-auto bg-slate-400 py-1 md:py-5 px-2 shadow-xl my-2 rounded-md"
             onSubmit={(e) => {
               e.preventDefault();
             }}

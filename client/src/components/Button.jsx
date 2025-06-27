@@ -4,7 +4,7 @@ const Button = ({btnText, onClick, btnSize, hidebtn}) => {
 
     const btnSizes = {
         lg: "text-xl px-4 py-2 my-5",
-        md: "text-md px-3 py-2",
+        md: "text-md px-2 py-1",
         sm: "text-md px-4 py-1 my-5 block mx-auto"
     }
 

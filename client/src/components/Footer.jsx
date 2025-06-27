@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white text-center p-5 md:p-10 mt-10 bottom-0 w-full">
+    <footer className="bg-gray-900 text-white text-center p-5 md:p-10 mt-10 bottom-0 w-full z-10">
       <p className="text-md">&copy; 2025 Expense Diary. All rights reserved.</p>
       <Link to="https://peerlist.io/purvimurkute">
         <p className="text-sm">Made with ❤️ by Purvi</p>
