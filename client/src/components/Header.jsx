@@ -108,7 +108,7 @@ const Header = () => {
             <button onClick={toggleDrpdown}>
               <User
                 className={`${
-                  isDashboard ? "right-2" : "right-2 md:right-[20%]"
+                  isDashboard ? "right-2" : "right-2 md:right-[18%]"
                 } w-[40px] md:w-[55px] h-[30px] md:h-[35px] fixed md:top-5 cursor-pointer block`}
               />
             </button>

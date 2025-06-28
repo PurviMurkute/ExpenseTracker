@@ -77,11 +77,11 @@ const AddTransaction = () => {
       <Header />
       <div className="md:ms-[20%] fixed inset-0">
         <div className="mx-3 md:ms-[8%]">
-          <h1 className="mt-15 md:mt-20 text-2xl font-bold text-slate-100 px-2 pb-2">
-            Hello {userData.name}👋🏻
+          <h1 className="mt-15 md:mt-20 text-2xl font-bold bg-gradient-to-r from-cyan-300 to-blue-200 inline-block text-transparent bg-clip-text px-2 pb-2">
+            Hello {userData.name}!
           </h1>
           <h3 className="text-lg font-medium text-slate-100 px-2 pb-4">
-            Add. Save. Repeat. Build Better Financial Habits!😊
+            Add. Save. Repeat. Build Better Financial Habits 😊
           </h3>
         </div>
         <div className="md:w-[1050px] md:ms-[8%] mx-2 p-5 flex justify-center items-center shadow-xl rounded-md bg-slate-100">
@@ -151,7 +151,7 @@ const AddTransaction = () => {
               btnText="Check Transactions"
               btnSize="sm"
               onClick={() => {
-                window.location.href = "/dashboard";
+                window.location.href = "/transactions";
               }}
             />
           </form>

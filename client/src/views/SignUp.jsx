@@ -95,7 +95,7 @@ const SignUp = () => {
               }}
             />
             <Input
-              type="text"
+              type="date"
               placeholder="Date of Birth"
               value={user.DOB}
               onChange={(e) => {

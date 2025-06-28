@@ -5,71 +5,132 @@ import Button from "../components/Button";
 import { FEATURESDATA, HEADING } from "../configFeatures.jsx";
 import FeatureCard from "../components/FeatureCard";
 import Footer from "../components/Footer";
+import signupimg from "./../assets/signup-img.png";
+import transactionimg from "./../assets/transaction-img.png";
+import reportimg from "./../assets/reports-img.png";
 
 const Home = () => {
   const [currentUser, setCurrentUser] = useState();
 
-  useEffect(()=>{
-    const currentUser = JSON.parse(localStorage.getItem("currentuser"))
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("currentuser"));
 
-    if(currentUser){
+    if (currentUser) {
       setCurrentUser(currentUser);
     }
-  }, [])
+  }, []);
 
   return (
     <>
-    <div className="min-h-screen w-full bg-slate-800 relative">
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `
+      <div className="min-h-screen w-full bg-slate-800 relative">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `
         linear-gradient(to right, #d1d5db 1px, transparent 1px),
         linear-gradient(to bottom, #d1d5db 1px, transparent 1px)
       `,
-          backgroundSize: "32px 32px",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 80% 80% at 0% 0%, #000 50%, transparent 90%)",
-          maskImage:
-            "radial-gradient(ellipse 80% 80% at 0% 0%, #000 50%, transparent 90%)",
-        }}
-      />
+            backgroundSize: "32px 32px",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 80% at 0% 0%, #000 50%, transparent 90%)",
+            maskImage:
+              "radial-gradient(ellipse 80% 80% at 0% 0%, #000 50%, transparent 90%)",
+          }}
+        />
 
-      <Header />
+        <Header />
 
-      <div className="flex flex-col items-center justify-center mx-4 inset-0 absolute text-white">
-        <h3 className="text-4xl md:text-5xl font-extrabold py-4 md:py-2">
-          Goodbye Guesswork. Hello Financial Clarity!
-        </h3>
-        <h4 className="text-xl md:text-2xl font-bold pb-4 md:py-2">
-          See Where Your Money Goes And Keep More of It.
-        </h4>
-        <p className="text-lg pb-4 md:py-2">
-          Turn everyday spending into meaningful savings. Get insights, set
-          goals, and take control of your financial life with
-          <span className="text-xl md:text-2xl font-bold"> ExpenseDiary!</span>
-        </p>
-        {!currentUser ? <Link to="/signup">
-          <Button btnText="Start Now" btnSize="lg"/>
-        </Link> : <Link to="/dashboard">
-          <Button btnText="Start Now" btnSize="lg"/>
-        </Link>}
-        
+        <div className="flex flex-col items-center justify-center mx-4 inset-0 absolute text-white">
+          <h3 className="text-4xl md:text-5xl font-extrabold py-4 md:py-2">
+            Goodbye Guesswork. Hello Financial Clarity!
+          </h3>
+          <h4 className="text-xl md:text-2xl font-bold pb-4 md:py-2">
+            See Where Your Money Goes And Keep More of It.
+          </h4>
+          <p className="text-lg pb-4 md:py-2">
+            Turn everyday spending into meaningful savings. Get insights, set
+            goals, and take control of your financial life with
+            <span className="text-xl md:text-2xl font-bold">
+              {" "}
+              ExpenseDiary!
+            </span>
+          </p>
+          {!currentUser ? (
+            <Link to="/signup">
+              <Button btnText="Start Now" btnSize="lg" />
+            </Link>
+          ) : (
+            <Link to="/dashboard">
+              <Button btnText="Start Now" btnSize="lg" />
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
-    <div className='shadow-xl p-2 md:p-20 bg-gradient-to-l from-slate-200 to-slate-100'>
-      <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">{HEADING}</h1>
-    <div className='flex justify-evenly flex-wrap'>
-    {
-      FEATURESDATA.map((feature, i)=>{
-        const {icon, title, description, className} = feature;
+      <div className="shadow-xl p-2 md:p-20 bg-gradient-to-l from-slate-200 to-slate-100">
+        <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">
+          {HEADING}
+        </h1>
+        <div className="flex justify-evenly flex-wrap">
+          {FEATURESDATA.map((feature, i) => {
+            const { icon, title, description, className } = feature;
 
-        return( <FeatureCard icon={icon} title={title} description={description} key={i} className={className} />)
-      })
-    }
-    </div>
-    </div>
-    <Footer/>
+            return (
+              <FeatureCard
+                icon={icon}
+                title={title}
+                description={description}
+                key={i}
+                className={className}
+              />
+            );
+          })}
+        </div>
+      </div>
+      <div className="shadow-xl px-3 md:px-50 py-5 md:py-10 bg-gradient-to-b from-slate-300 to-slate-700">
+        <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">
+          Workflow of ExpenseDiary
+        </h1>
+        <div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-b from-emerald-200 to-fuchsia-200 px-5 py-4 my-2 rounded-xl">
+          <img src={signupimg} alt="signimg" className="w-[300px]" />
+          <div>
+            <h2 className="text-2xl font-bold">
+              Sign up and create your account
+            </h2>
+            <p>
+              Sign up and create your account by providing basic details like
+              name, email, password, etc. Once registered, you'll be able to log
+              in and securely access your personal dashboard
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-b from-blue-200 to-cyan-200 px-5 py-4 my-2 rounded-xl">
+          <img
+            src={transactionimg}
+            alt="transactionimg"
+            className="block md:hidden w-[300px]"
+          />
+          <div>
+            <h2 className="text-2xl font-bold">Add your income and expenses</h2>
+            <p>Easily add your income and expenses by entering details like amount, category, and type. This helps you track where your money comes from and where it goes</p>
+          </div>
+          <img
+            src={transactionimg}
+            alt="transactionimg"
+            className="hidden md:block w-[300px]"
+          />
+        </div>
+        <div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-b from-purple-200 to-sky-200 px-5 py-4 my-2 rounded-xl">
+          <img src={reportimg} alt="reportsimg" className="w-[300px]" />
+          <div>
+            <h2 className="text-2xl font-bold">
+            Track your spending with real-time charts, Get insights and stay on
+            budget!
+          </h2>
+            <p>Keep an eye on your money as you go. Understand your habits and make smarter choices to stay on track with your budget</p>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 };
