@@ -66,11 +66,13 @@ const Header = () => {
       }`}
     >
       <div className="flex flex-row">
-        {isDashboard? <AlignJustify
-          className="inline w-[30px] mt-3.5 pe-2 cursor-pointer md:hidden"
-          onClick={toggleNav}
-        /> : null}
-        
+        {isDashboard ? (
+          <AlignJustify
+            className="inline w-[30px] mt-3.5 pe-2 cursor-pointer md:hidden"
+            onClick={toggleNav}
+          />
+        ) : null}
+
         <Link to="/">
           <h1 className="font-bold text-xl md:text-3xl font-serif pt-2">
             <img
@@ -113,9 +115,14 @@ const Header = () => {
               />
             </button>
             {isDropdownOpen && (
-              <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-1 rounded-xl w-[120px]">
-                <Link >
-                  <button className="pb-1 text-slate-800 text-md  font-medium cursor-pointer px-5 rounded-xl block mx-auto hover:bg-slate-300">
+              <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-1 rounded-xl w-[140px]">
+                <Link to='/dashboard'>
+                  <button className="p-1 text-slate-800 text-md font-medium cursor-pointer px-2 rounded-xl block mx-auto hover:bg-slate-300">
+                    Dashboard
+                  </button>
+                </Link>
+                <Link>
+                  <button className="pb-1 text-slate-800 text-md font-medium cursor-pointer px-5 rounded-xl block mx-auto hover:bg-slate-300">
                     Profile
                   </button>
                 </Link>
@@ -130,89 +137,95 @@ const Header = () => {
           </div>
         )}
       </div>
-      
-        <div
-          className={`${
-            isDashboard
-              ? `w-full md:w-1/5 ${isNavOpen ? "block" : "hidden"} md:block h-screen -z-10 bg-slate-900 fixed left-0 `
-              : "hidden"
-          }`}
-        >
-          <div className="flex flex-col mt-20 px-10">
-            <Link
-              to="/dashboard"
-              className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-                selectedTab == "Overview"
-                  ? "bg-slate-300 text-slate-900"
-                  : "bg-slate-900"
-              }`}
-              onClick={() => {
-                setSelectedTab("Overview"); toggleNav();
-              }}
-            >
-              <LayoutDashboard className="inline w-[23px]" /> Overview
-            </Link>
-            <Link
-              to="/transactions"
-              className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-                selectedTab == "Transactions"
-                  ? "bg-slate-300 text-slate-900"
-                  : "bg-slate-900"
-              }`}
-              onClick={() => {
-                setSelectedTab("Transactions"); toggleNav();
-              }}
-            >
-              <BadgeIndianRupee className="inline w-[23px]" /> Transactions
-            </Link>
-            <Link
-              to="/addtransactions"
-              className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-                selectedTab == "AddTransactions"
-                  ? "bg-slate-300 text-slate-900"
-                  : "bg-slate-900"
-              }`}
-              onClick={() => {
-                setSelectedTab("AddTransactions"); toggleNav();
-              }}
-            >
-              <BadgePlus className="inline w-[23px]" /> Add Transactions
-            </Link>
-            <Link
-              to="/reports"
-              className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 border-b-1 border-slate-200 hover:bg-slate-500 ${
-                selectedTab == "Visualizations"
-                  ? "bg-slate-300 text-slate-900"
-                  : "bg-slate-900 pb-5"
-              }`}
-              onClick={() => {
-                setSelectedTab("Visualizations"); toggleNav();
-              }}
-            >
-              <ChartArea className="inline w-[23px]" /> Visualizations
-            </Link>
-            <Link
-              className={`p-2 my-3 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-                selectedTab == "QuickActions"
-                  ? "bg-slate-300 text-slate-900"
-                  : "bg-slate-900"
-              }`}
-              onClick={() => {
-                setSelectedTab("QuickActions"); toggleNav();
-              }}
-            >
-              Quick Actions
-            </Link>
-            <Link
-              to="signin"
-              className={`w-[220px] p-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
-              onClick={handleSignOut}
-            >
-              <LogOut className="inline w-[23px]" /> Sign Out
-            </Link>
-          </div>
+
+      <div
+        className={`${
+          isDashboard
+            ? `w-full md:w-1/5 ${
+                isNavOpen ? "block" : "hidden"
+              } md:block h-screen -z-10 bg-slate-900 fixed left-0 `
+            : "hidden"
+        }`}
+      >
+        <div className="flex flex-col mt-20 px-10">
+          <Link
+            to="/dashboard"
+            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+              selectedTab == "Overview"
+                ? "bg-slate-300 text-slate-900"
+                : "bg-slate-900"
+            }`}
+            onClick={() => {
+              setSelectedTab("Overview");
+              toggleNav();
+            }}
+          >
+            <LayoutDashboard className="inline w-[23px]" /> Overview
+          </Link>
+          <Link
+            to="/transactions"
+            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+              selectedTab == "Transactions"
+                ? "bg-slate-300 text-slate-900"
+                : "bg-slate-900"
+            }`}
+            onClick={() => {
+              setSelectedTab("Transactions");
+              toggleNav();
+            }}
+          >
+            <BadgeIndianRupee className="inline w-[23px]" /> Transactions
+          </Link>
+          <Link
+            to="/addtransactions"
+            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+              selectedTab == "AddTransactions"
+                ? "bg-slate-300 text-slate-900"
+                : "bg-slate-900"
+            }`}
+            onClick={() => {
+              setSelectedTab("AddTransactions");
+              toggleNav();
+            }}
+          >
+            <BadgePlus className="inline w-[23px]" /> Add Transactions
+          </Link>
+          <Link
+            to="/reports"
+            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 border-b-1 border-slate-200 hover:bg-slate-500 ${
+              selectedTab == "Visualizations"
+                ? "bg-slate-300 text-slate-900"
+                : "bg-slate-900 pb-5"
+            }`}
+            onClick={() => {
+              setSelectedTab("Visualizations");
+              toggleNav();
+            }}
+          >
+            <ChartArea className="inline w-[23px]" /> Visualizations
+          </Link>
+          <Link
+            className={`p-2 my-3 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+              selectedTab == "QuickActions"
+                ? "bg-slate-300 text-slate-900"
+                : "bg-slate-900"
+            }`}
+            onClick={() => {
+              setSelectedTab("QuickActions");
+              toggleNav();
+            }}
+          >
+            Quick Actions
+          </Link>
+          <Link
+            to="signin"
+            className={`w-[220px] p-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
+            onClick={handleSignOut}
+          >
+            <LogOut className="inline w-[23px]" /> Sign Out
+          </Link>
         </div>
-    
+      </div>
 
       <Toaster />
     </div>

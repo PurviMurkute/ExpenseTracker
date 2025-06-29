@@ -130,15 +130,15 @@ const AddTransaction = () => {
               className="bg-white p-2 my-4 border-2 border-slate-400 shadow-lg w-[85%] block mx-auto rounded-md focus:outline-none"
             >
               <option value="">Select Category</option>
-              <option value="salary">Salary</option>
-              <option value="shopping">Shopping</option>
-              <option value="travel">Travel</option>
-              <option value="food">Food</option>
-              <option value="health">Health</option>
-              <option value="learning">Learning</option>
-              <option value="utilities">Utilities</option>
-              <option value="rent">Rent</option>
-              <option value="entertainment">Entertainment</option>
+              <option value="salary">💰Salary</option>
+              <option value="shopping">🛍️Shopping</option>
+              <option value="travel">✈️Travel</option>
+              <option value="food">🍝Food</option>
+              <option value="health">❤️‍🩹Health</option>
+              <option value="learning">🌱Learning</option>
+              <option value="utilities">⭐Utilities</option>
+              <option value="rent">💲Rent</option>
+              <option value="entertainment">🎀Entertainment</option>
               <option value="other">Other</option>
             </select>
 

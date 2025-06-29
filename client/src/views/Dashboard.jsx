@@ -18,7 +18,6 @@ import { Bar, Doughnut } from "react-chartjs-2";
 import Loader from "../components/Loader";
 import { useLocation } from "react-router";
 import Input from "../components/Input";
-import { Search } from "lucide-react";
 
 ChartJS.register(
   CategoryScale,
@@ -145,19 +144,19 @@ const Dashboard = () => {
   });
 
   const barLabels = Object.keys(dailySummary).sort();
-  const incomeData = barLabels.map((label) => dailySummary[label].income);
+  //const incomeData = barLabels.map((label) => dailySummary[label].income);
   const expenseData = barLabels.map((label) => dailySummary[label].expense);
 
   const barData = {
     labels: barLabels,
     datasets: [
-      {
+      /* {
         label: "Daily Income",
         data: incomeData,
         backgroundColor: "#4ade80",
         categoryPercentage: 0.5,
         barPercentage: 0.8,
-      },
+      }, */
       {
         label: "Daily Expense",
         data: expenseData,
@@ -174,7 +173,7 @@ const Dashboard = () => {
       legend: { position: "top" },
       title: {
         display: true,
-        text: "Daily Transactions",
+        text: "Daily Expenses",
       },
     },
   };

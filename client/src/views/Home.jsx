@@ -8,6 +8,8 @@ import Footer from "../components/Footer";
 import signupimg from "./../assets/signup-img.png";
 import transactionimg from "./../assets/transaction-img.png";
 import reportimg from "./../assets/reports-img.png";
+import WorkflowCard from "../components/WorkflowCard.jsx";
+import { motion } from "motion/react";
 
 const Home = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -40,7 +42,13 @@ const Home = () => {
 
         <Header />
 
-        <div className="flex flex-col items-center justify-center mx-4 inset-0 absolute text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col items-center justify-center mx-4 inset-0 absolute text-white"
+        >
           <h3 className="text-4xl md:text-5xl font-extrabold py-4 md:py-2">
             Goodbye Guesswork. Hello Financial Clarity!
           </h3>
@@ -64,9 +72,15 @@ const Home = () => {
               <Button btnText="Start Now" btnSize="lg" />
             </Link>
           )}
-        </div>
+        </motion.div>
       </div>
-      <div className="shadow-xl p-2 md:p-20 bg-gradient-to-l from-slate-200 to-slate-100">
+      <motion.div
+        initial={{ y: 30 }}
+        whileInView={{ y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="shadow-xl p-2 md:p-20 bg-gradient-to-l from-slate-200 to-slate-100"
+      >
         <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">
           {HEADING}
         </h1>
@@ -85,51 +99,43 @@ const Home = () => {
             );
           })}
         </div>
-      </div>
-      <div className="shadow-xl px-3 md:px-50 py-5 md:py-10 bg-gradient-to-b from-slate-300 to-slate-700">
-        <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">
+      </motion.div>
+      <motion.div
+        initial={{ y: 30 }}
+        whileInView={{ y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="shadow-xl px-4 md:px-50 py-5 md:py-10 bg-slate-800"
+      >
+        <h1 className="text-center text-2xl font-extrabold py-6 text-slate-100">
           Workflow of ExpenseDiary
         </h1>
-        <div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-b from-emerald-200 to-fuchsia-200 px-5 py-4 my-2 rounded-xl">
-          <img src={signupimg} alt="signimg" className="w-[300px]" />
-          <div>
-            <h2 className="text-2xl font-bold">
-              Sign up and create your account
-            </h2>
-            <p>
-              Sign up and create your account by providing basic details like
+        <WorkflowCard
+          img={signupimg}
+          step="1"
+          title="Sign up and create your account"
+          description="Sign up and create your account by providing basic details like
               name, email, password, etc. Once registered, you'll be able to log
-              in and securely access your personal dashboard
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-b from-blue-200 to-cyan-200 px-5 py-4 my-2 rounded-xl">
-          <img
-            src={transactionimg}
-            alt="transactionimg"
-            className="block md:hidden w-[300px]"
-          />
-          <div>
-            <h2 className="text-2xl font-bold">Add your income and expenses</h2>
-            <p>Easily add your income and expenses by entering details like amount, category, and type. This helps you track where your money comes from and where it goes</p>
-          </div>
-          <img
-            src={transactionimg}
-            alt="transactionimg"
-            className="hidden md:block w-[300px]"
-          />
-        </div>
-        <div className="flex flex-col md:flex-row justify-center items-center bg-gradient-to-b from-purple-200 to-sky-200 px-5 py-4 my-2 rounded-xl">
-          <img src={reportimg} alt="reportsimg" className="w-[300px]" />
-          <div>
-            <h2 className="text-2xl font-bold">
-            Track your spending with real-time charts, Get insights and stay on
-            budget!
-          </h2>
-            <p>Keep an eye on your money as you go. Understand your habits and make smarter choices to stay on track with your budget</p>
-          </div>
-        </div>
-      </div>
+              in and securely access your personal dashboard"
+        />
+        <WorkflowCard
+          img={transactionimg}
+          step="2"
+          title="Add your income and expenses"
+          description="Easily add your income and expenses by entering details like
+              amount, category, and type. This helps you track where your money
+              comes from and where it goes"
+          reverse={true}
+        />
+        <WorkflowCard
+          img={reportimg}
+          step="3"
+          title="Track your spending with real-time charts, Get insights and stay
+              on budget!"
+          description="Keep an eye on your money as you go. Understand your habits and
+              make smarter choices to stay on track with your budget"
+        />
+      </motion.div>
       <Footer />
     </>
   );
