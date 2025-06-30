@@ -62,7 +62,7 @@ const Header = () => {
       className={`fixed top-0 bg-slate-900 pb-2 md:py-2 w-full flex justify-between z-10 text-white ${
         isDashboard
           ? "w-full px-2 rounded-none"
-          : "md:w-2/3  md:mx-60 my-1 px-4 md:px-7 rounded-full"
+          : "md:w-2/3  md:mx-62 my-1 px-4 md:px-7 rounded-full"
       }`}
     >
       <div className="flex flex-row">

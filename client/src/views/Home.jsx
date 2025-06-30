@@ -44,10 +44,10 @@ const Home = () => {
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col items-center justify-center mx-4 inset-0 absolute text-white"
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col items-center justify-center mx-4 inset-0 absolute bg-gradient-to-r from-orange-200 via-blue-200 to-cyan-200 text-transparent bg-clip-text"
         >
           <h3 className="text-4xl md:text-5xl font-extrabold py-4 md:py-2">
             Goodbye Guesswork. Hello Financial Clarity!
@@ -74,17 +74,17 @@ const Home = () => {
           )}
         </motion.div>
       </div>
-      <motion.div
-        initial={{ y: 30 }}
-        whileInView={{ y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="shadow-xl p-2 md:p-20 bg-gradient-to-l from-slate-200 to-slate-100"
-      >
+      <div className="shadow-xl p-2 md:p-20 bg-gradient-to-l from-slate-200 to-slate-100">
         <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">
           {HEADING}
         </h1>
-        <div className="flex justify-evenly flex-wrap">
+        <motion.div
+          initial={{ y: 30 }}
+          whileInView={{ y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex justify-evenly flex-wrap"
+        >
           {FEATURESDATA.map((feature, i) => {
             const { icon, title, description, className } = feature;
 
@@ -98,21 +98,16 @@ const Home = () => {
               />
             );
           })}
-        </div>
-      </motion.div>
-      <motion.div
-        initial={{ y: 30 }}
-        whileInView={{ y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="shadow-xl px-4 md:px-50 py-5 md:py-10 bg-slate-800"
-      >
+        </motion.div>
+      </div>
+      <div className="shadow-xl px-4 md:px-50 py-5 md:py-10 bg-slate-800">
         <h1 className="text-center text-2xl font-extrabold py-6 text-slate-100">
           Workflow of ExpenseDiary
         </h1>
         <WorkflowCard
           img={signupimg}
           step="1"
+          bgColor="color1"
           title="Sign up and create your account"
           description="Sign up and create your account by providing basic details like
               name, email, password, etc. Once registered, you'll be able to log
@@ -121,6 +116,7 @@ const Home = () => {
         <WorkflowCard
           img={transactionimg}
           step="2"
+          bgColor="color2"
           title="Add your income and expenses"
           description="Easily add your income and expenses by entering details like
               amount, category, and type. This helps you track where your money
@@ -130,12 +126,13 @@ const Home = () => {
         <WorkflowCard
           img={reportimg}
           step="3"
+          bgColor="color3"
           title="Track your spending with real-time charts, Get insights and stay
               on budget!"
           description="Keep an eye on your money as you go. Understand your habits and
               make smarter choices to stay on track with your budget"
         />
-      </motion.div>
+      </div>
       <Footer />
     </>
   );
