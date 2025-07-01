@@ -245,7 +245,7 @@ const Dashboard = () => {
                 <TransactionEmptyView />
               ) : (
                 <div>
-                  <div className="flex flex-row justify-center overflow-x-scroll my-4">
+                  <div className="flex flex-row items-center md:justify-center overflow-x-scroll my-4">
                     {[
                       "All",
                       "Salary",
@@ -256,12 +256,12 @@ const Dashboard = () => {
                       "Learning",
                       "Utilities",
                       "Rent",
-                      "Entertain",
+                      "Entertainment",
                       "Other",
                     ].map((category, i) => {
                       return (
                         <p
-                          className={`text-sm px-2 py-1 me-1 w-[90px] text-center rounded-md cursor-pointer ${
+                          className={`text-xs px-2 py-1 me-1 w-[90px] text-center rounded-md cursor-pointer ${
                             category == selectedCategory
                               ? "bg-slate-400"
                               : "bg-slate-200"

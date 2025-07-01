@@ -12,6 +12,31 @@ const postTransaction = async (req, res) => {
     });
   }
 
+  // all transactions
+  // sum of transaction
+  // throw error if income is negative
+
+  let income = 0;
+  let expense = 0;
+  let balance = income - expense;
+
+  const allTransactions = await Transaction.find();
+  allTransactions.forEach((transaction) => {
+    if(transaction.type.income){
+      income += transaction.type.income;
+    }else{
+      expense += transaction.type.expense;
+    }
+  })
+
+  if(balance<1){
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: "You do not have left enough balance to offord this expense"
+    })
+  }
+
   const newTransaction = new Transaction({
     title,
     amount,
@@ -82,7 +107,7 @@ const deleteTransactions = async (req, res) => {
 
   try {
     await Transaction.deleteOne({ _id: id });
-  
+
     return res.status(200).json({
       success: true,
       data: null,
