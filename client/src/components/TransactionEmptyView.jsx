@@ -2,9 +2,8 @@ import React from "react";
 import Button from "./Button";
 import { useNavigate } from "react-router";
 
-const navigate = useNavigate();
-
 const TransactionEmptyView = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col justify-center items-center px-3 my-5 md:my-20">
       <p className="text-md md:text-xl font-medium text-center text-red-500">

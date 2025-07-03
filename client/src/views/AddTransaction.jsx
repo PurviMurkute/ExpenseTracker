@@ -7,8 +7,6 @@ import Button from "../components/Button.jsx";
 import toast, { Toaster } from "react-hot-toast";
 import transactions from "./../assets/transactions.png";
 
-const navigate = useNavigate();
-
 const AddTransaction = () => {
   const [userData, setUserData] = useState({
     title: "",
@@ -32,6 +30,7 @@ const AddTransaction = () => {
   const JWT = JSON.parse(localStorage.getItem("JwtToken"));
 
   const addTransactions = async () => {
+    const navigate = useNavigate();
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_KEY}/transactions`,

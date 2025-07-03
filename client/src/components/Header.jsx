@@ -14,8 +14,6 @@ import {
   AlignJustify,
 } from "lucide-react";
 
-const navigate = useNavigate();
-
 const Header = () => {
   const [currentUser, setCurrentUser] = useState();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -23,6 +21,7 @@ const Header = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const fullWidthRoutes = [
     "/dashboard",
@@ -118,7 +117,7 @@ const Header = () => {
             </button>
             {isDropdownOpen && (
               <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-1 rounded-xl w-[140px]">
-                <Link to='/dashboard'>
+                <Link to="/dashboard">
                   <button className="p-1 text-slate-800 text-md font-medium cursor-pointer px-2 rounded-xl block mx-auto hover:bg-slate-300">
                     Dashboard
                   </button>

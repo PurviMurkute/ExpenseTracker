@@ -8,7 +8,6 @@ import signinimg from "./../assets/signinimg.png";
 import Button from "../components/Button";
 import Header from "../components/Header";
 
-const navigate = useNavigate();
 
 const SignIn = () => {
   const [signInUser, setSignInUser] = useState({
@@ -17,6 +16,8 @@ const SignIn = () => {
   });
 
   const signIn = async () => {
+
+    const navigate = useNavigate();
 
     const response = await axios.post(`${import.meta.env.VITE_API_KEY}/login`, {
       email: signInUser.email,

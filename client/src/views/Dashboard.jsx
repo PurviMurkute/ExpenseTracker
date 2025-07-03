@@ -29,8 +29,6 @@ ChartJS.register(
   Legend
 );
 
-const navigate = useNavigate();
-
 const Dashboard = () => {
   const [user, setUser] = useState("");
   const [transactions, setTransactions] = useState([]);
@@ -39,6 +37,8 @@ const Dashboard = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const currentuser = JSON.parse(localStorage.getItem("currentuser"));
