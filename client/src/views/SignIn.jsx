@@ -14,10 +14,9 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const signIn = async () => {
-
-    const navigate = useNavigate();
 
     const response = await axios.post(`${import.meta.env.VITE_API_KEY}/login`, {
       email: signInUser.email,
