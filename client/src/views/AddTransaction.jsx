@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Header from "./../components/Header.jsx";
 import Input from "../components/Input.jsx";
 import axios from "axios";
+import { useNavigate } from "react-router";
 import Button from "../components/Button.jsx";
 import toast, { Toaster } from "react-hot-toast";
 import transactions from "./../assets/transactions.png";
+
+const navigate = useNavigate();
 
 const AddTransaction = () => {
   const [userData, setUserData] = useState({
@@ -22,7 +25,7 @@ const AddTransaction = () => {
       setUserData(currentUser);
     }
     if (!currentUser) {
-      window.location.href = "/signin";
+      navigate("/signin");
     }
   }, []);
 
@@ -64,7 +67,7 @@ const AddTransaction = () => {
         localStorage.clear();
         toast.error("JWT expired, please signin again");
         setTimeout(() => {
-          window.location.href = "/signin";
+          navigate("/signin");
         }, 2000);
         return;
       }
@@ -151,7 +154,7 @@ const AddTransaction = () => {
               btnText="Check Transactions"
               btnSize="sm"
               onClick={() => {
-                window.location.href = "/transactions";
+                navigate("/transactions");
               }}
             />
           </form>

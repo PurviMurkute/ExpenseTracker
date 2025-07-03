@@ -15,7 +15,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Input from "../components/Input";
 import TransactionEmptyView from "../components/TransactionEmptyView";
 
@@ -28,6 +28,8 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+const navigate = useNavigate();
 
 const Dashboard = () => {
   const [user, setUser] = useState("");
@@ -46,7 +48,7 @@ const Dashboard = () => {
     }
 
     if (!currentuser) {
-      window.location.href = "/signin";
+      navigate("/dashboard");
     }
   }, []);
 
@@ -93,7 +95,7 @@ const Dashboard = () => {
         localStorage.clear();
         toast.error("JWT expired, please signin again");
         setTimeout(() => {
-          window.location.href = "/signin";
+          navigate('/dashboard');
         }, 2000);
         return;
       }

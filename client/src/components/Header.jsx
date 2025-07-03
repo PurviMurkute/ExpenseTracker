@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import logo from "./../assets/logo.png";
 import { LogIn } from "lucide-react";
 import Button from "./Button";
@@ -13,6 +13,8 @@ import {
   LogOut,
   AlignJustify,
 } from "lucide-react";
+
+const navigate = useNavigate();
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -53,7 +55,7 @@ const Header = () => {
     localStorage.clear();
     toast.success("SignOut successful");
     setTimeout(() => {
-      window.location.href = "/signin";
+      navigate("/signin");
     }, 3000);
   };
 

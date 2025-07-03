@@ -1,5 +1,8 @@
 import React from "react";
 import Button from "./Button";
+import { useNavigate } from "react-router";
+
+const navigate = useNavigate();
 
 const TransactionEmptyView = () => {
   return (
@@ -7,7 +10,7 @@ const TransactionEmptyView = () => {
       <p className="text-md md:text-xl font-medium text-center text-red-500">
         Oops.. No transactions added yet
       </p>
-      <Button btnText="Add Transactions Now" btnSize="sm" onClick={()=>{window.location.href= '/addtransactions'}}/>
+      <Button btnText="Add Transactions Now" btnSize="sm" onClick={()=>{navigate("/addtransactions");}}/>
     </div>
   );
 };

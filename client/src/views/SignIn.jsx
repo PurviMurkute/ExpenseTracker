@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Input from "../components/Input";
 import axios from "axios";
 import logo from "./../assets/logo.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import signinimg from "./../assets/signinimg.png";
 import Button from "../components/Button";
 import Header from "../components/Header";
+
+const navigate = useNavigate();
 
 const SignIn = () => {
   const [signInUser, setSignInUser] = useState({
@@ -36,7 +38,7 @@ const SignIn = () => {
       toast.loading("redirecting to dashboard");
 
       setTimeout(() => {
-        window.location.href = "/dashboard";
+        navigate("/dashboard");
       }, 3000);
 
     } else {
