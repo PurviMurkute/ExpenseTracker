@@ -12,7 +12,7 @@ const Input = ({ type, placeholder, value, onChange }) => {
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className={`${isTransactions? "w-[82%] md:w-[60%]": "w-[85%]"} bg-white p-2 my-4 border-2 border-slate-400 shadow-lg block mx-auto rounded-md focus:outline-none`}
+      className={`${isTransactions? "w-[82%] md:w-[60%]": "w-[85%]"} bg-white p-2 my-4 border-2 border-slate-200 shadow-lg block mx-auto rounded-md focus:outline-none`}
     />
   );
 };

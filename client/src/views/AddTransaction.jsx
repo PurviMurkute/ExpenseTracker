@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import Button from "../components/Button.jsx";
 import toast, { Toaster } from "react-hot-toast";
-import transactions from "./../assets/transactions.png";
+import transactionimg from "./../assets/transaction-img.png";
 
 const AddTransaction = () => {
   const [userData, setUserData] = useState({
@@ -15,6 +15,8 @@ const AddTransaction = () => {
     category: "",
     user: "",
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("currentuser"));
@@ -30,7 +32,6 @@ const AddTransaction = () => {
   const JWT = JSON.parse(localStorage.getItem("JwtToken"));
 
   const addTransactions = async () => {
-    const navigate = useNavigate();
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_KEY}/transactions`,
@@ -75,23 +76,23 @@ const AddTransaction = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-500">
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
       <Header />
       <div className="md:ms-[20%] fixed inset-0">
         <div className="mx-3 md:ms-[8%]">
-          <h1 className="mt-15 md:mt-20 text-2xl font-bold bg-gradient-to-r from-cyan-300 to-blue-200 inline-block text-transparent bg-clip-text px-2 pb-2">
+          <h1 className="mt-15 md:mt-20 text-2xl font-bold bg-gradient-to-r from-cyan-500 to-blue-400 inline-block text-transparent bg-clip-text px-2 pb-2">
             Hello {userData.name}!
           </h1>
-          <h3 className="text-lg font-medium text-slate-100 px-2 pb-4">
+          <h3 className="text-lg font-medium text-slate-600 px-2 pb-4">
             Add. Save. Repeat. Build Better Financial Habits 😊
           </h3>
         </div>
-        <div className="md:w-[1050px] md:ms-[8%] mx-2 p-5 flex justify-center items-center shadow-xl rounded-md bg-slate-100">
+        <div className="md:w-[1050px] md:ms-[8%] mx-2 p-5 flex justify-center items-center shadow-xl rounded-md bg-white">
           <form
             onSubmit={(e) => {
               e.preventDefault();
             }}
-            className="w-[300px] md:w-[420px] bg-slate-400 py-5 px-2 shadow-xl my-2 md:me-4 rounded-md"
+            className="w-[300px] md:w-[420px] bg-slate-300 py-5 px-2 shadow-xl my-2 md:me-4 rounded-md"
           >
             <h3 className="font-bold text-slate-900 md:py-3 text-2xl text-center">
               Add Transactions
@@ -162,7 +163,7 @@ const AddTransaction = () => {
               Track Every Rupee with Ease
             </h3>
             <img
-              src={transactions}
+              src={transactionimg}
               alt="transaction-img"
               className="w-[300px] block mx-auto"
             />

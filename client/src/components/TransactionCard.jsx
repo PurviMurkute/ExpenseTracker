@@ -35,7 +35,7 @@ const TransactionCard = ({ _id, title, amount, type, category, createdAt, loadTr
   const amountColor = type === 'income' ? 'text-green-600' : 'text-red-600';
 
   return (
-    <div className="bg-slate-400 shadow-md rounded-lg p-4 mx-5 mb-3 flex justify-between items-center hover:shadow-lg">
+    <div className="bg-gradient-to-b from-blue-100 to-blue-200  shadow-md rounded-lg p-4 mx-2 md:mx-5 mb-3 flex justify-between items-center hover:shadow-lg">
       <div>
         <h3 className="text-lg font-semibold">{title}</h3>
         <p className="text-sm text-gray-500">{category} • {formattedDate}</p>

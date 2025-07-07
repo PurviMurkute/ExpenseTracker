@@ -28,7 +28,7 @@ const Header = () => {
     "/transactions",
     "/addtransactions",
     "/reports",
-    "/quickactions",
+    "/quickactions"
   ];
   const isDashboard = fullWidthRoutes.some((path) =>
     location.pathname.startsWith(path)
@@ -60,10 +60,10 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 bg-slate-900 pb-2 md:py-2 w-full flex justify-between z-10 text-white ${
+      className={`fixed top-0 pb-2 md:py-2 w-full flex justify-between z-10 text-white ${
         isDashboard
-          ? "w-full px-2 rounded-none"
-          : "md:w-2/3  md:mx-62 my-1 px-4 md:px-7 rounded-full"
+          ? "w-full px-2 bg-slate-800 rounded-none"
+          : "md:w-2/3 bg-slate-900 md:mx-62 my-1 px-4 md:px-7 rounded-full"
       }`}
     >
       <div className="flex flex-row">
@@ -144,7 +144,7 @@ const Header = () => {
           isDashboard
             ? `w-full md:w-1/5 ${
                 isNavOpen ? "block" : "hidden"
-              } md:block h-screen -z-10 bg-slate-900 fixed left-0 `
+              } md:block h-screen -z-10 bg-slate-800 fixed left-0 `
             : "hidden"
         }`}
       >
@@ -154,7 +154,7 @@ const Header = () => {
             className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
               selectedTab == "Overview"
                 ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900"
+                : "bg-slate-800"
             }`}
             onClick={() => {
               setSelectedTab("Overview");
@@ -168,7 +168,7 @@ const Header = () => {
             className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
               selectedTab == "Transactions"
                 ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900"
+                : "bg-slate-800"
             }`}
             onClick={() => {
               setSelectedTab("Transactions");
@@ -182,7 +182,7 @@ const Header = () => {
             className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
               selectedTab == "AddTransactions"
                 ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900"
+                : "bg-slate-800"
             }`}
             onClick={() => {
               setSelectedTab("AddTransactions");
@@ -196,7 +196,7 @@ const Header = () => {
             className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 border-b-1 border-slate-200 hover:bg-slate-500 ${
               selectedTab == "Visualizations"
                 ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900 pb-5"
+                : "bg-slate-800 pb-5"
             }`}
             onClick={() => {
               setSelectedTab("Visualizations");
@@ -205,11 +205,12 @@ const Header = () => {
           >
             <ChartArea className="inline w-[23px]" /> Visualizations
           </Link>
+        
           <Link
             className={`p-2 my-3 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
               selectedTab == "QuickActions"
                 ? "bg-slate-300 text-slate-900"
-                : "bg-slate-900"
+                : "bg-slate-800"
             }`}
             onClick={() => {
               setSelectedTab("QuickActions");

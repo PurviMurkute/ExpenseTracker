@@ -19,6 +19,7 @@ import { useLocation, useNavigate } from "react-router";
 import Input from "../components/Input";
 import TransactionEmptyView from "../components/TransactionEmptyView";
 
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -95,7 +96,7 @@ const Dashboard = () => {
         localStorage.clear();
         toast.error("JWT expired, please signin again");
         setTimeout(() => {
-          navigate('/dashboard');
+          navigate("/dashboard");
         }, 2000);
         return;
       }
@@ -192,14 +193,14 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div className="bg-slate-500 min-h-screen md:ms-[20%] px-5 py-2 overflow-y-auto">
-        <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-8 bg-gradient-to-r from-cyan-300 to-blue-200 inline-block text-transparent bg-clip-text px-2 md:pb-2">
+      <div className="bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 min-h-screen md:ms-[20%] px-5 py-2 overflow-y-auto">
+        <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-8 bg-gradient-to-r from-cyan-500 to-blue-400 inline-block text-transparent bg-clip-text px-2 md:pb-2">
           Hello {user.name}!
         </h1>
         <h3
           className={`${
             isDashboard
-              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-100 px-2 pb-2"
+              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-600 px-2 pb-2"
               : "hidden"
           }`}
         >
@@ -208,7 +209,7 @@ const Dashboard = () => {
         <h3
           className={`${
             isTransactions
-              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-100 px-2 pb-2"
+              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-600 px-2 pb-2"
               : "hidden"
           }`}
         >
@@ -217,7 +218,7 @@ const Dashboard = () => {
         <h3
           className={`${
             isReports
-              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-100 px-2 pb-2"
+              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-600 px-2 pb-2"
               : "hidden"
           }`}
         >
@@ -226,7 +227,7 @@ const Dashboard = () => {
 
         <div className="">
           <div className={`${isDashboard ? "my-2 md:mx-10 " : "hidden"}`}>
-            <div className=" shadow-xl bg-slate-200 rounded-2xl mb-1">
+            <div className=" shadow-xl bg-white rounded-2xl mb-1">
               <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4 md:ms-6 mb-2">
                 Your Financial Summary
               </h1>
@@ -239,7 +240,7 @@ const Dashboard = () => {
                 />
               </div>
             </div>
-            <div className="p-2 shadow-xl bg-slate-100 rounded-2xl">
+            <div className="p-2 shadow-xl bg-white rounded-2xl">
               <h1 className="text-lg md:text-xl font-bold text-slate-900 ms-7 p-2">
                 Transactions History
               </h1>
@@ -310,7 +311,7 @@ const Dashboard = () => {
           <div
             className={`${
               isTransactions
-                ? "h-[520px] m-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-slate-100 rounded-2xl"
+                ? "h-[520px] m-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-white rounded-2xl"
                 : "hidden"
             }`}
           >
@@ -354,7 +355,7 @@ const Dashboard = () => {
         <div
           className={`${
             isReports
-              ? "flex flex-col md:flex-row justify-center my-2 bg-slate-100 rounded-2xl md:mx-5 p-5"
+              ? "flex flex-col md:flex-row justify-center my-2 bg-white rounded-2xl md:mx-5 p-5"
               : "hidden"
           }`}
         >

@@ -46,7 +46,7 @@ const SignIn = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-slate-700 top-0 left-0 fixed w-full flex justify-center items-center">
+    <div className="min-h-screen bg-slate-600 top-0 left-0 fixed w-full flex justify-center items-center">
       <Header />
       <div className="flex justify-center items-center md:w-[950px] bg-white rounded-md py-4 px-3 md:py-10">
         <div className="ms-1 md:me-5">
@@ -60,7 +60,7 @@ const SignIn = () => {
             </h2>
           </div>
           <form
-            className="w-[300px] md:w-[420px] block mx-auto bg-slate-400 py-5 px-2 shadow-xl my-2 rounded-md"
+            className="w-[300px] md:w-[420px] block mx-auto bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 py-5 px-2 shadow-xl my-2 rounded-md"
             onSubmit={(e) => {
               e.preventDefault();
             }}

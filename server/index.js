@@ -60,8 +60,8 @@ app.get("/health", (req, res) => {
 app.post("/signup", postSignUp);
 app.post("/login", postLogin);
 app.post('/transactions', verifyJWT, postTransaction);
-app.get('/transactions', getTransactions)
-app.delete('/transactions/:id', deleteTransactions)
+app.get('/transactions', getTransactions);
+app.delete('/transactions/:id', deleteTransactions);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
