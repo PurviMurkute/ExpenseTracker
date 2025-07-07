@@ -44,7 +44,7 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col items-center justify-center mx-4 mt-6 md:mt-0 inset-0 absolute text-slate-800"
+          className="flex flex-col items-center justify-center mx-8 mt-6 md:mt-0 inset-0 absolute text-slate-800"
         >
           <h3 className="text-3xl md:text-4xl font-extrabold py-4 md:py-2">
             Goodbye Guesswork. Hello Financial Clarity!
