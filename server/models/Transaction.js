@@ -4,7 +4,6 @@ const userTransactions = new Schema({
     title: {
         type: String,
         required: true,
-        minlength: 6
     },
     amount: {
         type: Number,

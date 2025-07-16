@@ -7,17 +7,22 @@ import toast, { Toaster } from "react-hot-toast";
 import signinimg from "./../assets/signinimg.png";
 import Button from "../components/Button";
 import Header from "../components/Header";
-
+import { EyeOff, Eye } from "lucide-react";
 
 const SignIn = () => {
   const [signInUser, setSignInUser] = useState({
     email: "",
     password: "",
   });
+  const [showPass, setShowPass] = useState(false);
+
+  const togglePass = () => {
+    setShowPass(!showPass);
+  };
+
   const navigate = useNavigate();
 
   const signIn = async () => {
-
     const response = await axios.post(`${import.meta.env.VITE_API_KEY}/login`, {
       email: signInUser.email,
       password: signInUser.password,
@@ -35,12 +40,9 @@ const SignIn = () => {
         password: "",
       });
 
-      toast.loading("redirecting to dashboard");
-
       setTimeout(() => {
         navigate("/dashboard");
-      }, 3000);
-
+      }, 1000);
     } else {
       toast.error(response.data.message);
     }
@@ -60,7 +62,7 @@ const SignIn = () => {
             </h2>
           </div>
           <form
-            className="w-[300px] md:w-[420px] block mx-auto bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 py-5 px-2 shadow-xl my-2 rounded-md"
+            className="w-[300px] md:w-[420px] block mx-auto bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 py-5 px-2 shadow-xl my-2 rounded-md relative"
             onSubmit={(e) => {
               e.preventDefault();
             }}
@@ -76,8 +78,18 @@ const SignIn = () => {
                 setSignInUser({ ...signInUser, email: e.target.value });
               }}
             />
+            <span
+              onClick={togglePass}
+              className="absolute right-12 mt-5 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+            >
+              {showPass ? (
+                <Eye className="w-5 h-4" />
+              ) : (
+                <EyeOff className="w-5 h-4" />
+              )}
+            </span>
             <Input
-              type="password"
+              type={showPass? "text" : "password"}
               placeholder="Password"
               value={signInUser.password}
               onChange={(e) => {

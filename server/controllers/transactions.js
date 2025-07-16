@@ -4,7 +4,7 @@ import User from "./../models/User.js";
 const postTransaction = async (req, res) => {
   const { title, amount, type, category, user } = req.body;
 
-  if (!title || !amount || !type || !category || !user) {
+  if (!title || !amount || !type || !category) {
     return res.status(400).json({
       success: false,
       data: null,
@@ -12,19 +12,19 @@ const postTransaction = async (req, res) => {
     });
   }
 
-  const allTransactions = await Transaction.find();
+  const allTransactions = await Transaction.find({ user });
 
   let income = 0;
   let expense = 0;
   allTransactions.forEach((transaction) => {
-    if (transaction.type.income) {
-      income += transaction.type.income;
+    if (transaction.type === "income") {
+      income += Number(transaction.amount);
     } else {
-      expense += transaction.type.expense;
+      expense += Number(transaction.amount);
     }
   });
 
-  if (type === "expense") {
+  if (type.toLowerCase() === "expense") {
     const balance = income - expense;
     if (balance < Number(amount)) {
       return res.status(400).json({

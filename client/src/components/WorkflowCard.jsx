@@ -1,12 +1,13 @@
 import React from "react";
 import { motion } from "motion/react";
 
-const WorkflowCard = ({ img, title, description, step, bgColor }) => {
+const WorkflowCard = ({ title, description, step, bgColor }) => {
   const bgColors = {
     color1 : "bg-red-100 text-red-700",
     color2 : "bg-blue-100 text-blue-700",
     color3 : "bg-fuchsia-100 text-fuchsia-700"
   }
+  
   return (
     <motion.div
       initial={{ y: 30 }}

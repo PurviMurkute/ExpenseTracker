@@ -142,13 +142,13 @@ const Header = () => {
       <div
         className={`${
           isDashboard
-            ? `w-full md:w-1/5 ${
+            ? `w-full md:w-1/6 ${
                 isNavOpen ? "block" : "hidden"
               } md:block h-screen -z-10 bg-slate-800 fixed left-0 `
             : "hidden"
         }`}
       >
-        <div className="flex flex-col mt-20 px-10">
+        <div className="flex flex-col mt-20 px-5">
           <Link
             to="/dashboard"
             className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${

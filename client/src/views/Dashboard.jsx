@@ -193,7 +193,7 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div className="bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 min-h-screen md:ms-[20%] px-5 py-2 overflow-y-auto">
+      <div className="bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 min-h-screen md:ms-[15%] px-5 py-2 overflow-y-auto">
         <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-8 bg-gradient-to-r from-cyan-500 to-blue-400 inline-block text-transparent bg-clip-text px-2 md:pb-2">
           Hello {user.name}!
         </h1>
@@ -363,7 +363,7 @@ const Dashboard = () => {
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 pb-2 md:ms-7">
               Summary Visualizations
             </h2>
-            <Doughnut data={doughnutData} />
+            <Doughnut data={doughnutData} className="h-[300px]"/>
           </div>
           <div className="hidden md:block w-[560px] h-[330px]  md:h-[450px] bg-slate-300 p-4 md:p-15 mx-2 my-5 overflow-y-auto">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 p-2 md:ms-7">
