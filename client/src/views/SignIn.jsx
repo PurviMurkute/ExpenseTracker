@@ -96,7 +96,7 @@ const SignIn = () => {
                 setSignInUser({ ...signInUser, password: e.target.value });
               }}
             />
-            <Button btnText="SignIn" btnSize="sm" onClick={signIn} />
+            <Button btnText="SignIn" btnSize="sm" onClick={signIn} btnVariant="red"/>
           </form>
           <p className="text-slate-800 text-center font-medium py-2">
             Dont have an account?{" "}

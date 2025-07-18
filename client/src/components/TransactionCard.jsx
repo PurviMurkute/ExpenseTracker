@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { Trash2 } from 'lucide-react';
 import { useLocation } from 'react-router';
+import DeleteModal from './DeleteModal';
+import Button from './Button';
 
 const TransactionCard = ({ _id, title, amount, type, category, createdAt, loadTransactions }) => {
+    const [isModelOpen, setIsModalOpen] = useState(false);
 
   const deleteTransaction = async () => {
     const response = await axios.delete(`${import.meta.env.VITE_API_KEY}/transactions/${_id}`)
@@ -17,6 +20,13 @@ const TransactionCard = ({ _id, title, amount, type, category, createdAt, loadTr
     }else{
       toast.error(response.data.message);
     }
+  }
+
+  const handleDelete = () => {
+    deleteTransaction();
+    setTimeout(()=>{
+      setIsModalOpen(false);
+    }, 1000)
   }
 
   const location = useLocation();
@@ -42,8 +52,17 @@ const TransactionCard = ({ _id, title, amount, type, category, createdAt, loadTr
       </div>
       <div className='flex flex-row'>
         <h4 className={`text-lg font-bold me-2 ${amountColor}`}>₹{amount}</h4>
-        <Trash2 className={`${isDashboard? "hidden" : "cursor-pointer w-[20px]" }`} onClick={deleteTransaction}/>
+        <Trash2 className={`${isDashboard? "hidden" : "cursor-pointer w-[20px]" }`} onClick={()=>{setIsModalOpen(true)}}/>
       </div>
+      <DeleteModal isOpen={isModelOpen} onClose={()=>{setIsModalOpen(false)}}>
+        <div className='flex flex-col p-3'>
+          <h3 className='text-center font-medium text-slate-200'>Are you sure you want to delete this transaction?</h3>
+          <div className='flex justify-evenly'>
+            <Button btnSize="sm" btnText="Delete" btnVariant="red" onClick={handleDelete}/>
+            <Button btnSize="sm" btnText="Cancel" btnVariant="green" onClick={()=>{setIsModalOpen(false)}} />
+          </div>
+        </div>
+      </DeleteModal>
       <Toaster/>
     </div>
   );

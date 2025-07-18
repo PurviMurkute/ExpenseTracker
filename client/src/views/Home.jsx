@@ -22,12 +22,14 @@ const Home = () => {
   return (
     <>
       <div className="h-[600px] w-full bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 relative">
-        <div
+        <motion.div
+        animate={{ scale: [1, 1.05, 1] }}
+      transition={{ repeat: Infinity, duration: 10 }}
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `
-        linear-gradient(to right, #d1d5db 1px, transparent 0px),
-        linear-gradient(to bottom, #d1d5db 1px, transparent 0px)
+        linear-gradient(to right, #8c8c8c 1px, transparent 0px),
+        linear-gradient(to bottom, #8c8c8c 1px, transparent 0px)
       `,
             backgroundSize: "35px 35px",
             WebkitMaskImage:
@@ -61,7 +63,7 @@ const Home = () => {
             </span>
           </p>
           <Link to={currentUser ? "/dashboard" : "/signup"}>
-            <Button btnText="Start Now for Free" btnSize="lg" />
+            <Button btnText="Start Now for Free" btnSize="lg" btnVariant="red"/>
           </Link>
         </motion.div>
       </div>

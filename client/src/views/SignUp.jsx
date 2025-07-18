@@ -134,7 +134,7 @@ const SignUp = () => {
                 setUser({ ...user, city: e.target.value });
               }}
             />
-            <Button btnText="SignUp" btnSize="sm" onClick={signUp} />
+            <Button btnText="SignUp" btnSize="sm" onClick={signUp} btnVariant="red" />
           </form>
           <p className="text-slate-800 text-center font-medium py-2">
             Already have a ExpenseDiary account?{" "}

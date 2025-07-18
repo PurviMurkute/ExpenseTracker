@@ -19,7 +19,6 @@ import { useLocation, useNavigate } from "react-router";
 import Input from "../components/Input";
 import TransactionEmptyView from "../components/TransactionEmptyView";
 
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -228,7 +227,7 @@ const Dashboard = () => {
         <div className="">
           <div className={`${isDashboard ? "my-2 md:mx-10 " : "hidden"}`}>
             <div className=" shadow-xl bg-white rounded-2xl mb-1">
-              <h1 className="text-xl md:text-2xl font-bold text-slate-900 p-4 md:ms-6 mb-2">
+              <h1 className="text-lg md:text-xl font-bold text-slate-800 p-4 md:ms-6 mb-2">
                 Your Financial Summary
               </h1>
               <div className="flex flex-col md:flex-row justify-center">
@@ -241,7 +240,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="p-2 shadow-xl bg-white rounded-2xl">
-              <h1 className="text-lg md:text-xl font-bold text-slate-900 ms-7 p-2">
+              <h1 className="text-lg md:text-xl font-bold text-slate-800 ms-7 p-2">
                 Transactions History
               </h1>
               {transactions.length === 0 ? (
@@ -316,7 +315,7 @@ const Dashboard = () => {
             }`}
           >
             <div className="flex flex-col md:flex-row justify-between">
-              <h1 className="text-xl md:text-2xl font-bold text-slate-900 px-5 py-2 md:p-5">
+              <h1 className="text-xl md:text-2xl font-bold text-slate-800 px-5 py-2 md:p-5">
                 Recent Transactions
               </h1>
               <Input
@@ -331,7 +330,7 @@ const Dashboard = () => {
             {transactions.length === 0 ? (
               <TransactionEmptyView />
             ) : (
-              <div className="overflow-y-scroll h-[400px]">
+              <div className="overflow-y-scroll h-[450px]">
                 {filteredTransactions.map((transaction, i) => {
                   const { _id, title, amount, type, category, createdAt } =
                     transaction;

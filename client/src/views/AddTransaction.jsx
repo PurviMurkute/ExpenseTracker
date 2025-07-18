@@ -148,11 +148,13 @@ const AddTransaction = () => {
             <Button
               btnText="Add Transaction"
               btnSize="sm"
+              btnVariant="red"
               onClick={addTransactions}
             />
             <Button
               btnText="Check Transactions"
               btnSize="sm"
+              btnVariant="green"
               onClick={() => {
                 navigate("/transactions");
               }}
