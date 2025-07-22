@@ -142,7 +142,7 @@ const Header = () => {
       <div
         className={`${
           isDashboard
-            ? `w-full md:w-1/6 ${
+            ? `w-[85%] md:w-1/6 ${
                 isNavOpen ? "block" : "hidden"
               } md:block h-screen -z-10 bg-[#303d50] fixed left-0 `
             : "hidden"

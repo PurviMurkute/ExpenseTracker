@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import { postSignUp, postLogin } from "./controllers/user.js";
-import { postTransaction, getTransactions, deleteTransactions } from "./controllers/transactions.js";
+import { postTransaction, getTransactions, deleteTransactions, putTransactionbyId } from "./controllers/transactions.js";
 import jwt from 'jsonwebtoken';
 
 const app = express();
@@ -62,6 +62,7 @@ app.post("/login", postLogin);
 app.post('/transactions', verifyJWT, postTransaction);
 app.get('/transactions', getTransactions);
 app.delete('/transactions/:id', deleteTransactions);
+app.put('/transaction/:id', putTransactionbyId);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);

@@ -281,11 +281,11 @@ const Dashboard = () => {
                   {transactions
                     .filter((filteredTransaction) => {
                       if (selectedCategory === "All") return true;
-                      const cat = (filteredTransaction.category || "")
+                      const category = (filteredTransaction.category || "")
                         .toString()
                         .trim()
                         .toLowerCase();
-                      return cat === selectedCategory.toLowerCase();
+                      return category === selectedCategory.toLowerCase();
                     })
                     .map((transaction, i) => {
                       const { _id, title, amount, type, category, createdAt } =
@@ -310,7 +310,7 @@ const Dashboard = () => {
           <div
             className={`${
               isTransactions
-                ? "h-[520px] m-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-white rounded-2xl"
+                ? "h-[570px] m-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-white rounded-2xl"
                 : "hidden"
             }`}
           >
@@ -318,9 +318,10 @@ const Dashboard = () => {
               <h1 className="text-xl md:text-2xl font-bold text-slate-800 px-5 py-2 md:p-5">
                 Recent Transactions
               </h1>
-              <Input
+              <input
                 type="text"
                 placeholder="Search Transactions..."
+                className="w-[82%] md:w-[60%] bg-white p-2 my-4 border-2 border-slate-200 shadow-lg block mx-auto rounded-md focus:outline-none"
                 value={searchText}
                 onChange={(e) => {
                   setSearchText(e.target.value.toLowerCase());

@@ -120,4 +120,41 @@ const deleteTransactions = async (req, res) => {
   }
 };
 
-export { postTransaction, getTransactions, deleteTransactions };
+const putTransactionbyId = async (req, res) => {
+  const { id } = req.params;
+  const { title, amount, type, category } = req.body;
+
+  if (!title || !amount || !type || !category) {
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: "All fields are rquired",
+    });
+  }
+
+  try {
+    const updatedTransaction = await Transaction.updateOne(
+      { _id: id },
+      { $set: { title, amount, type, category } }
+    );
+
+    return res.status(200).json({
+      success: true,
+      data: updatedTransaction,
+      message: "Transaction updated successfully",
+    });
+  } catch (e) {
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: e?.message,
+    });
+  }
+};
+
+export {
+  postTransaction,
+  getTransactions,
+  deleteTransactions,
+  putTransactionbyId,
+};
