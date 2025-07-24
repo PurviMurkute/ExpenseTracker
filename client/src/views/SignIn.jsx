@@ -8,6 +8,7 @@ import signinimg from "./../assets/signinimg.png";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import { EyeOff, Eye } from "lucide-react";
+import { FaSignInAlt } from "react-icons/fa";
 
 const SignIn = () => {
   const [signInUser, setSignInUser] = useState({
@@ -68,7 +69,8 @@ const SignIn = () => {
               e.preventDefault();
             }}
           >
-            <h2 className="font-bold text-slate-900 py-3 text-2xl text-center">
+            <FaSignInAlt className="text-xl block mx-auto text-blue-700"/>
+            <h2 className="font-bold text-slate-900 pt-1 pb-3 text-2xl text-center">
               SignIn
             </h2>
             <Input
@@ -99,9 +101,9 @@ const SignIn = () => {
             />
             <Button
               btnText="SignIn"
-              btnSize="sm"
+              btnSize="auth_btn"
               onClick={signIn}
-              btnVariant="red"
+              btnVariant="blue"
             />
           </form>
           <p className="text-slate-800 text-center font-medium py-2">

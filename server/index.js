@@ -3,7 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
-import { postSignUp, postLogin } from "./controllers/user.js";
+import { postSignUp, postLogin, putUserProfile } from "./controllers/user.js";
 import {
   postTransaction,
   getTransactions,
@@ -69,6 +69,7 @@ app.post("/transactions", verifyJWT, postTransaction);
 app.get("/transactions", getTransactions);
 app.delete("/transactions/:id", deleteTransactions);
 app.put("/transaction/:id", putTransactionbyId);
+app.put("/profile/:id", putUserProfile);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);

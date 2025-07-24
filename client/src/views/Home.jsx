@@ -46,12 +46,12 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col items-center justify-center mx-8 mt-12 md:mt-0 inset-0 absolute text-slate-800"
+          className="flex flex-col items-center justify-center mx-8 mt-12 md:mt-0 inset-0 absolute text-slate-700 px-3 md:w-[800px] text-center block mx-auto"
         >
           <h3 className="text-3xl md:text-4xl font-extrabold py-3 md:py-2">
             Goodbye Guesswork. Hello Financial Clarity!
           </h3>
-          <h4 className="text-xl md:text-2xl font-bold pb-3 md:py-2">
+          <h4 className="text-xl md:text-2xl font-bold pb-3 md:py-2 bg-gradient-to-r from-cyan-700 via-blue-600 to-indigo-600 inline-block text-transparent bg-clip-text">
             See Where Your Money Goes And Keep More of It.
           </h4>
           <p className="text-lg pb-4 md:py-2">

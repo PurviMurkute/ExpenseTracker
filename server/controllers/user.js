@@ -117,4 +117,36 @@ const postLogin = async (req, res) => {
   });
 };
 
-export { postSignUp, postLogin };
+const putUserProfile = async(req, res) => {
+  const {userid} = req.params;
+  const { name, email } = req.body;
+
+  if(!name || !email){
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: "All fields are required"
+    })
+  }
+
+  try{
+    const updatedProfile = await User.updateOne(
+      {_id: userid},
+      {$set: {name, email}}
+    );
+
+    return res.status(200).json({
+      success: true,
+      data: updatedProfile,
+      message: "profile updated successfully"
+    })
+  }catch(e){
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: e.message
+    })
+  }
+}
+
+export { postSignUp, postLogin, putUserProfile };

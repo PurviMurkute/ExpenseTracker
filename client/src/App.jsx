@@ -4,6 +4,7 @@ import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import Home from './views/Home';
 import AddTransaction from './views/AddTransaction';
+import Profile from './views/Profile';
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <Route path='/transactions' element={<Dashboard/>}></Route>
       <Route path='/addtransactions' element={<AddTransaction/>}></Route>
       <Route path='/reports' element={<Dashboard/>}></Route>
+      <Route path='/profile' element={<Profile/>}></Route>
     </Routes>
     </BrowserRouter>
   )

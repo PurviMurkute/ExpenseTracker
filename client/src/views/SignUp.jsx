@@ -8,6 +8,7 @@ import { Link } from "react-router";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import { EyeOff, Eye } from "lucide-react";
+import { IoIosLogIn } from "react-icons/io";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -69,12 +70,13 @@ const SignUp = () => {
             🚀Get Started on a Smarter Spending Journey.
           </h2>
           <form
-            className="w-[300px] md:w-[400px] block mx-auto bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 py-1 md:py-5 px-2 shadow-xl my-2 rounded-md relative"
+            className="w-[300px] md:w-[400px] block mx-auto bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 px-1 py-5 shadow-xl my-2 rounded-md relative"
             onSubmit={(e) => {
               e.preventDefault();
             }}
           >
-            <h2 className="font-bold text-slate-900 py-3 text-2xl text-center">
+            <IoIosLogIn className="text-2xl block mx-auto text-blue-700"/>
+            <h2 className="font-bold text-slate-900 pt-1 pb-3 text-2xl text-center">
               SignUp
             </h2>
             <Input
@@ -113,9 +115,9 @@ const SignUp = () => {
             />
             <Button
               btnText="SignUp"
-              btnSize="sm"
+              btnSize="auth_btn"
               onClick={signUp}
-              btnVariant="red"
+              btnVariant="blue"
             />
           </form>
           <p className="text-slate-800 text-center font-medium py-2">

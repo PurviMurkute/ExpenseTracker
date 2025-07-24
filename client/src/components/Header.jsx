@@ -4,7 +4,7 @@ import { LogIn } from "lucide-react";
 import Button from "./Button";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
-import { User } from "lucide-react";
+import { FaUserCircle } from "react-icons/fa";
 import {
   LayoutDashboard,
   BadgeIndianRupee,
@@ -28,7 +28,8 @@ const Header = () => {
     "/transactions",
     "/addtransactions",
     "/reports",
-    "/quickactions"
+    "/quickactions",
+    "/profile"
   ];
   const isDashboard = fullWidthRoutes.some((path) =>
     location.pathname.startsWith(path)
@@ -102,17 +103,17 @@ const Header = () => {
             </div>
             <div>
               <Link to="/signin">
-                <User className="w-[35px] fixed top-4 right-5 md:right-[20%] rounded-full block md:hidden" />
+                <FaUserCircle className="text-2xl fixed top-4.5 right-5 md:right-[20%] block md:hidden" />
               </Link>
             </div>
           </>
         ) : (
           <div className="flex relative">
             <button onClick={toggleDrpdown}>
-              <User
+              <FaUserCircle
                 className={`${
                   isDashboard ? "right-2" : "right-2 md:right-[18%]"
-                } w-[40px] md:w-[55px] h-[30px] md:h-[35px] fixed md:top-5 cursor-pointer block`}
+                } text-2xl md:w-[55px] h-[30px] md:h-[35px] fixed md:top-4 cursor-pointer block`}
               />
             </button>
             {isDropdownOpen && (
@@ -122,7 +123,7 @@ const Header = () => {
                     Dashboard
                   </button>
                 </Link>
-                <Link>
+                <Link to='/profile'>
                   <button className="pb-1 text-slate-800 text-md font-medium cursor-pointer px-5 rounded-xl block mx-auto hover:bg-slate-300">
                     Profile
                   </button>
