@@ -14,8 +14,6 @@ const SignUp = () => {
     name: "",
     email: "",
     password: "",
-    DOB: "",
-    city: "",
   });
   const [showPass, setShowPass] = useState(false);
 
@@ -31,8 +29,6 @@ const SignUp = () => {
           name: user.name,
           email: user.email,
           password: user.password,
-          DOB: user.DOB,
-          city: user.city,
         }
       );
       console.log(response.data.message);
@@ -43,8 +39,6 @@ const SignUp = () => {
           name: "",
           email: "",
           password: "",
-          DOB: "",
-          city: "",
         });
       } else {
         console.log(response.data);
@@ -56,14 +50,14 @@ const SignUp = () => {
   };
 
   return (
-    <div className="bg-slate-600 min-h-screen top-0 left-0 fixed w-full block md:flex justify-center items-center">
+    <div className="min-h-screen bg-slate-600 top-0 left-0 fixed w-full flex justify-center items-center">
       <Header />
-      <div className="md:w-[1050px] mt-18  px-5 md:px-10 md:py-2 md:my-20 flex justify-center items-center shadow-2xl rounded-md bg-white">
+      <div className="md:w-[980px] px-5 py-5 md:py-10 mx-2 md:my-20 flex justify-center items-center shadow-2xl rounded-md bg-white">
         <div className="md:pe-8">
           <img
             src={signup}
             alt="signupimg"
-            className="hidden md:flex w-[430px]"
+            className="hidden md:flex w-[390px]"
           />
         </div>
         <div>
@@ -75,7 +69,7 @@ const SignUp = () => {
             🚀Get Started on a Smarter Spending Journey.
           </h2>
           <form
-            className="w-[300px] md:w-[400px] block mx-auto bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 py-1 md:py-3 px-2 shadow-xl my-2 rounded-md relative"
+            className="w-[300px] md:w-[400px] block mx-auto bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 py-1 md:py-5 px-2 shadow-xl my-2 rounded-md relative"
             onSubmit={(e) => {
               e.preventDefault();
             }}
@@ -117,24 +111,12 @@ const SignUp = () => {
                 setUser({ ...user, password: e.target.value });
               }}
             />
-
-            <Input
-              type="date"
-              placeholder="Date of Birth"
-              value={user.DOB}
-              onChange={(e) => {
-                setUser({ ...user, DOB: e.target.value });
-              }}
+            <Button
+              btnText="SignUp"
+              btnSize="sm"
+              onClick={signUp}
+              btnVariant="red"
             />
-            <Input
-              type="text"
-              placeholder="City"
-              value={user.city}
-              onChange={(e) => {
-                setUser({ ...user, city: e.target.value });
-              }}
-            />
-            <Button btnText="SignUp" btnSize="sm" onClick={signUp} btnVariant="red" />
           </form>
           <p className="text-slate-800 text-center font-medium py-2">
             Already have a ExpenseDiary account?{" "}

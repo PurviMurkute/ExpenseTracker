@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken";
 import validator from "validator";
 
 const postSignUp = async (req, res) => {
-  const { name, email, password, DOB, city } = req.body;
+  const { name, email, password } = req.body;
 
-  if (!name || !email || !password || !DOB) {
+  if (!name || !email || !password ) {
     return res.status(400).json({
       success: false,
       data: null,
@@ -46,9 +46,7 @@ const postSignUp = async (req, res) => {
   const user = new User({
     name,
     email,
-    password: encryptedPassword,
-    DOB,
-    city,
+    password: encryptedPassword
   });
 
   try {

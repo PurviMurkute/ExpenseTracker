@@ -16,7 +16,6 @@ import {
 } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { useLocation, useNavigate } from "react-router";
-import Input from "../components/Input";
 import TransactionEmptyView from "../components/TransactionEmptyView";
 
 ChartJS.register(
@@ -48,7 +47,7 @@ const Dashboard = () => {
     }
 
     if (!currentuser) {
-      navigate("/dashboard");
+      navigate("/signin");
     }
   }, []);
 
@@ -95,7 +94,7 @@ const Dashboard = () => {
         localStorage.clear();
         toast.error("JWT expired, please signin again");
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/signin");
         }, 2000);
         return;
       }
@@ -363,7 +362,7 @@ const Dashboard = () => {
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 pb-2 md:ms-7">
               Summary Visualizations
             </h2>
-            <Doughnut data={doughnutData} className="h-[300px]"/>
+            <Doughnut data={doughnutData} className="h-[300px]" />
           </div>
           <div className="hidden md:block w-[560px] h-[330px]  md:h-[450px] bg-slate-300 p-4 md:p-15 mx-2 my-5 overflow-y-auto">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 p-2 md:ms-7">

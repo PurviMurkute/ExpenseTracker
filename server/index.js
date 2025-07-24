@@ -4,10 +4,16 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 import { postSignUp, postLogin } from "./controllers/user.js";
-import { postTransaction, getTransactions, deleteTransactions, putTransactionbyId } from "./controllers/transactions.js";
-import jwt from 'jsonwebtoken';
+import {
+  postTransaction,
+  getTransactions,
+  deleteTransactions,
+  putTransactionbyId,
+} from "./controllers/transactions.js";
+import jwt from "jsonwebtoken";
 
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
@@ -24,31 +30,31 @@ const connectDB = async () => {
 const PORT = process.env.PORT || 5001;
 
 const verifyJWT = async (req, res, next) => {
-  const {authorization} = req.headers;
+  const { authorization } = req.headers;
 
-  if(!authorization){
+  if (!authorization) {
     return res.status(400).json({
       success: false,
       data: null,
-      message: "Authorization is required"
-    })
+      message: "Authorization is required",
+    });
   }
 
-  try{
+  try {
     const jwtToken = authorization.split(" ")[1];
-    const decodedToken = jwt.verify(jwtToken, process.env.JWT_SECRET)
+    const decodedToken = jwt.verify(jwtToken, process.env.JWT_SECRET);
 
     req.user = decodedToken;
 
     next();
-  }catch(e){
+  } catch (e) {
     return res.status(400).json({
       success: false,
       data: null,
-      message: e.message
-    })
+      message: e.message,
+    });
   }
-}
+};
 
 app.get("/health", (req, res) => {
   res.json({
@@ -59,10 +65,10 @@ app.get("/health", (req, res) => {
 
 app.post("/signup", postSignUp);
 app.post("/login", postLogin);
-app.post('/transactions', verifyJWT, postTransaction);
-app.get('/transactions', getTransactions);
-app.delete('/transactions/:id', deleteTransactions);
-app.put('/transaction/:id', putTransactionbyId);
+app.post("/transactions", verifyJWT, postTransaction);
+app.get("/transactions", getTransactions);
+app.delete("/transactions/:id", deleteTransactions);
+app.put("/transaction/:id", putTransactionbyId);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);

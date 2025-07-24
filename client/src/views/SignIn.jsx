@@ -47,6 +47,7 @@ const SignIn = () => {
       toast.error(response.data.message);
     }
   };
+
   return (
     <div className="min-h-screen bg-slate-600 top-0 left-0 fixed w-full flex justify-center items-center">
       <Header />
@@ -89,14 +90,19 @@ const SignIn = () => {
               )}
             </span>
             <Input
-              type={showPass? "text" : "password"}
+              type={showPass ? "text" : "password"}
               placeholder="Password"
               value={signInUser.password}
               onChange={(e) => {
                 setSignInUser({ ...signInUser, password: e.target.value });
               }}
             />
-            <Button btnText="SignIn" btnSize="sm" onClick={signIn} btnVariant="red"/>
+            <Button
+              btnText="SignIn"
+              btnSize="sm"
+              onClick={signIn}
+              btnVariant="red"
+            />
           </form>
           <p className="text-slate-800 text-center font-medium py-2">
             Dont have an account?{" "}
