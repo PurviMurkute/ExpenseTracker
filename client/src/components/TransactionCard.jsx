@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Trash2, SquarePen } from "lucide-react";
 import { useLocation } from "react-router";
-import DeleteModal from "./DeleteModal";
+import Modal from "./Modal";
 import Button from "./Button";
 import Input from "./Input";
-import UpdateModal from "./UpdateModal";
 
 const TransactionCard = ({
   _id,
@@ -17,14 +16,14 @@ const TransactionCard = ({
   createdAt,
   loadTransactions,
 }) => {
-  const [isModelOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModelOpen, setIsDeleteModalOpen] = useState(false);
   const [transaction, setTransaction] = useState({
     title: "",
     amount: "",
     type: "",
     category: "",
   });
-  const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   const deleteTransaction = async () => {
     const response = await axios.delete(
@@ -55,7 +54,7 @@ const TransactionCard = ({
 
       if (response.data.success) {
         setTransaction(response.data.data);
-        setUpdateModalOpen(false);
+        setIsUpdateModalOpen(false);
         loadTransactions();
         toast.success(response.data.message);
       } else {
@@ -69,7 +68,7 @@ const TransactionCard = ({
   const handleDelete = () => {
     deleteTransaction();
     setTimeout(() => {
-      setIsModalOpen(false);
+      setIsDeleteModalOpen(false);
     }, 1000);
   };
 
@@ -102,21 +101,22 @@ const TransactionCard = ({
           className={`${isDashboard ? "hidden" : "cursor-pointer w-[20px]"}`}
           onClick={() => {
             setTransaction({ title, amount, type, category });
-            setUpdateModalOpen(true);
+            setIsUpdateModalOpen(true);
           }}
         />
         <Trash2
           className={`${isDashboard ? "hidden" : "cursor-pointer w-[20px]"}`}
           onClick={() => {
-            setIsModalOpen(true);
+            setIsDeleteModalOpen(true);
           }}
         />
       </div>
-      <DeleteModal
-        isOpen={isModelOpen}
+      <Modal
+        isOpen={isDeleteModelOpen}
         onClose={() => {
-          setIsModalOpen(false);
+          setIsDeleteModalOpen(false);
         }}
+        width="sm"
       >
         <div className="flex flex-col p-3">
           <h3 className="text-center font-medium text-slate-200">
@@ -134,17 +134,18 @@ const TransactionCard = ({
               btnText="Cancel"
               btnVariant="green"
               onClick={() => {
-                setIsModalOpen(false);
+                setIsDeleteModalOpen(false);
               }}
             />
           </div>
         </div>
-      </DeleteModal>
-      <UpdateModal
+      </Modal>
+      <Modal
         isOpen={isUpdateModalOpen}
         onClose={() => {
-          setUpdateModalOpen(false);
+          setIsUpdateModalOpen(false);
         }}
+        width="md"
       >
         <form
           onSubmit={(e) => {
@@ -205,7 +206,7 @@ const TransactionCard = ({
             onClick={updateTransaction}
           />
         </form>
-      </UpdateModal>
+      </Modal>
       <Toaster />
     </div>
   );

@@ -133,9 +133,10 @@ const putTransactionbyId = async (req, res) => {
   }
 
   try {
-    const updatedTransaction = await Transaction.updateOne(
-      { _id: id },
-      { $set: { title, amount, type, category } }
+    const updatedTransaction = await Transaction.findByIdAndUpdate(
+      id,
+      { title, amount, type, category },
+      {new: true}
     );
 
     return res.status(200).json({

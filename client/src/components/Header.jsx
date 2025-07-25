@@ -143,9 +143,9 @@ const Header = () => {
       <div
         className={`${
           isDashboard
-            ? `w-[85%] md:w-1/6 ${
+            ? `w-[85%] md:w-[60%] lg:w-1/6 ${
                 isNavOpen ? "block" : "hidden"
-              } md:block h-screen -z-10 bg-[#303d50] fixed left-0 `
+              } lg:block h-screen -z-10 bg-[#303d50] fixed left-0 `
             : "hidden"
         }`}
       >
@@ -222,7 +222,7 @@ const Header = () => {
           </Link>
           <Link
             to="signin"
-            className={`w-[220px] p-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
+            className={`w-[70%] md:w-[210px] p-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
             onClick={handleSignOut}
           >
             <LogOut className="inline w-[23px]" /> Sign Out

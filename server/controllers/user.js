@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 import validator from "validator";
 
 const postSignUp = async (req, res) => {
@@ -117,36 +118,46 @@ const postLogin = async (req, res) => {
   });
 };
 
-const putUserProfile = async(req, res) => {
-  const {userid} = req.params;
+const putUserProfile = async (req, res) => {
+  const { userid } = req.params;
   const { name, email } = req.body;
 
-  if(!name || !email){
+  if (!mongoose.Types.ObjectId.isValid(userid)) {
     return res.status(400).json({
       success: false,
+      message: "Invalid user ID",
       data: null,
-      message: "All fields are required"
-    })
+    });
   }
 
-  try{
-    const updatedProfile = await User.updateOne(
-      {_id: userid},
-      {$set: {name, email}}
+  try {
+    const updatedProfile = await User.findByIdAndUpdate(
+      userid,
+      { name, email },
+      { new: true, runValidators: true }
     );
+
+    if (!updatedProfile) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+        data: null,
+      });
+    }
 
     return res.status(200).json({
       success: true,
       data: updatedProfile,
-      message: "profile updated successfully"
-    })
-  }catch(e){
-    return res.status(400).json({
+      message: "Profile updated successfully",
+    });
+  } catch (e) {
+    return res.status(500).json({
       success: false,
       data: null,
-      message: e.message
-    })
+      message: e.message,
+    });
   }
-}
+};
+
 
 export { postSignUp, postLogin, putUserProfile };

@@ -51,7 +51,7 @@ const Home = () => {
           <h3 className="text-3xl md:text-4xl font-extrabold py-3 md:py-2">
             Goodbye Guesswork. Hello Financial Clarity!
           </h3>
-          <h4 className="text-xl md:text-2xl font-bold pb-3 md:py-2 bg-gradient-to-r from-cyan-700 via-blue-600 to-indigo-600 inline-block text-transparent bg-clip-text">
+          <h4 className="text-xl md:text-2xl font-bold pb-3 md:py-2 bg-gradient-to-r from-cyan-700 via-blue-600 to-cyan-600 inline-block text-transparent bg-clip-text">
             See Where Your Money Goes And Keep More of It.
           </h4>
           <p className="text-lg pb-4 md:py-2">

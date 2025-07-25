@@ -69,7 +69,7 @@ app.post("/transactions", verifyJWT, postTransaction);
 app.get("/transactions", getTransactions);
 app.delete("/transactions/:id", deleteTransactions);
 app.put("/transaction/:id", putTransactionbyId);
-app.put("/profile/:id", putUserProfile);
+app.put("/profile/:userid", putUserProfile);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
