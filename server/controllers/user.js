@@ -7,7 +7,7 @@ import validator from "validator";
 const postSignUp = async (req, res) => {
   const { name, email, password } = req.body;
 
-  if (!name || !email || !password ) {
+  if (!name || !email || !password) {
     return res.status(400).json({
       success: false,
       data: null,
@@ -47,7 +47,7 @@ const postSignUp = async (req, res) => {
   const user = new User({
     name,
     email,
-    password: encryptedPassword
+    password: encryptedPassword,
   });
 
   try {
@@ -159,5 +159,62 @@ const putUserProfile = async (req, res) => {
   }
 };
 
+const putPassword = async (req, res) => {
+  const { userid } = req.params;
+  const { currentPass, newPass, confirmNewPass } = req.body;
 
-export { postSignUp, postLogin, putUserProfile };
+  if (!currentPass || !newPass || !confirmNewPass) {
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: "All fields are required",
+    });
+  }
+  if (newPass !== confirmNewPass) {
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: "New password do not match",
+    });
+  }
+  if(currentPass === newPass){
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: "New password must be different from previous one"
+    })
+  }
+
+  try {
+    const user = await User.findById({ _id: userid });
+
+    const isPasswordCorrect = await bcrypt.compare(currentPass, user.password);
+
+    if (!isPasswordCorrect) {
+      return res.status(400).json({
+        success: false,
+        data: null,
+        message: "Current password is incorrect",
+      });
+    }
+
+    const encryptedPass = await bcrypt.hash(newPass, 10);
+
+    user.password = encryptedPass;
+    const updatedUser = await user.save();
+
+    return res.status(200).json({
+      success: true,
+      data: updatedUser,
+      message: "Password changed successfully",
+    });
+  } catch (e) {
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: e?.message,
+    });
+  }
+};
+
+export { postSignUp, postLogin, putUserProfile, putPassword };
