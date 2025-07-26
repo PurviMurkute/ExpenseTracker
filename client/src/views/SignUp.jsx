@@ -42,7 +42,7 @@ const SignUp = () => {
         toast.error(response.data.message);
       }
     } catch (e) {
-      toast.error(e.response.data.message);
+      toast.error(e?.response?.data?.message || e?.message);
     }
   };
 
@@ -98,6 +98,7 @@ const SignUp = () => {
               onChange={(e) => {
                 setUser({ ...user, password: e.target.value });
               }}
+              passwordInput="true"
               showPass={showPass}
               setShowPass={setShowPass}
             />

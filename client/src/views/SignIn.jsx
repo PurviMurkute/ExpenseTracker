@@ -7,7 +7,6 @@ import toast, { Toaster } from "react-hot-toast";
 import signinimg from "./../assets/signinimg.png";
 import Button from "../components/Button";
 import Header from "../components/Header";
-import { EyeOff, Eye } from "lucide-react";
 import { FaSignInAlt } from "react-icons/fa";
 
 const SignIn = () => {
@@ -20,28 +19,38 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const signIn = async () => {
-    const response = await axios.post(`${import.meta.env.VITE_API_KEY}/login`, {
-      email: signInUser.email,
-      password: signInUser.password,
-    });
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_KEY}/login`,
+        {
+          email: signInUser.email,
+          password: signInUser.password,
+        }
+      );
 
-    if (response.data.success) {
-      toast.success(response.data.message);
+      if (response.data.success) {
+        toast.success(response.data.message);
 
-      localStorage.setItem("currentuser", JSON.stringify(response.data.data));
+        localStorage.setItem("currentuser", JSON.stringify(response.data.data));
 
-      localStorage.setItem("JwtToken", JSON.stringify(response.data.jwtToken));
+        localStorage.setItem(
+          "JwtToken",
+          JSON.stringify(response.data.jwtToken)
+        );
 
-      setSignInUser({
-        email: "",
-        password: "",
-      });
+        setSignInUser({
+          email: "",
+          password: "",
+        });
 
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000);
-    } else {
-      toast.error(response.data.message);
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (e) {
+      toast.error(e?.response?.data?.message || e?.message);
     }
   };
 
@@ -65,7 +74,7 @@ const SignIn = () => {
               e.preventDefault();
             }}
           >
-            <FaSignInAlt className="text-xl block mx-auto text-blue-700"/>
+            <FaSignInAlt className="text-xl block mx-auto text-blue-700" />
             <h2 className="font-bold text-slate-900 pt-1 pb-3 text-2xl text-center">
               SignIn
             </h2>
@@ -84,6 +93,7 @@ const SignIn = () => {
               onChange={(e) => {
                 setSignInUser({ ...signInUser, password: e.target.value });
               }}
+              passwordInput="true"
               showPass={showPass}
               setShowPass={setShowPass}
             />

@@ -177,12 +177,12 @@ const putPassword = async (req, res) => {
       message: "New password do not match",
     });
   }
-  if(currentPass === newPass){
+  if (currentPass === newPass) {
     return res.status(400).json({
       success: false,
       data: null,
-      message: "New password must be different from previous one"
-    })
+      message: "New password must be different from previous one",
+    });
   }
 
   try {
@@ -217,4 +217,23 @@ const putPassword = async (req, res) => {
   }
 };
 
-export { postSignUp, postLogin, putUserProfile, putPassword };
+const deleteAccount = async (req, res) => {
+  const { userid } = req.params;
+  try {
+    await User.findByIdAndDelete({ _id: userid });
+
+    return res.status(200).json({
+      success: true,
+      data: null,
+      message: "Account Deleted Successfully",
+    });
+  } catch (e) {
+    return res.status(400).json({
+      success: false,
+      data: null,
+      message: e.message,
+    });
+  }
+};
+
+export { postSignUp, postLogin, putUserProfile, putPassword, deleteAccount };

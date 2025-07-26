@@ -20,8 +20,8 @@ const Profile = () => {
   });
   const [showPass, setShowPass] = useState(false);
 
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAccDeleteModelOpen, setIsAccDeleteModelOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -75,12 +75,30 @@ const Profile = () => {
     }
   };
 
+  const deleteAccount = async () => {
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_KEY}/account/${user._id}`
+      );
+
+      if (response.data.success) {
+        localStorage.clear();
+        toast.success(response.data.message);
+        navigate("/signin");
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (e) {
+      toast.error(e?.response?.data?.message || e?.message);
+    }
+  };
+
   return (
     <>
       <Header />
-      <div className="bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 min-h-screen mt-14 px-5 py-2 ">
+      <div className="bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 min-h-screen mt-12 px-5 py-2 ">
         <div className="md:ms-[15%] flex flex-col gap-4 justify-center items-center inset-0 ">
-          <h1 className="text-2xl font-bold py-2">Profile</h1>
+          <h1 className="text-2xl font-bold py-1">Profile</h1>
           <div className="bg-white py-7 px-2 shadow-xl w-[95%] md:w-[55%] rounded-xl">
             <div className="px-5 md:px-13 my-2 flex justify-between">
               <p className="font-medium text-xl">Personal Information</p>
@@ -122,7 +140,7 @@ const Profile = () => {
             </div>
             <label className="px-5 md:px-13 font-medium">Old Password</label>
             <Input
-              type={showPass? "text": "password"}
+              type={showPass ? "text" : "password"}
               placeholder="Current Password"
               value={password.currentPass}
               onChange={(e) =>
@@ -135,7 +153,7 @@ const Profile = () => {
             />
             <label className="px-5 md:px-13 font-medium">New Password</label>
             <Input
-              type={showPass? "text": "password"}
+              type={showPass ? "text" : "password"}
               placeholder="New Password"
               value={password.newPass}
               onChange={(e) =>
@@ -150,7 +168,7 @@ const Profile = () => {
               Confirm New Password
             </label>
             <Input
-              type={showPass? "text": "password"}
+              type={showPass ? "text" : "password"}
               placeholder="Confirm New Password"
               value={password.confirmNewPass}
               onChange={(e) =>
@@ -160,6 +178,23 @@ const Profile = () => {
               passwordInput="true"
               showPass={showPass}
               setShowPass={setShowPass}
+            />
+          </div>
+          <div className="bg-white py-5 px-10 shadow-xl w-[95%] md:w-[55%] rounded-xl">
+            <h3 className="text-xl md:text-2xl font-bold text-red-500">
+              ⚠️ Delete Your Account
+            </h3>
+            <p className="py-3">
+              Deleting your account will permanently remove all your data and
+              transaction history. This action cannot be undone.
+            </p>
+            <Button
+              btnText="Delete My Account"
+              btnSize="md"
+              btnVariant="red"
+              onClick={() => {
+                setIsAccDeleteModelOpen(true);
+              }}
             />
           </div>
         </div>
@@ -181,6 +216,27 @@ const Profile = () => {
             btnVariant="blue"
             onClick={() => {
               editProfile(), setIsModalOpen(false);
+            }}
+          />
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isAccDeleteModelOpen}
+        onClose={() => {
+          setIsAccDeleteModelOpen(false);
+        }}
+        width="sm"
+      >
+        <div className="flex flex-col justify-center items-center px-4 py-2">
+          <p className="text-white text-center">
+            Are you sure, you want to delete your account?
+          </p>
+          <Button
+            btnText="Yes, Delete"
+            btnSize="sm"
+            btnVariant="red"
+            onClick={() => {
+              deleteAccount(), setIsAccDeleteModelOpen(false);
             }}
           />
         </div>

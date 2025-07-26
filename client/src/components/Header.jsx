@@ -13,11 +13,13 @@ import {
   LogOut,
   AlignJustify,
 } from "lucide-react";
+import { MdDashboard } from "react-icons/md";
+import { RiUserFill } from "react-icons/ri";
+import { IoLogOut } from "react-icons/io5";
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState("Overview");
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const location = useLocation();
@@ -61,7 +63,7 @@ const Header = () => {
 
   const path = location.pathname;
 
-  const getMenuTab = (menuTab) => 
+  const getMenuTab = (menuTab) =>
     `p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
       path === menuTab ? "bg-slate-300 text-slate-900" : "bg-[#303d50]"
     }`;
@@ -124,22 +126,26 @@ const Header = () => {
               />
             </button>
             {isDropdownOpen && (
-              <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-1 rounded-xl w-[140px]">
+              <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-1 rounded-xl w-[150px]">
                 <Link to="/dashboard">
-                  <button className="p-1 text-slate-800 text-md font-medium cursor-pointer px-2 rounded-xl block mx-auto hover:bg-slate-300">
-                    Dashboard
+                  <button className="p-1 text-slate-800 text-md font-medium cursor-pointer px-2 py-1 w-full rounded-xl flex items-center hover:bg-slate-300">
+                    <MdDashboard className="text-xl me-2" />
+                    <p>Dashboard</p>
                   </button>
                 </Link>
                 <Link to="/profile">
-                  <button className="pb-1 text-slate-800 text-md font-medium cursor-pointer px-5 rounded-xl block mx-auto hover:bg-slate-300">
-                    Profile
+                  <button className="pb-1 text-slate-800 text-md font-medium cursor-pointer w-full px-2 py-1 rounded-xl flex items-center hover:bg-slate-300">
+                    <RiUserFill className="text-xl me-2" />
+                    <p>Profile</p>
                   </button>
                 </Link>
+                <hr className="text-black my-1" />
                 <button
-                  className=" text-red-500 text-md font-medium cursor-pointer rounded-xl hover:bg-slate-300"
+                  className=" text-red-500 text-md font-medium cursor-pointer px-2 py-1 rounded-xl flex items-center hover:bg-slate-300"
                   onClick={handleSignOut}
                 >
-                  SignOut
+                  <IoLogOut className="text-xl me-2" />
+                  <p>SignOut</p>
                 </button>
               </div>
             )}
@@ -161,7 +167,6 @@ const Header = () => {
             to="/dashboard"
             className={getMenuTab("/dashboard")}
             onClick={() => {
-              setSelectedTab("Overview");
               toggleNav();
             }}
           >
@@ -171,7 +176,6 @@ const Header = () => {
             to="/transactions"
             className={getMenuTab("/transactions")}
             onClick={() => {
-              setSelectedTab("Transactions");
               toggleNav();
             }}
           >
@@ -181,7 +185,6 @@ const Header = () => {
             to="/addtransactions"
             className={getMenuTab("/addtransactions")}
             onClick={() => {
-              setSelectedTab("AddTransactions");
               toggleNav();
             }}
           >
@@ -191,19 +194,18 @@ const Header = () => {
             to="/reports"
             className={getMenuTab("/reports")}
             onClick={() => {
-              setSelectedTab("Visualizations");
               toggleNav();
             }}
           >
             <ChartArea className="inline w-[23px]" /> Visualizations
           </Link>
-          <hr className="my-5"/>
+          <hr className="my-5" />
           <Link
             to="signin"
-            className={`w-[70%] md:w-[210px] p-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
+            className={`w-[70%] md:w-[210px] px-4 py-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
             onClick={handleSignOut}
           >
-            <LogOut className="inline w-[23px]" /> Sign Out
+            <LogOut className="inline w-[23px] me-3" /> Sign Out
           </Link>
         </div>
       </div>
