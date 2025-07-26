@@ -18,10 +18,6 @@ const SignUp = () => {
   });
   const [showPass, setShowPass] = useState(false);
 
-  const togglePass = () => {
-    setShowPass(!showPass);
-  };
-
   const signUp = async () => {
     try {
       const response = await axios.post(
@@ -95,16 +91,6 @@ const SignUp = () => {
                 setUser({ ...user, email: e.target.value });
               }}
             />
-            <span
-              onClick={togglePass}
-              className="absolute right-12 mt-5 transform -translate-y-1/2 text-gray-500 cursor-pointer"
-            >
-              {showPass ? (
-                <Eye className="w-5 h-4" />
-              ) : (
-                <EyeOff className="w-5 h-4" />
-              )}
-            </span>
             <Input
               type={showPass ? "text" : "password"}
               placeholder="Password"
@@ -112,6 +98,8 @@ const SignUp = () => {
               onChange={(e) => {
                 setUser({ ...user, password: e.target.value });
               }}
+              showPass={showPass}
+              setShowPass={setShowPass}
             />
             <Button
               btnText="SignUp"

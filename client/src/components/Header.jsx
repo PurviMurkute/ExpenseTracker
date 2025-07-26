@@ -29,7 +29,7 @@ const Header = () => {
     "/addtransactions",
     "/reports",
     "/quickactions",
-    "/profile"
+    "/profile",
   ];
   const isDashboard = fullWidthRoutes.some((path) =>
     location.pathname.startsWith(path)
@@ -58,6 +58,13 @@ const Header = () => {
       navigate("/signin");
     }, 3000);
   };
+
+  const path = location.pathname;
+
+  const getMenuTab = (menuTab) => 
+    `p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
+      path === menuTab ? "bg-slate-300 text-slate-900" : "bg-[#303d50]"
+    }`;
 
   return (
     <div
@@ -98,7 +105,7 @@ const Header = () => {
                 SignIn
               </Link>
               <Link to="/signup">
-                <Button btnText="SignUp Now" btnSize="md" btnVariant="red"/>
+                <Button btnText="SignUp Now" btnSize="md" btnVariant="red" />
               </Link>
             </div>
             <div>
@@ -123,7 +130,7 @@ const Header = () => {
                     Dashboard
                   </button>
                 </Link>
-                <Link to='/profile'>
+                <Link to="/profile">
                   <button className="pb-1 text-slate-800 text-md font-medium cursor-pointer px-5 rounded-xl block mx-auto hover:bg-slate-300">
                     Profile
                   </button>
@@ -152,11 +159,7 @@ const Header = () => {
         <div className="flex flex-col mt-20 px-5">
           <Link
             to="/dashboard"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-              selectedTab == "Overview"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-[#303d50]"
-            }`}
+            className={getMenuTab("/dashboard")}
             onClick={() => {
               setSelectedTab("Overview");
               toggleNav();
@@ -166,11 +169,7 @@ const Header = () => {
           </Link>
           <Link
             to="/transactions"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-              selectedTab == "Transactions"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-[#303d50]"
-            }`}
+            className={getMenuTab("/transactions")}
             onClick={() => {
               setSelectedTab("Transactions");
               toggleNav();
@@ -180,11 +179,7 @@ const Header = () => {
           </Link>
           <Link
             to="/addtransactions"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-              selectedTab == "AddTransactions"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-[#303d50]"
-            }`}
+            className={getMenuTab("/addtransactions")}
             onClick={() => {
               setSelectedTab("AddTransactions");
               toggleNav();
@@ -194,11 +189,7 @@ const Header = () => {
           </Link>
           <Link
             to="/reports"
-            className={`p-2 my-2 rounded-xl text-lg font-medium text-slate-100 border-b-1 border-slate-200 hover:bg-slate-500 ${
-              selectedTab == "Visualizations"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-[#303d50] pb-5"
-            }`}
+            className={getMenuTab("/reports")}
             onClick={() => {
               setSelectedTab("Visualizations");
               toggleNav();
@@ -206,20 +197,7 @@ const Header = () => {
           >
             <ChartArea className="inline w-[23px]" /> Visualizations
           </Link>
-        
-          <Link
-            className={`p-2 my-3 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-              selectedTab == "QuickActions"
-                ? "bg-slate-300 text-slate-900"
-                : "bg-[#303d50]"
-            }`}
-            onClick={() => {
-              setSelectedTab("QuickActions");
-              toggleNav();
-            }}
-          >
-            Quick Actions
-          </Link>
+          <hr className="my-5"/>
           <Link
             to="signin"
             className={`w-[70%] md:w-[210px] p-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
