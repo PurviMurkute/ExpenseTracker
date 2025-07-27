@@ -6,13 +6,13 @@ Track your income and expenses with ease! A full-stack Expense Tracker web appli
 ## 📸 Screenshots
 
 ### 🔐 Home Page
-![Home Page](./assets/home.png)
+![Home Page](./client/src/assets/home.png)
 
 ### 🔐 Login Page
-![Login Page](./assets/signin.png)
+![Login Page](./client/src/assets/signin.png)
 
 ### 📊 Dashboard
-![Dashboard](./assets/dashboard.png)
+![Dashboard](./client/src/assets/dashboard.png)
 
 ---
 ---

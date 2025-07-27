@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Button from "../components/Button";
-import { FEATURESDATA, HEADING } from "../configFeatures.jsx";
+import { FEATURESDATA, HEADING } from "../components/configFeatures.jsx";
 import FeatureCard from "../components/FeatureCard";
 import Footer from "../components/Footer";
 import WorkflowCard from "../components/WorkflowCard.jsx";
 import { motion } from "motion/react";
+import { IoCheckmarkDoneOutline } from "react-icons/io5";
 
 const Home = () => {
   const [currentUser, setCurrentUser] = useState();
@@ -19,12 +20,14 @@ const Home = () => {
     }
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="h-[600px] w-full bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 relative">
         <motion.div
-        animate={{ scale: [1, 1.05, 1] }}
-      transition={{ repeat: Infinity, duration: 10 }}
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ repeat: Infinity, duration: 10 }}
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `
@@ -63,12 +66,16 @@ const Home = () => {
             </span>
           </p>
           <Link to={currentUser ? "/dashboard" : "/signup"}>
-            <Button btnText="Start Now for Free" btnSize="lg" btnVariant="red"/>
+            <Button
+              btnText="Start Now for Free"
+              btnSize="lg"
+              btnVariant="red"
+            />
           </Link>
         </motion.div>
       </div>
       <div className="shadow-xl p-2 md:py-12 md:px-30 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
-        <h1 className="text-center text-2xl font-extrabold py-5 text-slate-800">
+        <h1 className="text-center text-2xl font-extrabold p-5 text-slate-800">
           {HEADING}
         </h1>
         <motion.div
@@ -97,7 +104,7 @@ const Home = () => {
         <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">
           Workflow of ExpenseDiary
         </h1>
-        <div className="flex flex-col md:flex-row justify-evenly items-center">
+        <div className="flex flex-col md:flex-row flex-wrap justify-evenly items-center">
           <WorkflowCard
             step="1"
             bgColor="color1"
@@ -124,6 +131,64 @@ const Home = () => {
           />
         </div>
       </div>
+      <div className="py-5 md:py-10 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
+        <h2 className="text-xl md:text-2xl font-extrabold text-center p-7 text-slate-800">
+          No Fees. No Limits. Just Track.
+        </h2>
+        <motion.div
+          initial={{ y: 30 }}
+          whileInView={{ y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="w-[300px] md:w-[400px] flex flex-col justify-center items-center mx-auto bg-slate-500/50 rounded-xl shadow p-3 md:py-10 text-white"
+        >
+          <h3 className="text-2xl font-bold py-2">Free</h3>
+          <p className="text-lg font-semibold text-gray-600 py-2">
+            <span className="text-gray-800 text-4xl">₹0</span>/month
+          </p>
+          <ul className="flex flex-col justify-center gap-2 font-semibold">
+            <li className="flex">
+              <IoCheckmarkDoneOutline className="inline text-black text-2xl me-2" />{" "}
+              Add unlimited transactions
+            </li>
+            <li className="flex">
+              <IoCheckmarkDoneOutline className="inline text-black text-2xl me-2" />{" "}
+              Visual dashboard with charts
+            </li>
+            <li className="flex">
+              <IoCheckmarkDoneOutline className="inline text-black text-2xl me-2" />{" "}
+              Filter by category
+            </li>
+            <li className="flex">
+              <IoCheckmarkDoneOutline className="inline text-black text-2xl me-2" />{" "}
+              Secure account with JWT authentication
+            </li>
+            <li className="flex">
+              <IoCheckmarkDoneOutline className="inline text-black text-2xl me-2" />{" "}
+              Edit & delete past transactions
+            </li>
+            <li className="flex">
+              <IoCheckmarkDoneOutline className="inline text-black text-2xl me-2" />{" "}
+              Responsive design for all devices
+            </li>
+            <li className="flex">
+              <IoCheckmarkDoneOutline className="inline text-black text-2xl me-2" />{" "}
+              Password change & account deletion
+            </li>
+          </ul>
+          <Button
+            btnText="Get Started"
+            btnSize="lg"
+            btnVariant="green"
+            onClick={() =>
+              setTimeout(() => {
+                navigate("/dashboard");
+              }, 1000)
+            }
+          />
+        </motion.div>
+      </div>
+
       <Footer />
     </>
   );

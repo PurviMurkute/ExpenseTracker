@@ -14,7 +14,7 @@ const WorkflowCard = ({ title, description, step, bgColor }) => {
       whileInView={{ y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true, amount: 0.3 }}
-      className={`flex flex-col justify-center items-center bg-slate-600/80 px-5 md:px-7 py-8 md:py-3 my-3 md:my-2 w-[275px] md:h-[250px] md:w-[400px] rounded-md hover:shadow-xl`}
+      className={`flex flex-col justify-center items-center bg-slate-600/60 px-5 md:px-7 py-8 md:py-3 my-3 md:my-2 w-[275px] md:h-[250px] md:w-[400px] rounded-md hover:shadow-xl`}
     >
       <div className={`w-[50px] h-[50px] mx-5 rounded-full flex justify-center items-center ${bgColors[bgColor]} text-2xl font-bold`}>
         {step}
