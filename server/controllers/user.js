@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import validator from "validator";
+import sendMail from "../Mail/sendMail.js";
+import htmlBody from '../Mail/mailBody.js'
 
 const postSignUp = async (req, res) => {
   const { name, email, password } = req.body;
@@ -52,6 +54,8 @@ const postSignUp = async (req, res) => {
 
   try {
     const savedUser = await user.save();
+
+    sendMail(email, `Welcome to ExpenseDiary ${name}`, "", htmlBody(name) );
 
     return res.status(201).json({
       success: true,

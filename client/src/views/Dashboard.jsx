@@ -225,7 +225,7 @@ const Dashboard = () => {
 
         <div className="">
           <div className={`${isDashboard ? "my-2 md:mx-10 " : "hidden"}`}>
-            <div className=" shadow-xl bg-white rounded-2xl mb-1">
+            <div className=" shadow-md bg-white rounded-2xl mb-1">
               <h1 className="text-lg md:text-xl font-bold text-slate-800 p-4 md:ms-6 mb-2">
                 Your Financial Summary
               </h1>
@@ -238,7 +238,7 @@ const Dashboard = () => {
                 />
               </div>
             </div>
-            <div className="p-2 shadow-xl bg-white rounded-2xl">
+            <div className="p-2 shadow-md bg-white rounded-2xl">
               <h1 className="text-lg md:text-xl font-bold text-slate-800 ms-7 p-2">
                 Transactions History
               </h1>

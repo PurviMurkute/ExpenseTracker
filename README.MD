@@ -1,34 +1,46 @@
 # ExpenseDiary (Expense Tracker)
 Track your income and expenses with ease! A full-stack Expense Tracker web application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. Users can register, log in, and manage their daily transactions with a modern UI.
 
-   - Full Stack Application
+---
 
-     - Features
-        - User Authentication (signup/signin)
-        - User can Add and Delete transactions
-        - Filtered by categories
-        - View total balance, income, and expenses
-        - Responsive UI (Tailwindcss)
+## 📸 Screenshots
 
-     - Tech Stack Used
-     - server
-        - Node.js
-        - Express.js
-        - MongoDB
-        - JWT Authentication
-        - bcrypt for password hashing
+### 🔐 Home Page
+![Home Page](./assets/home.png)
 
-     - client
-        - React.js
-        - Tailwindcss
-        - Axios
-        - Chart.js
+### 🔐 Login Page
+![Login Page](./assets/signin.png)
 
-     - Future Improvements
-        - Monthly analytics dashboard
-        - Export data as CSV
-        - Email reminders for budgeting
-        - Ai integration to help users to manage expenses
+### 📊 Dashboard
+![Dashboard](./assets/dashboard.png)
 
+---
+---
 
-    
+## 🚀 Features
+
+- 🔐 User Authentication (Signup/Signin)
+- ➕ Add & ❌ Delete transactions
+- 📂 Filter transactions by category
+- 💵 View total balance, income, and expenses
+- 📱 Responsive UI (Mobile & Desktop)
+- 📊 Visual Insights with Pie Charts
+
+---
+
+## 🛠️ Tech Stack
+
+### 🔧 Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+- bcrypt for password hashing
+
+### 🖥️ Frontend
+- React.js
+- Tailwind CSS
+- Axios
+- Chart.js
+
+---
