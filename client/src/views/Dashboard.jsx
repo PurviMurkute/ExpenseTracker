@@ -17,6 +17,7 @@ import {
 import { Bar, Doughnut } from "react-chartjs-2";
 import { useLocation, useNavigate } from "react-router";
 import TransactionEmptyView from "../components/TransactionEmptyView";
+import Button from "../components/Button";
 
 ChartJS.register(
   CategoryScale,
@@ -188,6 +189,32 @@ const Dashboard = () => {
     ],
   };
 
+  const downloadPDF = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_KEY}/pdf?userId=${user._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${JWT}`,
+          },
+          responseType: "blob", // Important for downloading files
+        }
+      );
+
+      const blob = new Blob([response.data], { type: "application/pdf" });
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `${user.name}_transactions.pdf`);
+      document.body.appendChild(link);
+      link.click();
+    } catch (e) {
+      toast.error(e?.message || "Failed to generate PDF");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -195,15 +222,22 @@ const Dashboard = () => {
         <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-8 bg-gradient-to-r from-cyan-500 to-blue-400 inline-block text-transparent bg-clip-text px-2 md:pb-2">
           Hello {user.name}!
         </h1>
-        <h3
+        <div
           className={`${
             isDashboard
-              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-600 px-2 pb-2"
+              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-600 px-2 pb-2 flex flex-col md:flex-row justify-between items-center md:me-10"
               : "hidden"
           }`}
         >
-          Welcome to ExpenseDiary 😊
-        </h3>
+          <p>Welcome to ExpenseDiary 😊</p>
+          <Button
+            btnText="Generate PDF"
+            btnSize="md"
+            btnVariant="blue"
+            icon="export"
+            onClick={downloadPDF}
+          />
+        </div>
         <h3
           className={`${
             isTransactions

@@ -20,7 +20,7 @@ Track your income and expenses with ease! A full-stack Expense Tracker web appli
 ## 🚀 Features
 
 - 🔐 User Authentication (Signup/Signin)
-- ➕ Add & ❌ Delete transactions
+- ➕ Add, Edit, & ❌ Delete transactions (CRUD)
 - 📂 Filter transactions by category
 - 💵 View total balance, income, and expenses
 - 📱 Responsive UI (Mobile & Desktop)

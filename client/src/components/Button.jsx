@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "motion/react";
+import { PiExportBold } from "react-icons/pi";
 
-const Button = ({ btnText, onClick, btnSize, btnVariant }) => {
+const Button = ({ btnText, onClick, btnSize, btnVariant, icon }) => {
   const btnSizes = {
     lg: "text-xl px-4 py-2 mt-7",
     md: "text-md px-5 py-1 my-1",
@@ -13,7 +14,11 @@ const Button = ({ btnText, onClick, btnSize, btnVariant }) => {
     red: "bg-red-600",
     green: "bg-green-600",
     blue: "bg-blue-500"
-  }
+  };
+
+  const icons = {
+    export: <PiExportBold className="inline text-2xl" />
+  };
 
   return (
     <motion.button
@@ -21,7 +26,7 @@ const Button = ({ btnText, onClick, btnSize, btnVariant }) => {
       className={`font-bold ${btnVar[btnVariant]} text-slate-100 cursor-pointer rounded-md md:block ${btnSizes[btnSize]}`}
       onClick={onClick}
     >
-      {btnText}
+      {btnText} {icons[icon]}
     </motion.button>
   );
 };

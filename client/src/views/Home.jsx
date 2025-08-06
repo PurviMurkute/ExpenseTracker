@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Link, useNavigate } from "react-router";
 import Button from "../components/Button";
@@ -49,7 +49,7 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col items-center justify-center mx-8 mt-12 md:mt-0 inset-0 absolute text-slate-700 px-3 md:w-[800px] text-center block mx-auto"
+          className="flex flex-col items-center justify-center mt-12 md:mt-0 inset-0 absolute text-slate-700 px-3 md:w-[800px] text-center mx-auto"
         >
           <h3 className="text-3xl md:text-4xl font-extrabold py-3 md:py-2">
             Goodbye Guesswork. Hello Financial Clarity!

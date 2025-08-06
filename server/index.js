@@ -3,7 +3,13 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
-import { postSignUp, postLogin, putUserProfile, putPassword, deleteAccount } from "./controllers/user.js";
+import {
+  postSignUp,
+  postLogin,
+  putUserProfile,
+  putPassword,
+  deleteAccount,
+} from "./controllers/user.js";
 import {
   postTransaction,
   getTransactions,
@@ -11,6 +17,7 @@ import {
   putTransactionbyId,
 } from "./controllers/transactions.js";
 import jwt from "jsonwebtoken";
+import { generateTransactionPDF } from "./controllers/pdf.js";
 
 const app = express();
 
@@ -33,10 +40,10 @@ const verifyJWT = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    return res.status(400).json({
+    return res.status(401).json({
       success: false,
       data: null,
-      message: "Authorization is required",
+      message: "Anauthorized",
     });
   }
 
@@ -66,12 +73,13 @@ app.get("/health", (req, res) => {
 app.post("/signup", postSignUp);
 app.post("/login", postLogin);
 app.post("/transactions", verifyJWT, postTransaction);
-app.get("/transactions", getTransactions);
+app.get("/transactions", verifyJWT, getTransactions);
 app.delete("/transactions/:id", deleteTransactions);
 app.put("/transaction/:id", putTransactionbyId);
 app.put("/profile/:userid", putUserProfile);
 app.put("/password/:userid", putPassword);
 app.delete("/account/:userid", deleteAccount);
+app.post("/pdf", verifyJWT, generateTransactionPDF);
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
