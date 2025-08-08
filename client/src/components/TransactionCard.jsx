@@ -25,9 +25,16 @@ const TransactionCard = ({
   });
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
+  const JWT = JSON.parse(localStorage.getItem("JwtToken"));
+
   const deleteTransaction = async () => {
     const response = await axios.delete(
-      `${import.meta.env.VITE_API_KEY}/transactions/${_id}`
+      `${import.meta.env.VITE_API_KEY}/transactions/${_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${JWT}`,
+        },
+      }
     );
 
     if (response.data.success) {
@@ -49,6 +56,11 @@ const TransactionCard = ({
           amount: transaction.amount,
           type: transaction.type,
           category: transaction.category,
+        }, 
+        {
+          headers: {
+            Authorization: `Bearer ${JWT}`,
+          },
         }
       );
 

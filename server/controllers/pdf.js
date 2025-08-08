@@ -19,8 +19,6 @@ export const generateTransactionPDF = async (req, res) => {
       createdAt: -1,
     });
 
-    console.log("Transactions fetched:", allTransaction.length);
-
     const doc = new PDFDocument({ margin: 30, size: "A4" });
 
     res.setHeader("Content-Type", "application/pdf");
@@ -55,9 +53,9 @@ export const generateTransactionPDF = async (req, res) => {
     doc
       .fontSize(14)
       .fillColor("black")
-      .text(`Total Balance: ₹${totalBalance}`, { align: "center" })
       .text(`Total Income: ₹${totalIncome}`, { align: "center" })
-      .text(`Total Expense: ₹${totalExpense}`, { align: "center" });
+      .text(`Total Expense: ₹${totalExpense}`, { align: "center" })
+      .text(`Total Balance: ₹${totalBalance}`, { align: "center" })
 
     doc.moveDown(2);
 

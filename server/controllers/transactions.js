@@ -1,8 +1,9 @@
 import Transaction from "../models/Transaction.js";
-import User from "./../models/User.js";
+import { flushCache, getCache, createCache } from "../utils/cache.js";
 
 const postTransaction = async (req, res) => {
   const { title, amount, type, category, user } = req.body;
+  const userid = req.user._id;
 
   if (!title || !amount || !type || !category) {
     return res.status(400).json({
@@ -45,6 +46,8 @@ const postTransaction = async (req, res) => {
 
   try {
     const savedTransaction = await newTransaction.save();
+    await flushCache(`transactions:${userid}`); // Clear cache after saving a new transaction
+    console.log(`Cache cleared for transactions of user: ${userid}`);
 
     return res.status(201).json({
       success: true,
@@ -61,24 +64,22 @@ const postTransaction = async (req, res) => {
 };
 
 const getTransactions = async (req, res) => {
-  const { userId } = req.query;
-
-  const user = await User.findById(userId);
-
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      data: null,
-      message: "User not found",
-    });
-  }
+  const { userid } = req.query;
 
   try {
-    const allTransaction = await Transaction.find({ user: userId }).sort({
-      createdAt: -1,
-    });
+    let transactions = [];
 
-    if (allTransaction == 0) {
+    const transactionsFromRedis = await getCache(`transactions:${userid}`);
+    if (transactionsFromRedis) {
+      transactions = transactionsFromRedis;
+    } else {
+      transactions = await Transaction.find({ user: userid }).sort({
+        createdAt: -1,
+      });
+      await createCache(`transactions:${userid}`, transactions);
+    }
+
+    if (transactions.length === 0) {
       return res.status(404).json({
         success: false,
         data: null,
@@ -88,7 +89,7 @@ const getTransactions = async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      data: allTransaction,
+      data: transactions,
       message: "Transactions fetched successfully",
     });
   } catch (e) {
@@ -102,9 +103,12 @@ const getTransactions = async (req, res) => {
 
 const deleteTransactions = async (req, res) => {
   const { id } = req.params;
+  const userid = req.user._id;
 
   try {
     await Transaction.deleteOne({ _id: id });
+    await flushCache(`transactions:${userid}`);
+    console.log(`Cache flushed for transactions of user: ${userid}`);
 
     return res.status(200).json({
       success: true,
@@ -122,6 +126,7 @@ const deleteTransactions = async (req, res) => {
 
 const putTransactionbyId = async (req, res) => {
   const { id } = req.params;
+  const userid = req.user._id;
   const { title, amount, type, category } = req.body;
 
   if (!title || !amount || !type || !category) {
@@ -136,8 +141,9 @@ const putTransactionbyId = async (req, res) => {
     const updatedTransaction = await Transaction.findByIdAndUpdate(
       id,
       { title, amount, type, category },
-      {new: true}
+      { new: true }
     );
+    await flushCache(`transactions:${userid}`);
 
     return res.status(200).json({
       success: true,

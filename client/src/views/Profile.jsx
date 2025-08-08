@@ -35,12 +35,19 @@ const Profile = () => {
     }
   }, []);
 
+  const JWT = JSON.parse(localStorage.getItem("JwtToken"));
+
   const editProfile = async () => {
     const response = await axios.put(
       `${import.meta.env.VITE_API_KEY}/profile/${user._id}`,
       {
         name: user.name,
         email: user.email,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${JWT}`,
+        },
       }
     );
 
@@ -61,6 +68,11 @@ const Profile = () => {
           currentPass: password.currentPass,
           newPass: password.newPass,
           confirmNewPass: password.confirmNewPass,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${JWT}`,
+          },
         }
       );
 
@@ -78,7 +90,12 @@ const Profile = () => {
   const deleteAccount = async () => {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_KEY}/account/${user._id}`
+        `${import.meta.env.VITE_API_KEY}/account/${user._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${JWT}`,
+          },
+        }
       );
 
       if (response.data.success) {

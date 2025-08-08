@@ -74,11 +74,11 @@ app.post("/signup", postSignUp);
 app.post("/login", postLogin);
 app.post("/transactions", verifyJWT, postTransaction);
 app.get("/transactions", verifyJWT, getTransactions);
-app.delete("/transactions/:id", deleteTransactions);
-app.put("/transaction/:id", putTransactionbyId);
-app.put("/profile/:userid", putUserProfile);
-app.put("/password/:userid", putPassword);
-app.delete("/account/:userid", deleteAccount);
+app.delete("/transactions/:id", verifyJWT, deleteTransactions);
+app.put("/transaction/:id", verifyJWT, putTransactionbyId);
+app.put("/profile/:userid", verifyJWT, putUserProfile);
+app.put("/password/:userid", verifyJWT, putPassword);
+app.delete("/account/:userid", verifyJWT, deleteAccount);
 app.post("/pdf", verifyJWT, generateTransactionPDF);
 
 app.listen(PORT, () => {

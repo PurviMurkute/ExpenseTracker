@@ -79,7 +79,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_KEY}/transactions?userId=${user._id}`,
+        `${import.meta.env.VITE_API_KEY}/transactions?userid=${user._id}`,
         {
           headers: {
             Authorization: `Bearer ${JWT}`,

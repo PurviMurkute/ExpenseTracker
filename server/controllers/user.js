@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import validator from "validator";
 import sendMail from "../Mail/sendMail.js";
 import htmlBody from '../Mail/mailBody.js'
+import { flushCache } from "../utils/cache.js";
 
 const postSignUp = async (req, res) => {
   const { name, email, password } = req.body;
@@ -148,6 +149,7 @@ const putUserProfile = async (req, res) => {
         data: null,
       });
     }
+    await flushCache(`user:${userid}`);
 
     return res.status(200).json({
       success: true,
@@ -206,6 +208,7 @@ const putPassword = async (req, res) => {
 
     user.password = encryptedPass;
     const updatedUser = await user.save();
+    await flushCache(`user:${userid}`);
 
     return res.status(200).json({
       success: true,
@@ -225,6 +228,7 @@ const deleteAccount = async (req, res) => {
   const { userid } = req.params;
   try {
     await User.findByIdAndDelete({ _id: userid });
+    await flushCache(`user:${userid}`);
 
     return res.status(200).json({
       success: true,
