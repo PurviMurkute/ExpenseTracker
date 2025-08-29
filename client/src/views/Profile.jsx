@@ -39,7 +39,7 @@ const Profile = () => {
 
   const editProfile = async () => {
     const response = await axios.put(
-      `${import.meta.env.VITE_API_KEY}/profile/${user._id}`,
+      `${import.meta.env.VITE_API_KEY}/auth/profile/${user._id}`,
       {
         name: user.name,
         email: user.email,
@@ -63,7 +63,7 @@ const Profile = () => {
   const updatePassword = async () => {
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_API_KEY}/password/${user._id}`,
+        `${import.meta.env.VITE_API_KEY}/auth/password/${user._id}`,
         {
           currentPass: password.currentPass,
           newPass: password.newPass,
@@ -90,7 +90,7 @@ const Profile = () => {
   const deleteAccount = async () => {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_KEY}/account/${user._id}`,
+        `${import.meta.env.VITE_API_KEY}/auth/account/${user._id}`,
         {
           headers: {
             Authorization: `Bearer ${JWT}`,

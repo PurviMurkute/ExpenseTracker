@@ -20,6 +20,8 @@
     "mongoose": "^8.15.1",
     "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "pdfkit": "^0.17.1",
     "pdfkit-table": "^0.1.99",
     "redis": "^5.8.0",

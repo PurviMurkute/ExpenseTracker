@@ -7,7 +7,6 @@ import signup from "./../assets/signup.png";
 import { Link } from "react-router";
 import Button from "../components/Button";
 import Header from "../components/Header";
-import { EyeOff, Eye } from "lucide-react";
 import { IoIosLogIn } from "react-icons/io";
 
 const SignUp = () => {
@@ -21,7 +20,7 @@ const SignUp = () => {
   const signUp = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_KEY}/signup`,
+        `${import.meta.env.VITE_API_KEY}/auth/signup`,
         {
           name: user.name,
           email: user.email,
@@ -49,7 +48,7 @@ const SignUp = () => {
   return (
     <div className="min-h-screen bg-slate-600 top-0 left-0 fixed w-full flex justify-center items-center">
       <Header />
-      <div className="md:w-[980px] px-5 py-5 md:py-10 mx-2 md:my-20 flex justify-center items-center shadow-2xl rounded-md bg-white">
+      <div className="md:w-[980px] px-5 py-5 md:py-5 mx-2 md:my-17 flex justify-center items-center shadow-2xl rounded-md bg-white">
         <div className="md:pe-8">
           <img
             src={signup}
@@ -107,6 +106,14 @@ const SignUp = () => {
               btnSize="auth_btn"
               onClick={signUp}
               btnVariant="blue"
+            />
+            <Button
+              btnText="Continue with Google"
+              btnSize="auth_btn"
+              iconPosition="left"
+              icon="google"
+              onClick={signUp}
+              btnVariant="outline"
             />
           </form>
           <p className="text-slate-800 text-center font-medium py-2">

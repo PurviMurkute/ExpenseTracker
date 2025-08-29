@@ -3,21 +3,10 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
-import {
-  postSignUp,
-  postLogin,
-  putUserProfile,
-  putPassword,
-  deleteAccount,
-} from "./controllers/user.js";
-import {
-  postTransaction,
-  getTransactions,
-  deleteTransactions,
-  putTransactionbyId,
-} from "./controllers/transactions.js";
-import jwt from "jsonwebtoken";
+import { verifyJWT } from "./middlewares/jwt.js";
 import { generateTransactionPDF } from "./controllers/pdf.js";
+import userRouter from "./Routes/userRoutes.js";
+import TransactionRouter from "./Routes/transactionRoutes.js";
 
 const app = express();
 
@@ -36,33 +25,6 @@ const connectDB = async () => {
 
 const PORT = process.env.PORT || 5001;
 
-const verifyJWT = async (req, res, next) => {
-  const { authorization } = req.headers;
-
-  if (!authorization) {
-    return res.status(401).json({
-      success: false,
-      data: null,
-      message: "Anauthorized",
-    });
-  }
-
-  try {
-    const jwtToken = authorization.split(" ")[1];
-    const decodedToken = jwt.verify(jwtToken, process.env.JWT_SECRET);
-
-    req.user = decodedToken;
-
-    next();
-  } catch (e) {
-    return res.status(400).json({
-      success: false,
-      data: null,
-      message: e.message,
-    });
-  }
-};
-
 app.get("/health", (req, res) => {
   res.json({
     success: true,
@@ -70,15 +32,8 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.post("/signup", postSignUp);
-app.post("/login", postLogin);
-app.post("/transactions", verifyJWT, postTransaction);
-app.get("/transactions", verifyJWT, getTransactions);
-app.delete("/transactions/:id", verifyJWT, deleteTransactions);
-app.put("/transaction/:id", verifyJWT, putTransactionbyId);
-app.put("/profile/:userid", verifyJWT, putUserProfile);
-app.put("/password/:userid", verifyJWT, putPassword);
-app.delete("/account/:userid", verifyJWT, deleteAccount);
+app.use('/auth', userRouter);
+app.use('/user', TransactionRouter);
 app.post("/pdf", verifyJWT, generateTransactionPDF);
 
 app.listen(PORT, () => {

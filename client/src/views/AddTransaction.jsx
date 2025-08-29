@@ -34,7 +34,7 @@ const AddTransaction = () => {
   const addTransactions = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_KEY}/transactions`,
+        `${import.meta.env.VITE_API_KEY}/user/transactions`,
         {
           title: userData.title,
           amount: userData.amount,

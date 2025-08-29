@@ -24,7 +24,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="h-[600px] w-full bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 relative">
+      <div className="h-[630px] w-full bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 relative">
         <motion.div
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ repeat: Infinity, duration: 10 }}
@@ -74,7 +74,7 @@ const Home = () => {
           </Link>
         </motion.div>
       </div>
-      <div className="shadow-xl p-2 md:py-12 md:px-30 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
+      <div className="md:h-[600px] shadow-xl p-2 md:py-12 md:px-30 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
         <h1 className="text-center text-2xl font-extrabold p-5 text-slate-800">
           {HEADING}
         </h1>
@@ -100,7 +100,7 @@ const Home = () => {
           })}
         </motion.div>
       </div>
-      <div className="shadow-xl px-10 md:px-30 py-5 md:py-20 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
+      <div className="md:h-[600px] shadow-xl px-10 md:px-30 py-5 md:py-20 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
         <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">
           Workflow of ExpenseDiary
         </h1>

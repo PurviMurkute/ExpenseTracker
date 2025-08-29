@@ -29,7 +29,7 @@ const TransactionCard = ({
 
   const deleteTransaction = async () => {
     const response = await axios.delete(
-      `${import.meta.env.VITE_API_KEY}/transactions/${_id}`,
+      `${import.meta.env.VITE_API_KEY}/user/transactions/${_id}`,
       {
         headers: {
           Authorization: `Bearer ${JWT}`,
@@ -50,7 +50,7 @@ const TransactionCard = ({
   const updateTransaction = async () => {
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_API_KEY}/transaction/${_id}`,
+        `${import.meta.env.VITE_API_KEY}/user/transaction/${_id}`,
         {
           title: transaction.title,
           amount: transaction.amount,

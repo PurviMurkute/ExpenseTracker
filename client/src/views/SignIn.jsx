@@ -21,7 +21,7 @@ const SignIn = () => {
   const signIn = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_KEY}/login`,
+        `${import.meta.env.VITE_API_KEY}/auth/login`,
         {
           email: signInUser.email,
           password: signInUser.password,
@@ -102,6 +102,14 @@ const SignIn = () => {
               btnSize="auth_btn"
               onClick={signIn}
               btnVariant="blue"
+            />
+            <Button
+              btnText="Login with Google"
+              btnSize="auth_btn"
+              iconPosition="left"
+              icon="google"
+              onClick={signIn}
+              btnVariant="outline"
             />
           </form>
           <p className="text-slate-800 text-center font-medium py-2">
