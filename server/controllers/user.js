@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import validator from "validator";
 import sendMail from "../Mail/sendMail.js";
-import htmlBody from '../Mail/mailBody.js'
+import htmlBody from "../Mail/mailBody.js";
 import { flushCache } from "../utils/cache.js";
 
 const postSignUp = async (req, res) => {
@@ -56,7 +56,7 @@ const postSignUp = async (req, res) => {
   try {
     const savedUser = await user.save();
 
-    sendMail(email, `Welcome to ExpenseDiary ${name}`, "", htmlBody(name) );
+    sendMail(email, `Welcome to ExpenseDiary ${name}`, "", htmlBody(name));
 
     return res.status(201).json({
       success: true,
@@ -121,6 +121,32 @@ const postLogin = async (req, res) => {
     jwtToken: jwtToken,
     message: "Login Successful",
   });
+};
+
+const getCurrentUser = (req, res) => {
+  try {
+    let user = req.user;
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        data: null,
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: user,
+      message: "User fetched successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      data: null,
+      message: error.message,
+    });
+  }
 };
 
 const putUserProfile = async (req, res) => {
@@ -244,4 +270,4 @@ const deleteAccount = async (req, res) => {
   }
 };
 
-export { postSignUp, postLogin, putUserProfile, putPassword, deleteAccount };
+export { postSignUp, postLogin, getCurrentUser, putUserProfile, putPassword, deleteAccount };
