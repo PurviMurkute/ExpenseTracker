@@ -72,7 +72,7 @@ const Dashboard = () => {
     setFilteredTransactions(tempFilteredTransactions);
   }, [searchText, transactions]);
 
-  const JWT = JSON.parse(localStorage.getItem("JwtToken"));
+  const JWT = localStorage.getItem("JwtToken");
 
   const loadTransactions = async () => {
     if (!user._id) return;

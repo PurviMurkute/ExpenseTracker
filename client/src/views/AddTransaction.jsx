@@ -29,7 +29,7 @@ const AddTransaction = () => {
     }
   }, []);
 
-  const JWT = JSON.parse(localStorage.getItem("JwtToken"));
+  const JWT = localStorage.getItem("JwtToken");
 
   const addTransactions = async () => {
     try {

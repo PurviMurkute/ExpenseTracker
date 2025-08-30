@@ -25,7 +25,7 @@ const TransactionCard = ({
   });
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
-  const JWT = JSON.parse(localStorage.getItem("JwtToken"));
+  const JWT = localStorage.getItem("JwtToken");
 
   const deleteTransaction = async () => {
     const response = await axios.delete(

@@ -13,19 +13,20 @@ passport.use(
       console.log(profile);
 
       try {
-        let user = await User.findOne({ googleId: profile.id });
+        const email = profile.emails[0].value;
+        let user = await User.findOne({ email });
 
         if (!user) {
           user = await User.create({
             googleId: profile.id,
-            email: profile.emails[0].value,
-            name: profile.displayName
+            name: profile.displayName,
+            email: email
           });
-          return cb(null, user);
         }
-        return cb(null, user);
+
+        return cb(null, user, { message: "Login successful" });
       } catch (error) {
-        return cb(error, null);
+        return cb(error);
       }
     }
   )

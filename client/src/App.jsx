@@ -5,6 +5,7 @@ import SignUp from './views/SignUp';
 import Home from './views/Home';
 import AddTransaction from './views/AddTransaction';
 import Profile from './views/Profile';
+import GoogleSuccess from './components/GoogleSuccess';
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
       <Route path='/addtransactions' element={<AddTransaction/>}></Route>
       <Route path='/reports' element={<Dashboard/>}></Route>
       <Route path='/profile' element={<Profile/>}></Route>
+      <Route path='/google-success' element={<GoogleSuccess/>}></Route>
     </Routes>
     </BrowserRouter>
   )

@@ -33,10 +33,7 @@ const SignIn = () => {
 
         localStorage.setItem("currentuser", JSON.stringify(response.data.data));
 
-        localStorage.setItem(
-          "JwtToken",
-          JSON.stringify(response.data.jwtToken)
-        );
+        localStorage.setItem("JwtToken", response.data.jwtToken);
 
         setSignInUser({
           email: "",

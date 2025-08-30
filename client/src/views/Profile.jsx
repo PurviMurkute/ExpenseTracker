@@ -35,7 +35,7 @@ const Profile = () => {
     }
   }, []);
 
-  const JWT = JSON.parse(localStorage.getItem("JwtToken"));
+  const JWT = localStorage.getItem("JwtToken");
 
   const editProfile = async () => {
     const response = await axios.put(

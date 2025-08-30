@@ -41,7 +41,7 @@ const postTransaction = async (req, res) => {
     amount,
     type,
     category,
-    user,
+    user: userid,
   });
 
   try {
