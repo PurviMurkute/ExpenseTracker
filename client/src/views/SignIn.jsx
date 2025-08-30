@@ -108,7 +108,7 @@ const SignIn = () => {
               btnSize="auth_btn"
               iconPosition="left"
               icon="google"
-              onClick={signIn}
+              onClick={() => {window.open(`${import.meta.env.VITE_API_KEY}/auth/google`, "_self")}}
               btnVariant="outline"
             />
           </form>

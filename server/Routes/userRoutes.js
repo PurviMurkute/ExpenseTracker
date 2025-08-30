@@ -25,7 +25,7 @@ userRouter.get(
 );
 userRouter.get(
   "/google/callback",
-  passport.authenticate("/google", { session: false }),
+  passport.authenticate("google", { session: false }),
   (req, res) => {
     try {
       const token = jwt.sign(

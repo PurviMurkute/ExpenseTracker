@@ -1,5 +1,5 @@
 import passport from "passport";
-import { strategy as GoogleStrategy } from "passport-google-oauth20";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "../models/User.js";
 
 passport.use(
@@ -19,8 +19,7 @@ passport.use(
           user = await User.create({
             googleId: profile.id,
             email: profile.emails[0].value,
-            name: profile.displayName,
-            picture: profile.photos[0].value,
+            name: profile.displayName
           });
           return cb(null, user);
         }
@@ -31,3 +30,5 @@ passport.use(
     }
   )
 );
+
+export default passport;

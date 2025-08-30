@@ -7,11 +7,13 @@ import { verifyJWT } from "./middlewares/jwt.js";
 import { generateTransactionPDF } from "./controllers/pdf.js";
 import userRouter from "./Routes/userRoutes.js";
 import TransactionRouter from "./Routes/transactionRoutes.js";
+import passport from './config/passport.js';
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(passport.initialize());
 
 const connectDB = async () => {
   const conn = await mongoose.connect(process.env.MONGO_URL);
