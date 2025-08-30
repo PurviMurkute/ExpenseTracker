@@ -1,6 +1,8 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "../models/User.js";
+import sendMail from "../Mail/sendMail.js";
+import htmlBody from "../Mail/mailBody.js";
 
 passport.use(
   new GoogleStrategy(
@@ -22,6 +24,7 @@ passport.use(
             name: profile.displayName,
             email: email
           });
+          sendMail(email, `Welcome to ExpenseDiary ${profile.displayName}`, "", htmlBody(profile.displayName));
         }
 
         return cb(null, user, { message: "Login successful" });

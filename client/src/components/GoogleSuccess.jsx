@@ -26,7 +26,7 @@ const GoogleSuccess = () => {
           if(res.data.success){
             setUser(res.data.data);
             localStorage.setItem("currentuser", JSON.stringify(res.data.data));
-            navigate("/");
+            navigate("/dashboard");
           }
         } catch (error) {
             console.log("error in googlesuccess", error);

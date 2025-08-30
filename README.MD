@@ -19,8 +19,12 @@ Track your income and expenses with ease! A full-stack Expense Tracker web appli
 
 ## 🚀 Features
 
-- 🔐 User Authentication (Signup/Signin)
+- 🔐 User Authentication
+     - Email/password using JWT
+     - Google Login using Passport.js
+- 📨 Welcome Email sent via Nodemailer when a user signs up or logs in for the first time
 - ➕ Add, Edit, & ❌ Delete transactions (CRUD)
+- 🗄️ Redis Caching for faster API responses and reduced database load
 - 📂 Filter transactions by category
 - 💵 View total balance, income, and expenses
 - 📱 Responsive UI (Mobile & Desktop)
@@ -36,11 +40,18 @@ Track your income and expenses with ease! A full-stack Expense Tracker web appli
 - MongoDB
 - JWT Authentication
 - bcrypt for password hashing
+- Passport + passport-google-oauth20 (Google Login)
+- Nodemailer for email notifications
+- Redis for caching
 
 ### 🖥️ Frontend
 - React.js
 - Tailwind CSS
-- Axios
-- Chart.js
+- Axios for API calls
+- Chart.js for data visualization
+- react-hot-toast (Notifications)
+- react-icons (Icons)
+- framer-motion (Animations)
+- react-router-dom (Routing)
 
 ---
