@@ -18,6 +18,7 @@ import { Bar, Doughnut } from "react-chartjs-2";
 import { useLocation, useNavigate } from "react-router";
 import TransactionEmptyView from "../components/TransactionEmptyView";
 import Button from "../components/Button";
+import Loader from "../components/Loader";
 
 ChartJS.register(
   CategoryScale,
@@ -37,6 +38,7 @@ const Dashboard = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -76,8 +78,8 @@ const Dashboard = () => {
 
   const loadTransactions = async () => {
     if (!user._id) return;
-
     try {
+      setLoading(true);
       const response = await axios.get(
         `${import.meta.env.VITE_API_KEY}/user/transactions?userid=${user._id}`,
         {
@@ -91,7 +93,7 @@ const Dashboard = () => {
         setTransactions(response.data.data);
       } else toast.error(response.data.message);
     } catch (e) {
-      if (e?.response?.data?.message == "jwt expired") {
+      if (e?.response?.data?.message == "jwt expired" || "invalid signature") {
         localStorage.clear();
         toast.error("JWT expired, please signin again");
         setTimeout(() => {
@@ -100,6 +102,8 @@ const Dashboard = () => {
         return;
       }
       toast.error(e?.response?.data?.message || e?.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -218,7 +222,7 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div className="bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 min-h-screen md:ms-[15%] px-5 py-2 overflow-y-auto">
+      <div className={`${isTransactions ? "min-h-screen sticky inset-0" : ""} bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 md:ms-[15%] px-5 py-2 overflow-y-auto`}>
         <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-8 bg-gradient-to-r from-cyan-500 to-blue-400 inline-block text-transparent bg-clip-text px-2 md:pb-2">
           Hello {user.name}!
         </h1>
@@ -264,10 +268,19 @@ const Dashboard = () => {
                 Your Financial Summary
               </h1>
               <div className="flex flex-col md:flex-row justify-center">
-                <FinancialSummaryCard type="income" amount={netIncome} />
-                <FinancialSummaryCard type="expense" amount={netExpense} />
+                <FinancialSummaryCard
+                  type="income"
+                  loading={loading}
+                  amount={netIncome}
+                />
+                <FinancialSummaryCard
+                  type="expense"
+                  loading={loading}
+                  amount={netExpense}
+                />
                 <FinancialSummaryCard
                   type="balance"
+                  loading={loading}
                   amount={netIncome - netExpense}
                 />
               </div>
@@ -276,7 +289,9 @@ const Dashboard = () => {
               <h1 className="text-lg md:text-xl font-bold text-slate-800 ms-7 p-2">
                 Transactions History
               </h1>
-              {transactions.length === 0 ? (
+              {loading ? (
+                <Loader loaderWithText={true} />
+              ) : transactions.length === 0 ? (
                 <TransactionEmptyView />
               ) : (
                 <div>
@@ -343,11 +358,11 @@ const Dashboard = () => {
           <div
             className={`${
               isTransactions
-                ? "h-[570px] m-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-white rounded-2xl"
+                ? "h-[550px] m-2 md:mx-5 p-2 shadow-xl flex flex-col justify-center bg-white rounded-2xl"
                 : "hidden"
             }`}
           >
-            <div className="flex flex-col md:flex-row justify-between">
+            <div className="flex flex-col md:flex-row justify-between w-full sticky top-0 bg-white z-10">
               <h1 className="text-xl md:text-2xl font-bold text-slate-800 px-5 py-2 md:p-5">
                 Recent Transactions
               </h1>
@@ -361,10 +376,12 @@ const Dashboard = () => {
                 }}
               />
             </div>
-            {transactions.length === 0 ? (
+            {loading ? (
+              <Loader loaderWithText={true} />
+            ) : transactions.length === 0 ? (
               <TransactionEmptyView />
             ) : (
-              <div className="overflow-y-scroll h-[450px]">
+              <div className="overflow-y-scroll h-[430px] scrollbar-hide">
                 {filteredTransactions.map((transaction, i) => {
                   const { _id, title, amount, type, category, createdAt } =
                     transaction;

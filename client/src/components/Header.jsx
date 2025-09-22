@@ -85,13 +85,13 @@ const Header = () => {
         ) : null}
 
         <Link to="/">
-          <h1 className="font-bold text-xl md:text-3xl font-serif pt-2">
+          <h1 className="font-bold text-xl md:text-3xl font-serif py-1 flex items-center gap-2">
             <img
               src={logo}
               alt="logo"
               className="w-[35px] md:w-[40px] inline"
-            />{" "}
-            ExpenseDiary
+            />
+            <span>ExpenseDiary</span>
           </h1>
         </Link>
       </div>

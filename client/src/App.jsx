@@ -20,7 +20,7 @@ const App = () => {
       <Route path='/addtransactions' element={<AddTransaction/>}></Route>
       <Route path='/reports' element={<Dashboard/>}></Route>
       <Route path='/profile' element={<Profile/>}></Route>
-      <Route path='/google-success' element={<GoogleSuccess/>}></Route>
+      <Route path='/google-success' element={<GoogleSuccess />}></Route>
     </Routes>
     </BrowserRouter>
   )

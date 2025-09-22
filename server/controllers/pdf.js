@@ -24,7 +24,7 @@ export const generateTransactionPDF = async (req, res) => {
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
       "Content-Disposition",
-      `attachment; filename=${user.name}_transactions.pdf`
+      `attachment; filename=${user?.name}_transactions.pdf`
     );
     // These headers tell browser: "This is a PDF file, download it as attachment"
 
@@ -33,7 +33,7 @@ export const generateTransactionPDF = async (req, res) => {
     doc
       .fillColor("black")
       .fontSize(20)
-      .text(`${user.name}'s Transaction History`, { align: "center" });
+      .text(`${user?.name}'s Transaction History`, { align: "center" });
 
     doc.moveDown(1); // Adds vertical space after the title
 

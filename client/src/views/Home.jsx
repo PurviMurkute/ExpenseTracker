@@ -131,7 +131,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="py-5 md:py-10 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
+      <div className="py-5 md:py-10 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-100">
         <h2 className="text-xl md:text-2xl font-extrabold text-center p-7 text-slate-800">
           No Fees. No Limits. Just Track.
         </h2>
@@ -140,7 +140,7 @@ const Home = () => {
           whileInView={{ y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="w-[300px] md:w-[400px] flex flex-col justify-center items-center mx-auto bg-slate-500/50 rounded-xl shadow p-3 md:py-10 text-white"
+          className="w-[300px] md:w-[400px] flex flex-col justify-center items-center mx-auto bg-gradient-to-b from-cyan-600 to-pink-400 rounded-xl shadow py-3 md:py-13 text-white"
         >
           <h3 className="text-2xl font-bold py-2">Free</h3>
           <p className="text-lg font-semibold text-gray-600 py-2">
