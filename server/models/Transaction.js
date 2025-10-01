@@ -20,10 +20,19 @@ const userTransactions = new Schema({
         default: "Other"
     },
     user: {
-        type: Schema.Types.ObjectId,  //we will know which user added transactions
+        type: Schema.Types.ObjectId,  
         ref: "User",
         required: true
-    }
+    },
+/*     isRecurring: {
+        type: Boolean,
+        default: false
+    },
+    recurringType: {
+        type: String,
+        enum: ["Daily", "Monthly", "Yearly"],
+        default: "Monthly"
+    } */
 },
 {
     timestamps: true

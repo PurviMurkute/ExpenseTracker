@@ -100,7 +100,7 @@ const TransactionCard = ({
   const amountColor = type === "income" ? "text-green-600" : "text-red-600";
 
   return (
-    <div className="bg-gradient-to-b from-blue-100 to-blue-200  shadow-md rounded-lg p-4 mx-2 md:mx-5 mb-3 flex justify-between items-center hover:shadow-lg">
+    <div className="bg-blue-50 rounded-lg p-4 mx-2 md:mx-5 mb-3 flex justify-between items-center hover:shadow-lg">
       <div>
         <h3 className="text-lg font-semibold">{title}</h3>
         <p className="text-sm text-gray-500">
@@ -131,7 +131,7 @@ const TransactionCard = ({
         width="sm"
       >
         <div className="flex flex-col p-3">
-          <h3 className="text-center font-medium text-slate-200">
+          <h3 className="text-center font-medium text-slate-700">
             Are you sure you want to delete this transaction?
           </h3>
           <div className="flex justify-evenly">

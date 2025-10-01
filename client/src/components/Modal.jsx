@@ -1,9 +1,8 @@
-import { X } from "lucide-react";
+import React from "react";
+import { IoClose } from "react-icons/io5";
 
 const Modal = ({ isOpen, onClose, width, children }) => {
-  if (!isOpen) {
-    return null;
-  }
+  if (!isOpen) return null;
 
   const modelWidth = {
     sm: "w-[250px] md:w-[400px]",
@@ -11,9 +10,9 @@ const Modal = ({ isOpen, onClose, width, children }) => {
   }
 
   return (
-    <div className="bg-gray-600/50 flex justify-center items-center inset-0 fixed min-h-screen">
-      <div className={`${modelWidth[width]} bg-slate-700/70 relative px-10 pt-5 rounded-md shadow-xl`}>
-        <X color="#fff" className="absolute top-2 right-2" onClick={onClose} />
+    <div className="fixed inset-0 min-h-screen bg-black/50 flex justify-center items-center">
+      <div className={`${modelWidth[width]} w-[310px] md:w-[450px] bg-white px-8 py-8 rounded-lg shadow-md relative`}>
+        <IoClose className="absolute top-2 right-2 cursor-pointer w-[25px] h-[25px] text-gray-700" onClick={onClose} />
         {children}
       </div>
     </div>

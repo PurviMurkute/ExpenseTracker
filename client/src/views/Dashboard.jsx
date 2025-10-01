@@ -116,6 +116,7 @@ const Dashboard = () => {
   const isDashboard = location.pathname.startsWith("/dashboard");
   const isTransactions = location.pathname.startsWith("/transactions");
   const isReports = location.pathname.startsWith("/reports");
+  const isAi = location.pathname.startsWith("/ai");
 
   useEffect(() => {
     let income = 0;
@@ -222,14 +223,14 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div className={`${isTransactions ? "min-h-screen sticky inset-0" : ""} bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 md:ms-[15%] px-5 py-2 overflow-y-auto`}>
-        <h1 className="mt-15 md:mt-20 text-2xl font-bold md:ms-8 bg-gradient-to-r from-cyan-500 to-blue-400 inline-block text-transparent bg-clip-text px-2 md:pb-2">
+      <div className={`${isTransactions ? "min-h-screen sticky inset-0" : ""} bg-gradient-to-b from-blue-50 via-emerald-50 to-blue-200 md:ms-[15%] px-5 py-2 overflow-y-auto`}>
+        <h1 className="mt-15 text-2xl font-bold md:ms-8 bg-gradient-to-r from-cyan-600 to-blue-500 inline-block text-transparent bg-clip-text px-2">
           Hello {user.name}!
         </h1>
         <div
           className={`${
             isDashboard
-              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-600 px-2 pb-2 flex flex-col md:flex-row justify-between items-center md:me-10"
+              ? "text-md md:text-lg md:ms-8 text-gray-600 px-2 pb-2 flex flex-col md:flex-row justify-between items-center md:me-10"
               : "hidden"
           }`}
         >
@@ -245,7 +246,7 @@ const Dashboard = () => {
         <h3
           className={`${
             isTransactions
-              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-600 px-2 pb-2"
+              ? "text-md md:text-lg md:ms-8 text-gray-600 px-2 pb-2"
               : "hidden"
           }`}
         >
@@ -253,8 +254,17 @@ const Dashboard = () => {
         </h3>
         <h3
           className={`${
+            isAi
+              ? "text-md md:text-lg md:ms-8 text-gray-600 px-2 pb-2"
+              : "hidden"
+          }`}
+        >
+          See, what AI says about your transactions 💭
+        </h3>
+        <h3
+          className={`${
             isReports
-              ? "text-lg md:text-xl font-medium md:ms-8 text-slate-600 px-2 pb-2"
+              ? "text-md md:text-lg md:ms-8 text-gray-600 px-2 pb-2"
               : "hidden"
           }`}
         >
@@ -295,7 +305,7 @@ const Dashboard = () => {
                 <TransactionEmptyView />
               ) : (
                 <div>
-                  <div className="flex flex-row items-center md:justify-center overflow-x-scroll my-4">
+                  <div className="flex flex-row items-center md:justify-center overflow-x-scroll scrollbar-hide my-4">
                     {[
                       "All",
                       "Salary",
@@ -363,13 +373,13 @@ const Dashboard = () => {
             }`}
           >
             <div className="flex flex-col md:flex-row justify-between w-full sticky top-0 bg-white z-10">
-              <h1 className="text-xl md:text-2xl font-bold text-slate-800 px-5 py-2 md:p-5">
+              <h1 className="text-xl md:text-2xl font-bold text-slate-800 px-5 py-2 z-0 md:p-5">
                 Recent Transactions
               </h1>
               <input
                 type="text"
                 placeholder="Search Transactions..."
-                className="w-[82%] md:w-[60%] bg-white p-2 my-4 border-2 border-slate-200 shadow-lg block mx-auto rounded-md focus:outline-none"
+                className="w-[82%] md:w-[60%] bg-white p-2 my-4 border-2 border-slate-200 z-0 block mx-auto rounded-md focus:outline-none"
                 value={searchText}
                 onChange={(e) => {
                   setSearchText(e.target.value.toLowerCase());
@@ -409,18 +419,24 @@ const Dashboard = () => {
               : "hidden"
           }`}
         >
-          <div className="md:w-[560px] h-[400px] md:h-[450px] bg-slate-300 p-3 md:p-15 md:me-10 my-5">
+          <div className="md:w-[560px] h-[400px] md:h-[470px] bg-slate-300 p-3 md:p-15 md:me-10 my-5">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 pb-2 md:ms-7">
               Summary Visualizations
             </h2>
             <Doughnut data={doughnutData} className="h-[300px]" />
           </div>
-          <div className="hidden md:block w-[560px] h-[330px]  md:h-[450px] bg-slate-300 p-4 md:p-15 mx-2 my-5 overflow-y-auto">
+          <div className="hidden md:block w-[560px] h-[330px]  md:h-[470px] bg-slate-300 p-4 md:p-15 mx-2 my-5 overflow-y-auto">
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 p-2 md:ms-7">
               Daily Transactions
             </h2>
             <Bar data={barData} options={barOptions} />
           </div>
+        </div>
+        <div className={`${isAi ? "flex flex-wrap justify-center my-2 bg-white rounded-2xl md:mx-5 p-5"
+              : "hidden" }`}>
+                <div>
+                  heyy
+                </div>
         </div>
         <Toaster />
       </div>

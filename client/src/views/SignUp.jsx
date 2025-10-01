@@ -46,7 +46,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-600 top-0 left-0 fixed w-full flex justify-center items-center">
+    <div className="min-h-screen bg-slate-200 top-0 left-0 fixed w-full flex justify-center items-center">
       <Header />
       <div className="md:w-[980px] px-5 py-5 md:py-5 mx-2 md:my-17 flex justify-center items-center shadow-2xl rounded-md bg-white">
         <div className="md:pe-8">
@@ -57,9 +57,9 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <h3 className="font-bold text-xl font-serif text-slate-600 py-1">
-            <img src={logo} alt="logo" className="w-[40px] inline" />
-            ExpenseDiary
+          <h3 className="font-bold text-xl font-serif text-slate-600 py-1 flex items-center">
+            <img src={logo} alt="logo" className="w-[30px] mr-2 inline" />
+            <span>ExpenseDiary</span>
           </h3>
           <h2 className="text-md text-slate-600 font-bold font-sans px-2 pe-1">
             🚀Get Started on a Smarter Spending Journey.

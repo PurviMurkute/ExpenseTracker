@@ -5,9 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 
 const Button = ({ btnText, onClick, btnSize, btnVariant, icon, iconPosition }) => {
   const btnSizes = {
-    lg: "text-xl px-4 py-2 mt-7",
-    md: "text-md px-5 py-1 my-1",
-    sm: "text-md px-4 py-1 my-5 block mx-auto",
+    lg: "text-lg px-4 py-2 mt-7",
+    md: "text-[15px] px-5 py-1 my-1",
+    sm: "text-sm px-4 py-1 my-5 block mx-auto",
     auth_btn: "text-md p-2 my-4 block mx-auto w-[88%] md:w-[83%]"
   };
 
@@ -19,8 +19,8 @@ const Button = ({ btnText, onClick, btnSize, btnVariant, icon, iconPosition }) =
   };
 
   const icons = {
-    export: <PiExportBold className="inline text-2xl" />,
-    google: <FcGoogle className="inline text-2xl me-2"/>
+    export: <PiExportBold className="inline text-xl" />,
+    google: <FcGoogle className="inline text-xl me-2"/>
   };
 
   return (

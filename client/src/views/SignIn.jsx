@@ -52,14 +52,14 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-600 top-0 left-0 fixed w-full flex justify-center items-center">
+    <div className="min-h-screen bg-slate-200 top-0 left-0 fixed w-full flex justify-center items-center">
       <Header />
       <div className="flex justify-center items-center md:w-[950px] bg-white rounded-md py-4 px-3 md:py-10">
         <div className="ms-1 md:me-5">
           <div className="w-[300px] md:w-[420px] my-2">
-            <h3 className="font-bold text-xl font-serif text-slate-600 py-2">
-              <img src={logo} alt="logo" className="w-[40px] inline" />
-              ExpenseDiary
+            <h3 className="font-bold text-xl font-serif text-slate-600 py-2 flex items-center">
+              <img src={logo} alt="logo" className="w-[30px] mr-2 inline" />
+              <span>ExpenseDiary</span>
             </h3>
             <h2 className="text-md text-slate-600 font-bold font-sans px-2 pe-1">
               Welcome Back! Sign In to Keep Tracking, Saving, and Thriving.

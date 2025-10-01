@@ -5,6 +5,7 @@ import Button from "./Button";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { FaCrosshairs } from "react-icons/fa";
 import {
   LayoutDashboard,
   BadgeIndianRupee,
@@ -32,6 +33,7 @@ const Header = () => {
     "/reports",
     "/quickactions",
     "/profile",
+    "/ai"
   ];
   const isDashboard = fullWidthRoutes.some((path) =>
     location.pathname.startsWith(path)
@@ -64,8 +66,8 @@ const Header = () => {
   const path = location.pathname;
 
   const getMenuTab = (menuTab) =>
-    `p-2 my-2 rounded-xl text-lg font-medium text-slate-100 hover:bg-slate-500 ${
-      path === menuTab ? "bg-slate-300 text-slate-900" : "bg-[#303d50]"
+    `p-2 my-2 rounded-xl text-[17px] font-medium text-slate-100 hover:bg-slate-500 ${
+      path === menuTab ? "bg-gray-400/70 text-slate-900" : "bg-[#303d50]"
     }`;
 
   return (
@@ -76,81 +78,87 @@ const Header = () => {
           : "md:w-2/3 bg-slate-900 md:mx-62 my-1 px-4 md:px-7 rounded-full"
       }`}
     >
-      <div className="flex flex-row">
-        {isDashboard ? (
-          <AlignJustify
-            className="inline w-[30px] mt-3.5 pe-2 cursor-pointer md:hidden"
-            onClick={toggleNav}
-          />
-        ) : null}
-
-        <Link to="/">
-          <h1 className="font-bold text-xl md:text-3xl font-serif py-1 flex items-center gap-2">
-            <img
-              src={logo}
-              alt="logo"
-              className="w-[35px] md:w-[40px] inline"
+      <div className="flex justify-between items-center px-3 w-full">
+        <div className="flex justify-start gap-2 items-center">
+          {isDashboard && (
+            <AlignJustify
+              className="inline w-[30px] mt-3.5 pe-2 cursor-pointer md:hidden"
+              onClick={toggleNav}
             />
-            <span>ExpenseDiary</span>
-          </h1>
-        </Link>
-      </div>
-      <div className="mt-3 md:me-5">
-        {!currentUser ? (
-          <>
-            <div className="hidden md:flex">
-              <Link
-                to="/signin"
-                className="font-bold text-md me-5 mt-1 cursor-pointer"
-              >
-                <LogIn className="w-[40px] inline" />
-                SignIn
-              </Link>
-              <Link to="/signup">
-                <Button btnText="SignUp Now" btnSize="md" btnVariant="red" />
-              </Link>
-            </div>
-            <div>
-              <Link to="/signin">
-                <FaUserCircle className="text-2xl fixed top-4.5 right-5 md:right-[20%] block md:hidden" />
-              </Link>
-            </div>
-          </>
-        ) : (
-          <div className="flex relative">
-            <button onClick={toggleDrpdown}>
-              <FaUserCircle
-                className={`${
-                  isDashboard ? "right-2" : "right-2 md:right-[18%]"
-                } text-2xl md:w-[55px] h-[30px] md:h-[35px] fixed md:top-4 cursor-pointer block`}
+          )}
+          <Link to="/">
+            <h1 className="font-bold text-xl md:text-2xl font-serif py-1 flex items-center gap-2">
+              <img
+                src={logo}
+                alt="logo"
+                className="w-[30px] md:w-[35px] inline"
               />
-            </button>
-            {isDropdownOpen && (
-              <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-1 rounded-xl w-[150px]">
-                <Link to="/dashboard">
-                  <button className="p-1 text-slate-800 text-md font-medium cursor-pointer px-2 py-1 w-full rounded-xl flex items-center hover:bg-slate-300">
-                    <MdDashboard className="text-xl me-2" />
-                    <p>Dashboard</p>
-                  </button>
-                </Link>
-                <Link to="/profile">
-                  <button className="pb-1 text-slate-800 text-md font-medium cursor-pointer w-full px-2 py-1 rounded-xl flex items-center hover:bg-slate-300">
-                    <RiUserFill className="text-xl me-2" />
-                    <p>Profile</p>
-                  </button>
-                </Link>
-                <hr className="text-black my-1" />
-                <button
-                  className=" text-red-500 text-md font-medium cursor-pointer px-2 py-1 rounded-xl flex items-center hover:bg-slate-300"
-                  onClick={handleSignOut}
-                >
-                  <IoLogOut className="text-xl me-2" />
-                  <p>SignOut</p>
+              <span>ExpenseDiary</span>
+            </h1>
+          </Link>
+          
+        </div>
+        <div>
+            {!currentUser ? (
+              <>
+                <div className="hidden md:flex items-center">
+                  <Link
+                    to="/signin"
+                    className="font-bold text-md me-5 mt-1 cursor-pointer"
+                  >
+                    <LogIn className="w-[40px] inline" />
+                    SignIn
+                  </Link>
+                  <Link to="/signup">
+                    <Button
+                      btnText="SignUp Now"
+                      btnSize="md"
+                      btnVariant="red"
+                    />
+                  </Link>
+                </div>
+                <div>
+                  <Link to="/signin">
+                    <FaUserCircle className="text-2xl fixed top-4.5 right-5 md:right-[20%] block md:hidden" />
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center relative">
+                <button onClick={toggleDrpdown}>
+                  <FaUserCircle
+                    className={`${
+                      isDashboard ? "right-2" : "right-2 md:right-[18%]"
+                    } text-2xl md:w-[55px] h-[30px] md:h-[35px] fixed md:top-2 cursor-pointer block`}
+                  />
                 </button>
+                {isDropdownOpen && (
+                  <div className="flex flex-col justify-center absolute right-0 top-9 bg-slate-100 px-3 py-1 rounded-xl w-[150px]">
+                    <Link to="/dashboard">
+                      <button className="p-1 text-slate-800 text-md font-medium cursor-pointer px-2 py-1 w-full rounded-xl flex items-center hover:bg-slate-300">
+                        <MdDashboard className="text-xl me-2" />
+                        <p>Dashboard</p>
+                      </button>
+                    </Link>
+                    <Link to="/profile">
+                      <button className="pb-1 text-slate-800 text-md font-medium cursor-pointer w-full px-2 py-1 rounded-xl flex items-center hover:bg-slate-300">
+                        <RiUserFill className="text-xl me-2" />
+                        <p>Profile</p>
+                      </button>
+                    </Link>
+                    <hr className="text-black my-1" />
+                    <button
+                      className=" text-red-500 text-md font-medium cursor-pointer px-2 py-1 rounded-xl flex items-center hover:bg-slate-300"
+                      onClick={handleSignOut}
+                    >
+                      <IoLogOut className="text-xl me-2" />
+                      <p>SignOut</p>
+                    </button>
+                  </div>
+                )}
               </div>
             )}
-          </div>
-        )}
+        </div>
       </div>
 
       <div
@@ -199,10 +207,13 @@ const Header = () => {
           >
             <ChartArea className="inline w-[23px]" /> Visualizations
           </Link>
-          <hr className="my-5" />
+          {/* <Link to={'/ai'} className={getMenuTab("/ai")} onClick={()=>toggleNav()}>
+          <FaCrosshairs className="inline w-[23px]" /> AI
+          </Link> */}
+          <hr className="my-5 text-gray-400 h-[0.5px]" />
           <Link
             to="signin"
-            className={`w-[70%] md:w-[210px] px-4 py-2 my-2 rounded-xl text-lg font-medium border-t-1 border-slate-200 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
+            className={`w-[70%] md:w-[210px] px-4 py-2 my-2 rounded-xl text-lg font-medium border-t-1 border-gray-400 text-slate-100 hover:bg-slate-500 fixed bottom-1`}
             onClick={handleSignOut}
           >
             <LogOut className="inline w-[23px] me-3" /> Sign Out

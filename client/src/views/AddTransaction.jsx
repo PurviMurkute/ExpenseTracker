@@ -76,7 +76,7 @@ const AddTransaction = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-emerald-50 to-blue-200">
       <Header />
       <div className="md:ms-[20%] fixed inset-0">
         <div className="mx-3 md:ms-[8%]">

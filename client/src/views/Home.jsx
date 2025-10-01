@@ -24,17 +24,17 @@ const Home = () => {
 
   return (
     <>
-      <div className="h-[630px] w-full bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200 relative">
+      <div className="h-[630px] w-full bg-gradient-to-b from-blue-50 via-emerald-50 to-blue-200 relative">
         <motion.div
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ repeat: Infinity, duration: 10 }}
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: `
-        linear-gradient(to right, #8c8c8c 1px, transparent 0px),
-        linear-gradient(to bottom, #8c8c8c 1px, transparent 0px)
+        linear-gradient(to right, #cccccc 1px, transparent 0px),
+        linear-gradient(to bottom, #cccccc 1px, transparent 0px)
       `,
-            backgroundSize: "35px 35px",
+            backgroundSize: "30px 30px",
             WebkitMaskImage:
               "radial-gradient(ellipse 80% 80% at 0% 0%, #000 50%, transparent 90%)",
             maskImage:
@@ -49,15 +49,15 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col items-center justify-center mt-12 md:mt-0 inset-0 absolute text-slate-700 px-3 md:w-[800px] text-center mx-auto"
+          className="flex flex-col items-center justify-center mt-12 md:mt-0 inset-0 absolute text-slate-700 px-3 md:w-[680px] text-center mx-auto"
         >
-          <h3 className="text-3xl md:text-4xl font-extrabold py-3 md:py-2">
+          <h3 className="text-2xl md:text-3xl font-extrabold py-3 md:py-2">
             Goodbye Guesswork. Hello Financial Clarity!
           </h3>
-          <h4 className="text-xl md:text-2xl font-bold pb-3 md:py-2 bg-gradient-to-r from-cyan-700 via-blue-600 to-cyan-600 inline-block text-transparent bg-clip-text">
+          <h4 className="text-lg md:text-xl font-bold pb-3 md:py-2 bg-gradient-to-r from-cyan-700 via-blue-600 to-cyan-600 inline-block text-transparent bg-clip-text">
             See Where Your Money Goes And Keep More of It.
           </h4>
-          <p className="text-lg pb-4 md:py-2">
+          <p className="text-md pb-4 md:py-2">
             Turn everyday spending into meaningful savings. Get insights, set
             goals, and take control of your financial life with
             <span className="text-xl md:text-2xl font-bold">
@@ -74,7 +74,7 @@ const Home = () => {
           </Link>
         </motion.div>
       </div>
-      <div className="md:h-[600px] shadow-xl p-2 md:py-12 md:px-30 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
+      <div className="md:h-[600px] shadow-xl p-2 md:py-12 md:px-30 bg-gradient-to-b from-blue-50 via-emerald-50 to-blue-200">
         <h1 className="text-center text-2xl font-extrabold p-5 text-slate-800">
           {HEADING}
         </h1>
@@ -100,7 +100,7 @@ const Home = () => {
           })}
         </motion.div>
       </div>
-      <div className="md:h-[600px] shadow-xl px-10 md:px-30 py-5 md:py-20 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-200">
+      <div className="md:h-[600px] shadow-xl px-10 md:px-30 py-5 md:py-20 bg-gradient-to-b from-blue-50 via-emerald-50 to-blue-200">
         <h1 className="text-center text-2xl font-extrabold py-6 text-slate-800">
           Workflow of ExpenseDiary
         </h1>
@@ -131,7 +131,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <div className="py-5 md:py-10 bg-gradient-to-b from-blue-100 via-emerald-100 to-blue-100">
+      <div className="py-5 md:py-10 bg-gradient-to-b from-blue-50 via-emerald-50 to-blue-200">
         <h2 className="text-xl md:text-2xl font-extrabold text-center p-7 text-slate-800">
           No Fees. No Limits. Just Track.
         </h2>
@@ -140,7 +140,7 @@ const Home = () => {
           whileInView={{ y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="w-[300px] md:w-[400px] flex flex-col justify-center items-center mx-auto bg-gradient-to-b from-cyan-600 to-pink-400 rounded-xl shadow py-3 md:py-13 text-white"
+          className="w-[300px] md:w-[400px] flex flex-col justify-center items-center mx-auto bg-gradient-to-b from-gray-500/50 to-gray-400 rounded-xl shadow py-3 md:py-13 text-white"
         >
           <h3 className="text-2xl font-bold py-2">Free</h3>
           <p className="text-lg font-semibold text-gray-600 py-2">

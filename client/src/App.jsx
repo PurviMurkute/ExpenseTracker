@@ -19,6 +19,7 @@ const App = () => {
       <Route path='/transactions' element={<Dashboard/>}></Route>
       <Route path='/addtransactions' element={<AddTransaction/>}></Route>
       <Route path='/reports' element={<Dashboard/>}></Route>
+      <Route path='/ai' element={<Dashboard/>}></Route>
       <Route path='/profile' element={<Profile/>}></Route>
       <Route path='/google-success' element={<GoogleSuccess />}></Route>
     </Routes>
