@@ -7,7 +7,7 @@ import { verifyJWT } from "./middlewares/jwt.js";
 import { generateTransactionPDF } from "./controllers/pdf.js";
 import userRouter from "./Routes/userRoutes.js";
 import TransactionRouter from "./Routes/transactionRoutes.js";
-import passport from './config/passport.js';
+import passport from "./config/passport.js";
 
 const app = express();
 
@@ -34,11 +34,11 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.use('/auth', userRouter);
-app.use('/user', TransactionRouter);
+app.use("/auth", userRouter);
+app.use("/user", TransactionRouter);
 app.post("/pdf", verifyJWT, generateTransactionPDF);
 
+connectDB();
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
-  connectDB();
 });
